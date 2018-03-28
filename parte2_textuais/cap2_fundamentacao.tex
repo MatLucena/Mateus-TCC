@@ -1,4 +1,21 @@
-\chapter{Fundamentação Teórica} \label{cap2}
-FUNDAMENTAÇÃO TEÓRICA AQUI
+\chapter{ Fundamentação Teórica} \label{cap2}
+Neste capítulo serão apresentados conceitos necessários para o entendimento do trabalho.
+
+\section{Identificação de Sistemas e Estimação de Parâmetros}
+A identificação do sistema é o primeiro passo para o seu controle. Nesta seção serão tratados conceitos de identificação de sistemas e estimação de parâmetros fundamentais para o entendimento do trabalho.
+
+\subsection{Visão Geral}
+A identificação de sistemas e estimação de parâmetros se tratam de métodos e práticas que permitem construir modelos dinâmicos de um sistema real à partir de experimentos. Muitas vezes um sistema construído que precisa ser controlado não pode ser modelado devido à limitações matemáticas ou imprecisão na interação dos componentes. Nestes casos se utiliza da identificação de sistemas para obter um modelo matemático. A identificação de sistemas se baseia em testar a resposta do sistema à certas entradas e a partir das respostas aproximar o modelo matemático de forma satisfatória. Para identificar sistemas temos métodos determinísticos, que desprezam o ruído presente nos dados, e métodos não paramétricos, que não resultam em um modelo matemático mas em uma representação gráfica da dinâmica do sistema da qual um modelo pode ser extraído.
+
+
+\subsection{Identificação por Mínimos Quadrados}
+O método de mínimos quadrados é um dos mais conhecidos e utilizados em várias áreas da ciência e tecnologia. Ele utiliza sistemas de equações com matrizes geradas a partir de testes com os sistemas reais no seguinte formato:
+\begin{equation}
+	\hat{\Theta}=[X^TX]^{-1}X^Ty
+\end{equation}
+Onde $\hat{\Theta}  $  é uma matriz de parâmetros do sistema, X é uma matriz de sinais de entrada e y uma matriz de saídas correspondentes ao sinais de X. Para usar o estimador de mínimos quadrados é necessário que se entenda, a partir dos dados obtidos, um modelo esperado para o sistema que deve ser identificado. Exemplo disso seria observar se o sistema deve se comportar como primeira ou segunda ordem, linear ou não.
+\newline 
+
+
 
 % Fim Capítulo
