@@ -29,8 +29,53 @@ Podemos então tratar esse conjunto como vetores da seguinte forma:
 \begin{equation}
 y=f(x,\Theta)
 \end{equation}
-Onde $ \Theta $ é um vetor de n parâmetros.
+Existem três considerações que devem ser tomadas para avançar o entendimento de mínimos quadrados.
+\begin{enumerate}
+	\item A função f e o vetor $\theta$ não variam de uma restrição para outra. Todas as restrições são da mesma equação. Em problemas de identificação de sistemas dinâmicos normalmente supõe-se que o sistema seja invariante no tempo e que os sinais medidos sejam estacionários, caso não fossem f e $\theta$ seriam diferentes entre restrições complicando a estimação de um único f e um único $\theta$.
+	\item A equação 2.3 pode ser reescrita como
+	\begin{equation}
+	y=x^T \theta
+	\end{equation}
+	Implicando que f é linear nos parâmetros. Se f não for linear $\theta$ pode ser estimado por métodos não lineares.
+	\item Serão tomadas n restrições de 2.4 a fim de se ter n equações para determinar os n elementos de $\theta$.
+\end{enumerate}
 
+Sabendo das considerações as restrições representadas na equação 2.4 podem ser escritas da seguinte forma:
+
+\begin{equation}
+\begin{array}{c}
+\begin{bmatrix}
+y_1 \\ y_2 \\ y_3\\ ... \\ y_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+x^1_1 & x^2_1 & ... & x^n_1\\
+x^1_2 & x^2_2 & ... & x^n_2\\
+... & ... & ...& ...&\\
+x^1_n & x^2_n & ... & x^n_n\\
+\end{bmatrix}
+\begin{bmatrix}
+\theta_1 \\ \theta_2 \\ ... \\ \theta_n
+\end{bmatrix}
+\\
+y=X \theta
+\end{array}
+\end{equation}
+y é uma variável dependente  dos regressores $x_1,... x_n$, também chamados de variáveis independentes. $\theta$ é o vetor de parâmetros a determinar. Desde que X seja não singular é possível determinar o vetor de parâmetros invertendo a matriz:
+\begin{equation}
+\theta=X^{-1}y
+\end{equation}
+
+
+\subsection {Filtro de Kalman}
+O filtro de Kalman é um eficiente filtro recursivo que estima o estado de um sistema dinâmico linear a partir de uma série de medições ruidosas. Ele é utilizado em uma grande variedade de aplicações de engenharia, e é um tópico especialmente importante para a teoria de sistemas de controle.
+\subsubsection{Visão Geral}
+O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e um sistema de sensores para gerar uma estimativa das grandezas variáveis de um sistema, seus estados. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso.
+
+\subsubsection{Etapa de propagação}
+
+
+\subsection {Identificação por Subespaços}
 
 
 % Fim Capítulo
