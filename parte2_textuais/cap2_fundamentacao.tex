@@ -13,9 +13,39 @@ O método de mínimos quadrados é um dos mais conhecidos e utilizados em vária
 \begin{equation}
 	\hat{\Theta}=[X^TX]^{-1}X^Ty
 \end{equation}
-Onde $\hat{\Theta}  $  é uma matriz de parâmetros do sistema, X é uma matriz de sinais de entrada e y uma matriz de saídas correspondentes ao sinais de X. Para usar o estimador de mínimos quadrados é necessário que se entenda, a partir dos dados obtidos, um modelo esperado para o sistema que deve ser identificado. Exemplo disso seria observar se o sistema deve se comportar como primeira ou segunda ordem, linear ou não.
+A equação 2.1 é o objetivo da identificação por quadrados mínimos, mas para entender ela precisamos primeiro entender de onde ela vem.
 \newline 
+Um sistema geralmente é descrito por uma função entrada - saída, em um sistema onde não sabemos a função podemos executar uma série de testes para obtermos um conjunto de valores de entrada e saída da seguinte forma:
+\begin{equation}
+\begin{array}{c}
+y_1=f(x_1) \\
+y_2=f(x_2) \\
+y_3=f(x_3) \\
+... \\
+y_N=f(x_N)
+\end{array}
+\end{equation}
+Podemos então tratar esse conjunto como vetores da seguinte forma:
+\begin{equation}
+y=f(x,\Theta)
+\end{equation}
+Onde $ \Theta $ é um vetor de n parâmetros.
 
 
 
 % Fim Capítulo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
