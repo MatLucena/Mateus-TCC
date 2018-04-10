@@ -71,8 +71,26 @@ y é uma variável dependente  dos regressores $x_1,... x_n$, também chamados d
 O filtro de Kalman é um eficiente filtro recursivo que estima o estado de um sistema dinâmico linear a partir de uma série de medições ruidosas. Ele é utilizado em uma grande variedade de aplicações de engenharia, e é um tópico especialmente importante para a teoria de sistemas de controle.
 \subsubsection{Visão Geral}
 O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e um sistema de sensores para gerar uma estimativa das grandezas variáveis de um sistema, seus estados. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso.
+\newline
+Usaremos a nomenclatura de Aguirre, onde $t_1$ é substituído pela iteração atual indicada por k, e o $t_2$ é substituído pela próxima iteração k+1. A notação ($t_1$|$t_1$) é substituída por um sinal '+' para indicar o instante $t_i$ após ter sido incluída a informação em $t_i$. Da mesma forma será utilizado um sinal '-' para indicar a grandeza que se refere ao instante $t_i$ antes de ter sido incluída a informação referente àquele instante. A equação que rege a propagação é a seguinte:
+\begin{equation} \label{eq_prop}
+\hat{x}^{-}_{k+1}=\Phi_k \hat{x}^+_k+\Gamma_ku_k
+\end{equation}
 
 \subsubsection{Etapa de propagação}
+Conhecendo a função de densidade de probabilidade de $x_k^+$, indicada por $f_k\sim \mathcal{N}(\bar{x}^+_k, P^+_k)$, deseja-se encontrar a função de densidade de probabilidade de $x^-_{k+1}$. Ou seja, na etapa de propagação deseja-se saber o que acontece à $f_k$ ao ser propagado pela equação \ref{eq_prop}. Assumimos que $f_k$ é gaussiana e portanto $f_-$ também será, deste modo basta determinar $\bar{x}^-_{k+1}$ e $P_-^{k+1}$ contidos em $f_- \sim \mathcal{N}(\bar{x}^-_{k+1},P^-_{k+1})$ para caracterizar $f_-$.
+\newline
+Seguindo o raciocínio de Aguirre encontramos:
+\begin{equation}
+\bar{x}^-_{k+1}=\Phi_k\bar{x}^+_k+\Gamma_ku_k
+\end{equation}
+\begin{equation}
+P^-_{k+1}=\Phi_kP^+_k\Phi^T_k+\Upsilon_kQ_k\Upsilon^T_k
+\end{equation}
+
+A equação mostra que ao longo da etapa de propagação a incerteza aumenta devido à presença de ruído no modelo dinâmico usado.
+
+\subsubsection{Etapa de assimilação}
 
 
 \subsection {Identificação por Subespaços}
