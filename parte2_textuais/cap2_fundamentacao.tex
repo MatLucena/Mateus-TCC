@@ -91,9 +91,22 @@ P^-_{k+1}=\Phi_kP^+_k\Phi^T_k+\Upsilon_kQ_k\Upsilon^T_k
 A equação mostra que ao longo da etapa de propagação a incerteza aumenta devido à presença de ruído no modelo dinâmico usado.
 
 \subsubsection{Etapa de assimilação}
+Vimos que na etapa de propagação o vetor de estado $x^+_k$ é propagado para a próxima iteração resultando em $x^-_{k+1}$. A segunda etapa, a de assimilação, ocorre com a chegada de nova informação na iteração k+1. O objetivo é a determinação de $f_+ \sim \mathcal{N} (\bar{x}^+_{k+1},P^+_{k+1})$ a partir de $f_-$ e da medição na iteração $y_{k+1}$. De forma semelhante à etapa de propagação, devemos encontrar $\bar{x}^+_{k+1}$ e $P^+_{k+1}$. Após os devidos passos encontramos:
+\begin{equation}
+\bar{\mathbf{x}}^+_{k+1}=\bar{\mathbf{x}}^-_{k+1}+K_{k+1}[\mathbf{y}_{k+1}-H_{k+1} \bar{\mathbf{x}} ^-_{k+1}]
+\end{equation}
+\begin{equation}
+P^+_{k+1}=P^-_{k+1}-K_{k+1} H_{k+1} P^-_{k+1}
+\end{equation}
+\begin{equation}
+K_{k+1}=P^-_{k+1} H^T_{k+1}[H_{k+1} P^-_{k+1} H^T_{k+1}+R_{k+1}]^-1
+\end{equation}
 
-
+Com estas equações completamos o conjunto de equações necessárias para entender o filtro de Kalman.
 \subsection {Identificação por Subespaços}
+
+\subsection{Critérios de Estabilidade}
+A grande diferença entre sistemas de malha fechada digitais e analógicos é o efeito que a taxa de amostragem tem na dinâmica do sistema. Mudanças na taxa de amostragem podem mudar a resposta do sistema de superamortecido para subamortecido quanto de estável para instável. 
 
 
 % Fim Capítulo
