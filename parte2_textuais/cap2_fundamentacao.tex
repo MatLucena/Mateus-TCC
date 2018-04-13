@@ -106,8 +106,23 @@ Com estas equações completamos o conjunto de equações necessárias para ente
 \subsection {Identificação por Subespaços}
 
 \subsection{Critérios de Estabilidade}
-A grande diferença entre sistemas de malha fechada digitais e analógicos é o efeito que a taxa de amostragem tem na dinâmica do sistema. Mudanças na taxa de amostragem podem mudar a resposta do sistema de superamortecido para subamortecido quanto de estável para instável. 
+A grande diferença entre sistemas de malha fechada digitais e analógicos é o efeito que a taxa de amostragem tem na dinâmica do sistema. Mudanças na taxa de amostragem podem mudar a resposta do sistema de superamortecido para subamortecido quanto de estável para instável.
+\newline
+No domínio s a região de estabilidade é à esquerda da origem. Levando a função de transferência G(s) para o domínio z, a região de estabilidade pode ser avaliada usando a definição, $z=e^{Ts}$. Com $s=\alpha +j\omega$ obtemos:
+\begin{equation}
+z=e^{Ts}=e^{\alpha+j\omega}=e^{\alpha T}\angle \omega T
+\end{equation}
 
+Cada região do plano s pode ser mapeada numa região correspondente do plano z, como visto na figura \ref{fig:planoestabilidadedigital}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{plano_estabilidade_digital}
+	\caption{Regiões do plano s mapeadas no plano z}
+	\label{fig:planoestabilidadedigital}
+\end{figure}
+
+Desta forma um sistema de controle digital pode ser, estável, se todos os polos do sistema em malha fechada se encontram dentro do círculo unitário do plano z, instável, se existir ao menos um polo fora do círculo unitário ou se houver polos de multiplicidade maior que um em cima do círculo, e marginalmente estável se houver polos de multiplicidade um em cima do círculo unitário e os outros polos se encontrarem dentro do círculo.
 
 % Fim Capítulo
 
