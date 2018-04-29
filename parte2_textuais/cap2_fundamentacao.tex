@@ -1,15 +1,22 @@
 \chapter{ Fundamentação Teórica} \label{cap2}
-Neste capítulo serão apresentados conceitos necessários para o entendimento do trabalho.
+
+
+\corrigir{Neste capítulo serão} apresentados conceitos necessários para o entendimento do trabalho. \commentib{Cite especificamente quais conhecimentos}
+
+\commentib{Creio que antes de falar de identificação, podemos falar um pouco sobre modelos de sistemas dinâmicos. Lá podemos falar de modelos em espaço de estados, função de transferência, EDO's. Daí chegamos em modelos ARX usados na identificação por MQ e modelos em espaço de estados discretos usados em identificação por subespaços.}
 
 \section{Identificação de Sistemas e Estimação de Parâmetros}
-A identificação do sistema é o primeiro passo para o seu controle. Nesta seção serão tratados conceitos de identificação de sistemas e estimação de parâmetros fundamentais para o entendimento do trabalho.
+A identificação do sistema é o primeiro passo para o seu controle. \commentib{Na verdade, o argumento certo seria dizer que boa parte das técnicas de controle são dependentes de modelos matemáticos, e que modelos podem ser obtidos de diferentes formas (vide Cap. 1 do livro do Aguirre), uma das formas é a identificação, também conhecida como modelagem caixa preta.} \corrigir{Nesta seção serão} tratados conceitos de identificação de sistemas e estimação de parâmetros fundamentais para o entendimento do trabalho.
 
 \subsection{Visão Geral}
-A identificação de sistemas e estimação de parâmetros se tratam de métodos e práticas que permitem construir modelos dinâmicos de um sistema real à partir de experimentos. Muitas vezes um sistema construído que precisa ser controlado não pode ser modelado devido à limitações matemáticas ou imprecisão na interação dos componentes. Nestes casos se utiliza da identificação de sistemas para obter um modelo matemático. A identificação de sistemas se baseia em testar a resposta do sistema à certas entradas e a partir das respostas aproximar o modelo matemático de forma satisfatória. Para identificar sistemas temos métodos determinísticos, que desprezam o ruído presente nos dados, e métodos não paramétricos, que não resultam em um modelo matemático mas em uma representação gráfica da dinâmica do sistema da qual um modelo pode ser extraído.
+A identificação de sistemas e estimação de parâmetros \cortar{se} tratam de métodos e práticas que permitem construir modelos dinâmicos de um sistema \corrigir{ real à partir} de experimentos . Muitas vezes um sistema construído que precisa ser controlado não pode ser modelado devido à limitações matemáticas ou imprecisão na interação dos componentes. \corrigir{ Nestes casos se utiliza} da identificação de sistemas para obter um modelo matemático. A identificação de sistemas se baseia em testar a resposta do sistema à certas entradas e a partir das respostas aproximar o modelo matemático de forma satisfatória. Para identificar sistemas temos métodos determinísticos, que desprezam o ruído presente nos dados, e métodos não paramétricos, que não resultam em um modelo matemático mas em uma representação gráfica da dinâmica do sistema da qual um modelo pode ser extraído. \commentib{Esse último trecho está incorreto ou sem sentido.}
 
 
 \subsection{Identificação por Mínimos Quadrados}
 O método de mínimos quadrados é um dos mais conhecidos e utilizados em várias áreas da ciência e tecnologia. Ele utiliza sistemas de equações com matrizes geradas a partir de testes com os sistemas reais no seguinte formato:
+
+\commentib{Precisamos estabelecer e manter uma notação para diferenciar escalares, vetores, regressores e matrizes.}
+
 \begin{equation}
 	\hat{\Theta}=[X^TX]^{-1}X^Ty
 \end{equation}
@@ -66,11 +73,12 @@ y é uma variável dependente  dos regressores $x_1,... x_n$, também chamados d
 \theta=X^{-1}y
 \end{equation}
 
+\commentib{Está faltando no que está descrito acima a descrição de resíduos e de ruídos... Além disso, essa descrição pode ser adequada para estabelecer ligação com equações de diferença e modelos ARX}
 
 \subsection {Filtro de Kalman}
-O filtro de Kalman é um eficiente filtro recursivo que estima o estado de um sistema dinâmico linear a partir de uma série de medições ruidosas. Ele é utilizado em uma grande variedade de aplicações de engenharia, e é um tópico especialmente importante para a teoria de sistemas de controle.
+O filtro de Kalman é \melhorar{ um eficiente filtro recursivo que estima o estado de um sistema dinâmico linear a partir de uma série de medições ruidosas}. Ele é utilizado em uma grande variedade de aplicações de engenharia \commentib{Por exemplo?}, e é um tópico especialmente importante para a teoria de sistemas de controle. \commentib{Pq é importante?}
 \subsubsection{Visão Geral}
-O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e um sistema de sensores para gerar uma estimativa das grandezas variáveis de um sistema, seus estados. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso.
+O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e \melhorar{ um sistema} de sensores para \melhorar{ gerar uma estimativa das grandezas variáveis} de um sistema \cortar{, seus estados}. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso. \commentib{Quebre linha duas vezes ao invés de usar o comando \texttt{newline}, pois este remove identação.}
 \newline
 Usaremos a nomenclatura de Aguirre, onde $t_1$ é substituído pela iteração atual indicada por k, e o $t_2$ é substituído pela próxima iteração k+1. A notação ($t_1$|$t_1$) é substituída por um sinal '+' para indicar o instante $t_i$ após ter sido incluída a informação em $t_i$. Da mesma forma será utilizado um sinal '-' para indicar a grandeza que se refere ao instante $t_i$ antes de ter sido incluída a informação referente àquele instante. A equação que rege a propagação é a seguinte:
 \begin{equation} \label{eq_prop}
@@ -80,7 +88,7 @@ Usaremos a nomenclatura de Aguirre, onde $t_1$ é substituído pela iteração a
 \subsubsection{Etapa de propagação}
 Conhecendo a função de densidade de probabilidade de $x_k^+$, indicada por $f_k\sim \mathcal{N}(\bar{x}^+_k, P^+_k)$, deseja-se encontrar a função de densidade de probabilidade de $x^-_{k+1}$. Ou seja, na etapa de propagação deseja-se saber o que acontece à $f_k$ ao ser propagado pela equação \ref{eq_prop}. Assumimos que $f_k$ é gaussiana e portanto $f_-$ também será, deste modo basta determinar $\bar{x}^-_{k+1}$ e $P_-^{k+1}$ contidos em $f_- \sim \mathcal{N}(\bar{x}^-_{k+1},P^-_{k+1})$ para caracterizar $f_-$.
 \newline
-Seguindo o raciocínio de Aguirre encontramos:
+Seguindo o raciocínio de \commentib{Essa citação está inadequada} Aguirre encontramos:
 \begin{equation}
 \bar{x}^-_{k+1}=\Phi_k\bar{x}^+_k+\Gamma_ku_k
 \end{equation}
