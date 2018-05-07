@@ -21,7 +21,7 @@ Um sistema geralmente é descrito por uma função entrada - saída, em um siste
 y_1=f(x_1) \\
 y_2=f(x_2) \\
 y_3=f(x_3) \\
-... \\
+\vdots \\
 y_N=f(x_N)
 \end{array}
 \end{equation}
@@ -45,17 +45,17 @@ Sabendo das considerações as restrições representadas na equação 2.4 podem
 \begin{equation}
 \begin{array}{c}
 \begin{bmatrix}
-y_1 \\ y_2 \\ y_3\\ ... \\ y_n
+y_1 \\ y_2 \\ y_3\\ \vdots \\ y_n
 \end{bmatrix}
 =
 \begin{bmatrix}
-x^1_1 & x^2_1 & ... & x^n_1\\
-x^1_2 & x^2_2 & ... & x^n_2\\
-... & ... & ...& ...&\\
-x^1_n & x^2_n & ... & x^n_n\\
+x^1_1 & x^2_1 & \dots & x^n_1\\
+x^1_2 & x^2_2 & \dots & x^n_2\\
+\vdots & \vdots & \ddots& \vdots&\\
+x^1_n & x^2_n & \dots & x^n_n\\
 \end{bmatrix}
 \begin{bmatrix}
-\theta_1 \\ \theta_2 \\ ... \\ \theta_n
+\theta_1 \\ \theta_2 \\ \vdots \\ \theta_n
 \end{bmatrix}
 \\
 y=X \theta
@@ -108,7 +108,14 @@ Com estas equações completamos o conjunto de equações necessárias para ente
 \subsection{Critérios de Estabilidade}
 A grande diferença entre sistemas de malha fechada digitais e analógicos é o efeito que a taxa de amostragem tem na dinâmica do sistema. Mudanças na taxa de amostragem podem mudar a resposta do sistema de superamortecido para subamortecido quanto de estável para instável.
 \newline
-No domínio s a região de estabilidade é à esquerda da origem. Levando a função de transferência G(s) para o domínio z, a região de estabilidade pode ser avaliada usando a definição, $z=e^{Ts}$. Com $s=\alpha +j\omega$ obtemos:
+Existem várias definições de estabilidade para sistemas lineares que valem tanto para sistemas discretos quanto contínuos. Algumas delas são:
+\begin{itemize}
+	\item Estabilidade BIBO (Bounded-Input Bounded-Output) onde um sistema é dito estável se entradas limitadas produzem saídas limitadas.
+	\item Estabilidade de Lyapunov onde o sistema é considerado estável se a saída convergir para uma região em torno do ponto de equilíbrio e não sair dessa região.
+\end{itemize}
+
+
+Há várias formas de se determinar a estabilidade para as várias definições possíveis, uma delas é calculando cada uma das raízes da função de transferência do sistema. No domínio s a região de estabilidade é à esquerda da origem. Levando a função de transferência G(s) para o domínio z, a região de estabilidade pode ser avaliada usando a definição, $z=e^{Ts}$. Com $s=\alpha +j\omega$ obtemos:
 \begin{equation}
 z=e^{Ts}=e^{\alpha+j\omega}=e^{\alpha T}\angle \omega T
 \end{equation}
@@ -123,6 +130,37 @@ Cada região do plano s pode ser mapeada numa região correspondente do plano z,
 \end{figure}
 
 Desta forma um sistema de controle digital pode ser, estável, se todos os polos do sistema em malha fechada se encontram dentro do círculo unitário do plano z, instável, se existir ao menos um polo fora do círculo unitário ou se houver polos de multiplicidade maior que um em cima do círculo, e marginalmente estável se houver polos de multiplicidade um em cima do círculo unitário e os outros polos se encontrarem dentro do círculo.
+
+
+Em alguns casos não é desejável calcular individualmente todas as raízes do sistema, ou deseja-se saber a estabilidade quando relacionada a uma variável externa. Para tanto utilizamos o critério de Jury, versão discreta do critério de Routh-Hourwitz. A tabela de Jury é formada da seguinte forma:
+\begin{equation}
+H(z)=\dfrac{b(z)}{a(z)}=\dfrac{b(z)}{a_0 z^n+a_1 z^{n-1}+\dots+a_n}
+\end{equation}
+\begin{equation}
+\left|
+\begin{matrix}
+a_0 & a_1& \dots & a_n\\
+a_n & a_{n-1}& \dots & a_0\\
+b_0 & b_1 & \dots \\
+b_{n-1} & b_{n-2} & \dots \\
+c_0 & c_1 & \dots \\
+\vdots & \vdots
+\end{matrix}
+\right.
+\end{equation}
+onde
+\begin{equation}
+\begin{matrix}
+b_0=a_0- \dfrac{a_n}{a_0}a_n\\
+b_1=a_1- \dfrac{a_n}{a_0}a_{n-1}\\
+\vdots \\
+b_k=a_k- \dfrac{a_n}{a_0}a_{n-k}\\
+\vdots \\
+c_k=b_k- \dfrac{b_{n-1}}{b_0}b_{n-1-k}\\
+\end{matrix}
+\end{equation}
+
+Com a tabela formada aplicamos o critério de Jury que diz: se $a_0>0$, então todas as raízes estarão dentro do círculo unitário se e somente se todos os termos da primeira coluna das linhas impares forem positivos. Se nenhum elemento da primeira coluna das linhas impares for nulo, o número  de raízes fora do círculo unitário é igual ao número de elementos negativos.
 
 % Fim Capítulo
 
