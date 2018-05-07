@@ -247,3 +247,5 @@ TSWLatexianTemp*
 *.mtc1
 *.out
 *.synctex.gz
+*.pdf
+main_tcc.pdf
