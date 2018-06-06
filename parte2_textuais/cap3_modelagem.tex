@@ -1,3 +1,34 @@
-\chapter{Título do Capítulo Aqui} \label{cap3}
-MODELAGEM AQUI
+\chapter{Modelagem do Sistema} \label{cap3}
+
+Neste capítulo será feita a modelagem do sistema do sistema que deverá ser controlado.
+
+\commentib{inserir figura do sistema}\label{fig:sistemasimples}
+
+Há duas forças atuantes na esfera, a gravidade que puxa ela para baixo e a força de empuxo gerada pelo vento. Obtemos a seguinte equação do movimento:
+\begin{equation}
+m\Delta \ddot{h}=F=\dfrac{1}{2} \cdot C_a \cdot\rho \cdot A \cdot (v_a- \dot{h})^2-m\cdot g
+\end{equation}
+
+onde m é a massa da esfera, h é a posição vertical da esfera no tubo, $\rho$ é a densidade do ar, A é a área da esfera em contato com o fluxo de ar, $v_a$ é a velocidade do ar dentro do tubo e $C_a$ é o coeficiente aerodinâmico da esfera. O coeficiente aerodinâmico depende da velocidade relativa entre a esfera e o vento, mas para as velocidades baixas de vento que estamos utilizando esse valor pode ser considerado constante. Consideramos $\alpha= \dfrac{1}{2} \cdot C_a \cdot \rho \cdot A$:
+\begin{equation}
+\ddot{h}=\dfrac{\alpha}{m}\cdot (v_a-\dot{h})^2-g
+\end{equation}
+
+Para calcular um ponto de equilíbrio fazemos $\ddot{h}=\dot{h}=0$ e para diferenciar a velocidade do vento no ponto de equilíbrio da velocidade do vento em outros pontos criamos $v_{eq}$.
+
+\begin{equation}
+g=\dfrac{\alpha}{m}\cdot v_{eq}^2
+\end{equation}
+
+Com isso podemos expressar a equação dinâmica na forma:
+\begin{equation} \label{eq_sis}
+\ddot{h}=g\cdot \left( \left(\dfrac{v_a-\dot{h}}{v_{eq}} \right)^2 -1\right)
+\end{equation}
+
+Podemos linearizar a equação \ref{eq_sis} usando $x=\dfrac{v_a-\dot{h}}{v_{eq}}$ para que a equação tenha a forma $f=g \cdot (x^2-1)$, com o ponto de equilíbrio $v_{eq}=v_a-\dot{h}$ podemos fazer uma aproximação de Taylor:
+
+\begin{equation}
+\ddot{h}=2 \cdot g \cdot (x-1) = \dfrac{2 \cdot g}{v_{eq}} \cdot (v_a - \dot{h} - v_{eq})
+\end{equation}
+
 % Fim Capítulo

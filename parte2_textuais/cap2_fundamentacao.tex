@@ -5,7 +5,7 @@
 
 \commentib{Creio que antes de falar de identificação, podemos falar um pouco sobre modelos de sistemas dinâmicos. Lá podemos falar de modelos em espaço de estados, função de transferência, EDO's. Daí chegamos em modelos ARX usados na identificação por MQ e modelos em espaço de estados discretos usados em identificação por subespaços.}
 
-\section{Modelos de Sistemas Dinâmicos}
+\section{Modelos de Sistemas Dinâmicos}\label{capA}
 O modelo matemático de um sistema dinâmico é uma forma de descrever uma parte do fenômeno físico que queremos controlar. Nesta seção serão apresentados alguns dos vários modelos matemáticos relacionados ao projeto.
 \subsection{Equação Diferencial Ordinária}
 Um sistema dinâmico pode ser modelado usando somente a descrição matemática do fenômeno desejado. Usamos como exemplo a modelagem do amortecimento em uma roda de um carro, visto na figura \ref{fig:modeloamortecimento}.
@@ -107,6 +107,15 @@ X_1\\\dot{X}_1\\Y_1\\\dot{Y}_1
 U \\W
 \end{bmatrix}
 \end{equation}
+
+\subsection{Modelo ARX}
+O modelo ARX SISO linear tem o seguinte formato:
+\begin{equation}\label{ARXModel}
+	y(t)+a_iy(t-1)+a_2y(t-2)+\dots+a_{na}y(t-na)=
+	b_1u(t)+b_2u(t-1)+\dots+b_{nb}u(t-nb+1)+e(t)
+\end{equation}
+
+Onde y é a entrada, u é a saída e $e$ é o ruído. Isso implica que a saída $y(t)$ é uma predição a partir de uma média ponderada de entradas e saídas passadas. Os parâmetros $a_{na}$ e $b_{nb}$ podem ser estimados utilizando mínimos quadrados numa coleção de dados entrada-saída.
 
 \section{Critérios de Estabilidade de sistemas discretos}
 
@@ -227,48 +236,37 @@ Para que V seja uma função de Lyapunov é necessário e suficiente que exista 
 
 
 \section{Identificação de Sistemas e Estimação de Parâmetros}
-A identificação do sistema é o primeiro passo para o seu controle. \commentib{Na verdade, o argumento certo seria dizer que boa parte das técnicas de controle são dependentes de modelos matemáticos, e que modelos podem ser obtidos de diferentes formas (vide Cap. 1 do livro do Aguirre), uma das formas é a identificação, também conhecida como modelagem caixa preta.} \corrigir{Nesta seção serão} tratados conceitos de identificação de sistemas e estimação de parâmetros fundamentais para o entendimento do trabalho.
+A maior parte das técnicas de controle aplicadas na indústria dependem do conhecimento de um modelo matemático do sistema a ser controlado. Apresentamos alguns dos modelos na seção \ref{capA} e nesta seção apresentaremos alguns dos métodos para obtermos os modelos matemáticos utilizados neste trabalho.
+
 
 \subsection{Visão Geral}
-A identificação de sistemas e estimação de parâmetros \cortar{se} tratam de métodos e práticas que permitem construir modelos dinâmicos de um sistema \corrigir{ real à partir} de experimentos . Muitas vezes um sistema construído que precisa ser controlado não pode ser modelado devido à limitações matemáticas ou imprecisão na interação dos componentes. \corrigir{ Nestes casos se utiliza} da identificação de sistemas para obter um modelo matemático. A identificação de sistemas se baseia em testar a resposta do sistema à certas entradas e a partir das respostas aproximar o modelo matemático de forma satisfatória. Para identificar sistemas temos métodos determinísticos, que desprezam o ruído presente nos dados, e métodos não paramétricos, que não resultam em um modelo matemático mas em uma representação gráfica da dinâmica do sistema da qual um modelo pode ser extraído. \commentib{Esse último trecho está incorreto ou sem sentido.}
+A identificação de sistemas e estimação de parâmetros trata de métodos e práticas que permitem construir modelos dinâmicos de um sistema real a partir de experimentos . Muitas vezes um sistema construído que precisa ser controlado não pode ser modelado devido à limitações matemáticas ou imprecisão na interação dos componentes. Nestes casos utilizamos um método de identificação de sistemas para obter um modelo matemático. A identificação de sistemas se baseia em testar a resposta do sistema à certas entradas e a partir das respostas aproximar o modelo matemático de forma satisfatória.
 
 
 \subsection{Identificação por Mínimos Quadrados}
-O método de mínimos quadrados é um dos mais conhecidos e utilizados em várias áreas da ciência e tecnologia. Ele utiliza sistemas de equações com matrizes geradas a partir de testes com os sistemas reais no seguinte formato:
+O método de mínimos quadrados é um dos mais conhecidos e utilizados em várias áreas da ciência e tecnologia. A partir de uma coleção de dados experimentais é possível encontrar um modelo matemático ARX.
 
-\commentib{Precisamos estabelecer e manter uma notação para diferenciar escalares, vetores, regressores e matrizes.}
+
+Para um sistema SISO em que não conhecemos o seu modelo matemático podemos descrever o seu comportamento durante o teste como um conjunto de funções entrada-saída como na equação \ref{ARXModel}, pois à partir do conhecimento que temos da modelagem física do sistema podemos deduzir aproximadamente de quantos valores passados de y e de u o nosso sistema estudado depende.
+
+
+Com os vetores entrada e saída em mão montamos uma matriz de regressores y e u no seguinte formato:
 
 \begin{equation}
-	\hat{\Theta}=[X^TX]^{-1}X^Ty
+A=
+\begin{bmatrix}
+y(n) & y(n-1) & \dots & y(n-i) & u(n) & u(n-1) & \dots & u(n-j)\\
+y(n+1) & y(n) & \dots & y(n-i+1) & u(n+1) & u(n) & \dots & u(n-j+1)\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots  & \vdots\\
+y(n+k) & y(n+k-1) & \dots & y(n+k-i) & u(n+k) & u(n+k-1) & \dots & u(n+k-j)\\
+\end{bmatrix}
 \end{equation}
-A equação 2.1 é o objetivo da identificação por quadrados mínimos, mas para entender ela precisamos primeiro entender de onde ela vem.
-\newline 
-Um sistema geralmente é descrito por uma função entrada - saída, em um sistema onde não sabemos a função podemos executar uma série de testes para obtermos um conjunto de valores de entrada e saída da seguinte forma:
-\begin{equation}
-\begin{array}{c}
-y_1=f(x_1) \\
-y_2=f(x_2) \\
-y_3=f(x_3) \\
-\vdots \\
-y_N=f(x_N)
-\end{array}
-\end{equation}
-Podemos então tratar esse conjunto como vetores da seguinte forma:
-\begin{equation}
-y=f(x,\Theta)
-\end{equation}
-Existem três considerações que devem ser tomadas para avançar o entendimento de mínimos quadrados.
-\begin{enumerate}
-	\item A função f e o vetor $\theta$ não variam de uma restrição para outra. Todas as restrições são da mesma equação. Em problemas de identificação de sistemas dinâmicos normalmente supõe-se que o sistema seja invariante no tempo e que os sinais medidos sejam estacionários, caso não fossem f e $\theta$ seriam diferentes entre restrições complicando a estimação de um único f e um único $\theta$.
-	\item A equação 2.3 pode ser reescrita como
-	\begin{equation}
-	y=x^T \theta
-	\end{equation}
-	Implicando que f é linear nos parâmetros. Se f não for linear $\theta$ pode ser estimado por métodos não lineares.
-	\item Serão tomadas n restrições de 2.4 a fim de se ter n equações para determinar os n elementos de $\theta$.
-\end{enumerate}
 
-Sabendo das considerações as restrições representadas na equação 2.4 podem ser escritas da seguinte forma:
+Onde $y(n-i)$ é o primeiro valor do vetor de saídas y e $u(n-i)$ é o primeiro valor do vetor de entradas u, i é a quantidade de regressores y que influenciam na saída y e j é a quantidade de regressores u que influenciam na saída y, $n+k$ é o número de valores do vetor de entrada.
+
+
+
+Podemos então relacionar o vetor de saídas com a matriz de regressores A da seguinte forma:
 
 \begin{equation}
 \begin{array}{c}
@@ -276,30 +274,40 @@ Sabendo das considerações as restrições representadas na equação 2.4 podem
 y_1 \\ y_2 \\ y_3\\ \vdots \\ y_n
 \end{bmatrix}
 =
-\begin{bmatrix}
-x^1_1 & x^2_1 & \dots & x^n_1\\
-x^1_2 & x^2_2 & \dots & x^n_2\\
-\vdots & \vdots & \ddots& \vdots&\\
-x^1_n & x^2_n & \dots & x^n_n\\
-\end{bmatrix}
+A
 \begin{bmatrix}
 \theta_1 \\ \theta_2 \\ \vdots \\ \theta_n
 \end{bmatrix}
 \\
-y=X \theta
+\hat{y}=A \hat{\theta}
 \end{array}
 \end{equation}
-y é uma variável dependente  dos regressores $x_1,... x_n$, também chamados de variáveis independentes. $\theta$ é o vetor de parâmetros a determinar. Desde que X seja não singular é possível determinar o vetor de parâmetros invertendo a matriz:
-\begin{equation}
-\theta=X^{-1}y
+Onde $\hat{y}$ é um vetor que depende da matriz de regressores A e do vetor $\hat{\theta}$. Conhecemos $\hat{y}$ e A, queremos determinar $\hat{\theta}$. Desde que X seja não singular é possível determinar o vetor de parâmetros invertendo a matriz:
+\begin{equation}\label{MQ_eq}
+\theta=A^{-1}y
 \end{equation}
 
-\commentib{Está faltando no que está descrito acima a descrição de resíduos e de ruídos... Além disso, essa descrição pode ser adequada para estabelecer ligação com equações de diferença e modelos ARX}
+A matriz A, no entanto, não é invertível e para realizarmos $A^{-1}$ utilizamos a pseudo inversa, que será utilizada em diversas partes desse trabalho, representada por $\{ \cdot\}^\dagger$, onde $\{\cdot\}$ é a matriz que receberá a operação pseudo inversa.
+\begin{equation}
+A^\dagger=[A^TA]^{-1}A^T
+\end{equation}
+E a equação \ref{MQ_eq} se torna:
+\begin{equation}\label{MQ_eq2}
+\theta=A^\dagger y
+\end{equation}
+
+
+A equação \ref{MQ_eq} é a única equação que satisfaz todos os regressores do sistema de equações formado a partir da equação \ref{ARXModel}. Assumindo que conhecemos $\hat{\theta}$ e que existe um resíduo $\xi$ entre o valor observado y e o valor obtido a partir do vetor de regressores A da forma:
+\begin{equation}\label{MQxi}
+y=A^T\hat{\theta}+\xi
+\end{equation} 
+
+Este resíduo é o menor possível devido ao fato de que a equação \ref{MQ_eq2} ser demonstravelmente minimizada.
 
 \subsection {Filtro de Kalman}
 O filtro de Kalman é \melhorar{ um eficiente filtro recursivo que estima o estado de um sistema dinâmico linear a partir de uma série de medições ruidosas}. Ele é utilizado em uma grande variedade de aplicações de engenharia \commentib{Por exemplo?}, e é um tópico especialmente importante para a teoria de sistemas de controle. \commentib{Pq é importante?}
 \subsubsection{Visão Geral}
-O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e \melhorar{ um sistema} de sensores para \melhorar{ gerar uma estimativa das grandezas variáveis} de um sistema \cortar{, seus estados}. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso. \commentib{Quebre linha duas vezes ao invés de usar o comando \texttt{newline}, pois este remove identação.}
+O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e \melhorar{ um sistema} de sensores para \melhorar{ gerar uma estimativa das grandezas variáveis} de um sistema \cortar{, seus estados}. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso. 
 
 
 Usaremos a nomenclatura de Aguirre, onde $t_1$ é substituído pela iteração atual indicada por k, e o $t_2$ é substituído pela próxima iteração k+1. A notação ($t_1$|$t_1$) é substituída por um sinal '+' para indicar o instante $t_i$ após ter sido incluída a informação em $t_i$. Da mesma forma será utilizado um sinal '-' para indicar a grandeza que se refere ao instante $t_i$ antes de ter sido incluída a informação referente àquele instante. A equação que rege a propagação é a seguinte:
@@ -334,6 +342,7 @@ K_{k+1}=P^-_{k+1} H^T_{k+1}[H_{k+1} P^-_{k+1} H^T_{k+1}+R_{k+1}]^-1
 \end{equation}
 
 Com estas equações completamos o conjunto de equações necessárias para entender o filtro de Kalman.
+
 \subsection {Identificação por Subespaços}
 
 
