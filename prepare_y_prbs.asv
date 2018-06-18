@@ -1,0 +1,24 @@
+function y= prepare_y_prbs(x)
+    [i,j]=size(x);
+     a =  -1.344e+04  (-5.301e+04, 2.613e+04)
+       b =       -1.21  (-1.923, -0.4971)
+       c =       67.16  (49.88, 84.43)
+    if(i<j)
+        y=zeros(i,j);
+               
+        for g=1:j
+            z=a*x(1,g)^b+c;
+            if z<=0 z=0; end
+            y(1,g)=z;
+        end
+    else
+        y=zeros(j,1);
+    for g=1:i
+            z=a*x(g,1)^b+c
+            if z<=0 z=0; end
+            y(g,1)=z;
+    end
+    
+    end
+    y=y(:,1:j-1);
+end

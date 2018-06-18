@@ -1,0 +1,39 @@
+%function G= MQARX(U,Y,regu,regy)
+    regy=3;
+    regu=1;
+    U=u5t';
+    Y=y5t';
+    %if size(U,2)>1
+    %    U=prepare_prbs(U,+1,-1)';
+    %else
+    %    U=prepare_prbs(U,+1,-1);
+    %end
+    %if size(Y,2)>1
+        Y=prepare_y_prbs(Y)';
+    %else
+    %    Y=prepare_y_prbs(Y);
+    %end
+%     Yo=zeros(size(Y,1)-regy+1,regy);
+Yo=[];
+
+    for i=1:1:regy
+        Yo = [Yo,Y(10-i:size(Y,1)-i)];
+%         Yo(i+1:size(Yo,1),i)=Y(1:size(Yo,1)-1,1);
+    end
+    Uo=[];
+    for i=1:1:regu
+        Uo=[Uo,U(10-i:size(U,1)-i,1)];
+    end
+    phi=[];
+    phi=[phi,Uo,Yo(:,2:end)];
+    theta=inv(phi'*phi)*phi'*Yo(:,1);
+    Gd2=tf([-theta(1) 0], [1 theta(2) theta(3)],0.5);
+    Gt2=d2c(Gd2);
+    step(25*Gd2)
+    
+   % data=iddata(Yo(:,2:regy),Uo(1:size(Yo,1)),0.1);
+%sys=arx(data,[3 2 1]);
+    
+    
+    
+%end
