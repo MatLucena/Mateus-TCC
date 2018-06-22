@@ -54,7 +54,7 @@ G_2(s)=\dfrac{X_1(s)-X_2(s)}{W(s)}= \dfrac{-M_1b_2s^3-M_1K_2s^2}{\Delta}
 Com as equações descritas em \ref{eq2123} temos uma equação representando a transferência da entrada para a saída.
 \subsubsection{Espaço de Estados}
 A representação em espaço de estados é uma forma mais conveniente para representar sistemas no domínio do tempo quando existe mais de uma entrada ou saída do que a função de transferência. Um modelo linear é representado tipicamente no seguinte formato:
-\begin{equation}
+\begin{equation}\label{eq:ss}
 \begin{array}{c}
 \dot{x}=Ax+Bu\\
 y=Cx+Du
@@ -253,8 +253,8 @@ Para um sistema SISO em que não conhecemos o seu modelo matemático podemos des
 
 Com os vetores entrada e saída em mão montamos uma matriz de regressores y e u no seguinte formato:
 
-\begin{equation}
-A=
+\begin{equation}\label{eq:regressores}
+\psi=
 \begin{bmatrix}
 y(n) & y(n-1) & \dots & y(n-i) & u(n) & u(n-1) & \dots & u(n-j)\\
 y(n+1) & y(n) & \dots & y(n-i+1) & u(n+1) & u(n) & \dots & u(n-j+1)\\
@@ -275,32 +275,32 @@ Podemos então relacionar o vetor de saídas com a matriz de regressores A da se
 y_1 \\ y_2 \\ y_3\\ \vdots \\ y_n
 \end{bmatrix}
 =
-A
+\psi
 \begin{bmatrix}
 \theta_1 \\ \theta_2 \\ \vdots \\ \theta_n
 \end{bmatrix}
 \\
-\hat{y}=A \hat{\theta}
+\hat{y}=\psi \hat{\theta}
 \end{array}
 \end{equation}
 Onde $\hat{y}$ é um vetor que depende da matriz de regressores A e do vetor $\hat{\theta}$. Conhecemos $\hat{y}$ e A, queremos determinar $\hat{\theta}$. Desde que X seja não singular é possível determinar o vetor de parâmetros invertendo a matriz:
-\begin{equation}\label{MQ_eq}
-\theta=A^{-1}y
+\begin{equation}\label{eq:MQ}
+\theta=\psi^{-1}y
 \end{equation}
 
-A matriz A, no entanto, não é invertível e para realizarmos $A^{-1}$ utilizamos a pseudo inversa, que será utilizada em diversas partes desse trabalho, representada por $\{ \cdot\}^\dagger$, onde $\{\cdot\}$ é a matriz que receberá a operação pseudo inversa.
+A matriz $\psi$, no entanto, não é invertível e para realizarmos $\psi^{-1}$ utilizamos a pseudo inversa, que será utilizada em diversas partes desse trabalho, representada por $\{ \cdot\}^\dagger$, onde $\{\cdot\}$ é a matriz que receberá a operação pseudo inversa.
 \begin{equation}
 A^\dagger=[A^TA]^{-1}A^T
 \end{equation}
 E a equação \ref{MQ_eq} se torna:
 \begin{equation}\label{MQ_eq2}
-\theta=A^\dagger y
+\theta=\psi^\dagger y
 \end{equation}
 
 
-A equação \ref{MQ_eq} é a única equação que satisfaz todos os regressores do sistema de equações formado a partir da equação \ref{ARXModel}. Assumindo que conhecemos $\hat{\theta}$ e que existe um resíduo $\xi$ entre o valor observado y e o valor obtido a partir do vetor de regressores A da forma:
+A equação \ref{MQ_eq} é a única equação que satisfaz todos os regressores do sistema de equações formado a partir da equação \ref{ARXModel}. Assumindo que conhecemos $\hat{\theta}$ e que existe um resíduo $\xi$ entre o valor observado y e o valor obtido a partir do vetor de regressores $\psi$ da forma:
 \begin{equation}\label{MQxi}
-y=A^T\hat{\theta}+\xi
+y=\psi^T\hat{\theta}+\xi
 \end{equation} 
 
 Este resíduo é o menor possível devido ao fato de que a equação \ref{MQ_eq2} ser demonstravelmente minimizada.
@@ -345,7 +345,7 @@ K_{k+1}=P^-_{k+1} H^T_{k+1}[H_{k+1} P^-_{k+1} H^T_{k+1}+R_{k+1}]^-1
 Com estas equações completamos o conjunto de equações necessárias para entender o filtro de Kalman.
 
 \subsubsection {Identificação por Subespaços}
-\paragraph{Algoritmos}
+\paragraph{Algoritmos}\label{s:subalgoritmos}
 
 \IncMargin{1em}
 \begin{algorithm}[H]
