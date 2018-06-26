@@ -1,9 +1,12 @@
 \chapter{Identificação do Túnel de Ar} \label{cap4}
-Neste capítulo será explicada a identificação do sistema do túnel de ar. Para fazer a identificação caixa-preta de um sistema é necessário fazer um estudo prévio do funcionamento dele, conhecer entradas e saídas, obter um modelo matemático se possível, mesmo sem ter todos os parâmetros.
+
+\commentib{Todas as equações devem ser referenciadas com a função \texttt{eqref} ao invés de \texttt{ref}}
+
+Neste capítulo \commentib{vírgula} será explicada a identificação do sistema do túnel de ar. Para fazer a identificação caixa-preta de um sistema é necessário fazer um estudo prévio do funcionamento dele, conhecer entradas e saídas, obter um modelo matemático se possível, mesmo sem ter todos os parâmetros.
 \section{Escolha de estrutura}
-A escolha da estrutura para identificar um sistema pode ser feita a partir de um modelagem prévia do sistema, mas, em alguns casos a modelagem não é suficiente para obter um modelo adequado. O sistema estudado apresenta certos fenômenos físicos, como o giro da bola devido ao fluxo do ar, que não pudemos modelar.
+A escolha da estrutura para identificar um sistema pode ser feita a partir de um modelagem prévia do sistema \commentib{Isso é parcialmente verdade, o conhecimento empírico da modelagem fenomeológica pode fornecer pistas sobre a estrutura, mas existem outros métodos que valem a pena ao menos serem citados, tais como análise de função de autocorrelação} , mas, em alguns casos a modelagem não é suficiente para obter um modelo adequado. O sistema estudado apresenta certos fenômenos físicos, como o giro da bola devido ao fluxo do ar, que não pudemos modelar.
 \subsection{Mínimos Quadrados}\label{s:4mq}
-A identificação por Mínimos Quadrados gera um sistema do típo ARX como visto na equação \ref{ARXModel}. A escolha da estrutura neste caso se dá escolhendo uma quantidade de regressores da saída e uma quantidade de regressores da entrada. Tendo em vista que o modelo matemático encontrado em \ref{eq:modelo} não é capaz de prever completamente o funcionamento do sistema foi necessário escolher um método diferente da análise do modelo.
+A identificação por Mínimos Quadrados gera um sistema do típo ARX como visto na equação \ref{ARXModel}. A escolha da estrutura neste caso se dá escolhendo uma quantidade de regressores da saída e uma quantidade de regressores da entrada. Tendo em vista que o modelo matemático encontrado em \ref{eq:modelo} não é capaz de prever completamente o funcionamento do sistema foi necessário escolher um método diferente da análise do modelo \commentib{Essa última declaração deve ser melhorada. Pq não é capaz? E pq o modelo identificado é melhor?}.
 
 
 Para a escolha da estrutura do modelo do sistema foi feito o seguinte procedimento:
@@ -15,6 +18,9 @@ Para a escolha da estrutura do modelo do sistema foi feito o seguinte procedimen
 \end{enumerate}
 
 Este procedimento foi repetido para valores de 1 a 10 para ambos os regressores e ao final se identificou que a melhor ordem para os regressores foi com 9 polos e 8 zeros. Na figura \ref{fig:autocorrelacao98} a auto correlação dos resíduos do sistema identificado.
+
+
+\commentib{Os testes de brancura/simula\c{c}\~oes devem ser expostos na seção de validação. Aqui você deve colocar apenas a estrutura.}
 
 \begin{figure}[H]
 	\centering
@@ -47,12 +53,12 @@ A figura \ref{fig:sinalprbsid} mostra a resposta do sistema ao sinal PRBS que fo
 
 \section{Estimação}\label{s:4estimacao}
 
-Com a resposta do sistema e o sinal de entrada podemos então identificar o sistema.
+Com a resposta do sistema e o sinal de entrada podemos então identificar o sistema. \commentib{Fale mais...} 
 \subsection{Mínimos Quadrados}\label{s:4estmq}
 Para fazer a identificação por mínimos quadrados geramos a matriz de regressores $\psi$ da equação \ref{eq:regressores} e usamos a equação \ref{eq:MQ} para obter os coeficientes dos regressores. Obtemos um sistema com o seguinte modelo ARX:
 
 
-\commentib{tentei alinhar essas equações mas não enconrei como}
+\commentib{Se você explicitar a estrutura lá atrás, você pode apenas fornecer os parâmetros aqui.}
 \begin{equation}
 y[k]= A[k]+ B[k] 
 \end{equation}

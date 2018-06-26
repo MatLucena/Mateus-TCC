@@ -4,18 +4,18 @@
 
 \section{Levitação a ar}
 
-O túnel de vento é uma instalação utilizada para estudar o desempenho aerodinâmico de objetos. Ele é feito de um duto de tamanho adequado para o objeto testado pelo qual o ar flui ao ser empurrado por uma turbina. Os testes feitos variam de velocidade de acordo com o que se deseja estudar, os ventos podem ser subsônicos, supersônicos ou hipersônicos.
+O túnel de vento é uma instalação utilizada para estudar o desempenho aerodinâmico de objetos. Ele é feito de um duto de tamanho adequado para o objeto testado pelo qual o ar flui ao ser empurrado por uma turbina. Os testes feitos variam de velocidade de acordo com o que se deseja estudar, os ventos podem ser subsônicos, supersônicos ou hipersônicos. \commentib{Creio que essa última pode ser cortada. É relevante classificar os túneis de vento aqui na introdução?}
 
 
-Para que os testes sobre objetos tenham resultados precisos e replicáveis a velocidade dos ventos sobre eles deve ser controlável e atinja o objeto sem turbulência, apesar de haver testes onde isso é proposital. O túnel é construído com estabilizadores que possibilitam reduzir a turbulência do vento.
+Para que os testes sobre objetos tenham resultados precisos e replicáveis a velocidade dos ventos sobre eles deve ser controlável e atinja o objeto sem turbulência, apesar de haver testes onde isso é proposital. O túnel é construído com estabilizadores que possibilitam reduzir a turbulência do vento. \commentib{Cite uma ref}
 
 
-Os testes geralmente são feitos em modelos em escala de aviões, carros, naves espaciais, e para  estudo da aerodinâmica de objetos na física. Os túneis podem ser verticais ou horizontais, apesar de os túneis horizontais existirem em maior quantidade. Um teste comum é feito em modelos de aviões onde se medem as propriedades das asas como envergadura ao ser submetida a velocidades específicas do vento, força de elevação para diferentes velocidades e em geral sua aerodinâmica. Em Dayton, Ohio\cite{vertical1946}, foi construído um túnel de vento vertical que possibilita que sejam feitos testes específicos para aeronaves. Um objeto é posto em queda livre virtual devido a velocidade do vento impulsionado por uma turbina e se observa o seu movimento na situação. Este teste foi essencial para a prototipagem de aviões militares e comerciais desde os anos 50.
+Os testes geralmente são feitos em modelos em escala de aviões, carros, naves espaciais, e para  estudo da aerodinâmica de objetos na física. Os túneis podem ser verticais ou horizontais, apesar de os túneis horizontais existirem em maior quantidade. Um teste comum é feito em modelos de aviões onde se medem as propriedades das asas como envergadura ao ser submetida a velocidades específicas do vento, força de elevação para diferentes velocidades e em geral sua aerodinâmica. Em Dayton, Ohio\cite{vertical1946} \commentib{coloque sempre um espaço (que o latex adiciona com o caractere til) entre o \texttt{cite} e a palavra anterior }, foi construído um túnel de vento vertical que possibilita que sejam feitos testes específicos para aeronaves. Um objeto é posto em queda livre virtual devido a velocidade do vento impulsionado por uma turbina e se observa o seu movimento na situação. Este teste foi essencial para a prototipagem de aviões militares e comerciais desde os anos 50.
 
 
 Hoje os testes ainda são responsáveis por economizar milhões de reais na fase de prototipagem em testes aerodinâmicos, no desenvolvimento de trens de alta velocidade\cite{KWON2001}. Em objetos que se movem em alta velocidade o vento se torna um fator preocupante, uma rajada de vento pode ser o fator determinante em um descarrilhamento de um trem, os testes possibilitam que os cientistas analisem  comportamento de suas criações em situações previsíveis e os ajuda a antecipar possíveis problemas.
 
-No entanto, existe um problema no teste aerodinâmico utilizando túneis de vento. Para os testes de queda livre como o de aeronaves, o controle de altitude do objeto é complexo. É possível obter o número de Reynolds, uma variável sem dimensão que possibilita predizer o padrão de fluxo de fluídos, e é possível medir a velocidade do vento atuando em cima do objeto, porém, a real dificuldade se encontra no fato de que quando o a força do vento atua em cima de um objeto ele se comporta de maneria quase imprevisível. Uma bola gira em várias direções, por exemplo.
+No entanto, existe um problema no teste aerodinâmico utilizando túneis de vento. Para os testes de queda livre como o de aeronaves, o controle de altitude do objeto é complexo. É possível obter o número de Reynolds, uma variável sem dimensão que possibilita predizer o padrão de fluxo de fluídos, e é possível medir a velocidade do vento atuando em cima do objeto, porém, a real dificuldade se encontra no fato de que quando o a força do vento atua em cima de um objeto ele se comporta de maneria quase imprevisível \commentib{uma ref} . Uma bola gira em várias direções, por exemplo.
 
 
 Tendo em vista que o controle de altura de um objeto tendo como único atuador o vento, e que um modelo de atuação da força do vento sobre um objeto é complexo e de baixa fidelidade, e que precisamos de um modelo que possibilite um controle de altitude preciso e robusto, temos como opção a modelagem caixa-preta, conhecida como identificação de sistemas.
@@ -23,10 +23,16 @@ Tendo em vista que o controle de altura de um objeto tendo como único atuador o
 
 \section{Objetivos}
 
-\subsection{Objetivos Gerais}
-O objetivo principal deste trabalho é fazer uma comparação qualitativa entre dois tipos de identificação de sistemas, uma por mínimos quadrados que resulta em um modelo ARX do sistema, e uma por subespaços que resulta em um modelo em espaço de estados, e controle do sistema.
+\subsection{Objetivos Gerais} \commentib{Singular}
+
+\commentib{Esse objetivo geral não está muito legal. Acho que podemos adaptá-lo para incluir a noção da aplicação de modelos para controle.}
+
+O objetivo principal deste trabalho é fazer uma comparação qualitativa entre dois tipos \commentib{não seria melhor "duas técnicas"} de identificação de sistemas, uma por mínimos quadrados que resulta em um modelo ARX do sistema, e uma por subespaços que resulta em um modelo em espaço de estados, e controle do sistema.
 
 \subsection{Objetivos Específicos}
+
+\commentib{Acrescente um texto introdutório aqui.}
+
 \begin{itemize}
 	\item Construir uma plataforma de experimento no formato de túnel de vento.
 	\item Medir a velocidade do vento em alturas variadas dentro do túnel de vento.
@@ -39,6 +45,9 @@ O objetivo principal deste trabalho é fazer uma comparação qualitativa entre 
 \end{itemize}
 
 \section{Organização do trabalho}
+
+\commentib{A introdução já acabou... então fale do restante deste trabalho. Além disso, faça uma lista e fale um pouco mais sobre cada um.}
+
 Este trabalho se encontra organizado em sete capítulos com várias subseções. O primeiro é a introdução onde o trabalho é contextualizado e apresentado, os objetivos são explicitados e a organização do trabalho é explicada. O segundo capítulo é a revisão bibliográfica com as seções fundamentação teórica onde conceitos fundamentais ao entendimento do trabalho são explicados, e trabalhos relacionados onde o trabalho de outros autores é relacionado a este. O terceiro capítulo fala sobre a modelagem e simulação do túnel de vento. O quarto capítulo trata da identificação do túnel usando mínimos quadrados e subespaços. O quinto é projeto de controladores. O sexto capítulo trata da avaliação experimental do sistema de controle. O sétimo e último capítulo é a conclusão do trabalho onde as considerações finais e trabalhos futuros serão discutidos.
 
 % Fim Capítulo
