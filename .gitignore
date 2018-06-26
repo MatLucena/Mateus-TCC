@@ -249,5 +249,3 @@ TSWLatexianTemp*
 *.synctex.gz
 *.pdf
 main_tcc.pdf
-*.slx
-*.m
