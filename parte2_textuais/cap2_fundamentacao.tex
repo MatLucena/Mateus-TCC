@@ -1,10 +1,9 @@
 \chapter{Revisão Bibliográfica} \label{cap2}
-
+Nesta seção serão apresentadas duas subseções importantes para o entendimento deste trabalho, a revisão bibliográfica que trata de conceitos fundamentais ao entendimento do trabalho, e trabalhos relacionados que trata de outros trabalhos que são pertinentes à este.
 	
 \section{Fundamentação Teórica}
-\corrigir{Neste capítulo serão} apresentados conceitos necessários para o entendimento do trabalho. \commentib{Cite especificamente quais conhecimentos}
+Nesta subseção tratamos de conceitos essenciais para o entendimento deste trabalho. Falaremos sobre alguns modelos matemáticos, critérios de estabilidade de sistemas discretos, e métodos de identificação de sistemas e estimação de parâmetros, em especial identificação por mínimos quadrados e por subespaços.
 
-\commentib{Creio que antes de falar de identificação, podemos falar um pouco sobre modelos de sistemas dinâmicos. Lá podemos falar de modelos em espaço de estados, função de transferência, EDOs. Daí chegamos em modelos ARX usados na identificação por MQ e modelos em espaço de estados discretos usados em identificação por subespaços.}
 
 \subsection{Modelos de Sistemas Dinâmicos}\label{capA}
 O modelo matemático de um sistema dinâmico é uma forma de descrever uma parte do fenômeno físico que queremos controlar. Nesta seção serão apresentados alguns dos vários modelos matemáticos relacionados ao projeto.
@@ -19,7 +18,7 @@ Um sistema dinâmico pode ser modelado usando somente a descrição matemática 
 \end{figure}
 
 Onde $X_1$ e $X_2$ são a altura das massas $M_1$ e $M_2$, massa do carro e massa da roda, respectivamente. $K_1$ é o efeito elástico do amortecedor e $K_2$ é o efeito elástico da roda. $b_1$ é o efeito amortecedor da suspensão e $b_2$ é o efeito amortecedor da roda.
-Esse sistema pode ser modelo em uma E.D.O. (Equação Diferencial Ordinária) usando as leis de Newton, visto nas equações \ref{eq:edo1} e \ref{eq2112}.
+Esse sistema pode ser modelo em uma E.D.O. (Equação Diferencial Ordinária) usando as leis de Newton, visto nas equações \eqref{eq:edo1} e \eqref{eq:edo2}.
 
 \begin{equation} \label{eq:edo1}
 M_1 \ddot{X}_1=-b_1(\dot{X}_1-\dot{X}_2) -K_1(X_1-X_2)+U
@@ -31,17 +30,17 @@ M_2 \ddot{X}_2=b_1 (\dot{X}_1 -\dot{X}_2) +K_1(X_1-X_2) +b_2(\dot{W} -\dot{X}_2)
 \subsubsection{Funções de Transferência}
 A função de transferência é uma equação que descreve o comportamento dinâmico de um sistema relacionando uma entrada com uma saída. Ela é a transformada de Laplace da resposta ao impulso do sistema.
 
-Usando o mesmo sistema da figura \ref{fig:modeloamortecimento} e aproveitando as equações \ref{eq:edo1} e \ref{eq:edo2} podemos encontrar as equações de transferência referentes às saídas $X_1$ e $X_2$.
+Usando o mesmo sistema da figura \ref{fig:modeloamortecimento} e aproveitando as equações \eqref{eq:edo1} e \eqref{eq:edo2} podemos encontrar as equações de transferência referentes às saídas $X_1$ e $X_2$.
 
 Aplicamos a transformada de Laplace nas equações $X_1$ e $X_2$ para obter:
-\begin{equation} \label{eq2121}
+\begin{equation} \label{eq:e2121}
 (M_1s^2+b_1s+K_1) X_1(s) -(b_1s+K_1) X_2(s)=U(s)
 \end{equation}
-\begin{equation} \label{eq2122}
+\begin{equation} \label{eq:e2122}
 -(b_1s+ K_1) X_1(s) +(M_2s^2 + (b_1 + b_2)s +(K_1 + K_2))X_2(s)=(b_2s +K_2) W(s)-U(s)
 \end{equation}
 Fazendo as devidas manipulações matemáticas chegamos à função de transferência.
-\begin{equation}\label{eq2123}
+\begin{equation}\label{eq:e2123}
 \begin{array}{c}
 G_1(s)=\dfrac{X_1(s)-X_2(s)}{W(s)}= \dfrac{(M_1+M_2)s^2+b_2s+K_2} {\Delta}
 \\
@@ -51,7 +50,7 @@ G_2(s)=\dfrac{X_1(s)-X_2(s)}{W(s)}= \dfrac{-M_1b_2s^3-M_1K_2s^2}{\Delta}
 \end{array}
 \end{equation}
 
-Com as equações descritas em \ref{eq2123} temos uma equação representando a transferência da entrada para a saída.
+Com as equações descritas em \eqref{eq:e2123} temos uma equação representando a transferência da entrada para a saída.
 \subsubsection{Espaço de Estados}
 A representação em espaço de estados é uma forma mais conveniente para representar sistemas no domínio do tempo quando existe mais de uma entrada ou saída do que a função de transferência. Um modelo linear é representado tipicamente no seguinte formato:
 \begin{equation}\label{eq:ss}
@@ -60,10 +59,10 @@ A representação em espaço de estados é uma forma mais conveniente para repre
 y=Cx+Du
 \end{array}
 \end{equation}
-Onde $x \in \Re^n$ é o vetor de estado n-dimensional. $\dot{x}=dx/dt$, $u(t) \in \Re^r$ é o vetor de entradas formado por r funções temporais, $y(t) \in \Re^m$ é o vetor m-dimensional d saídas medidas e, A, B, C e D são matrizes constantes.
+Onde $x \in \Re^n$ é o vetor de estado n-dimensional. $\dot{x}=dx/dt$, $u(t) \in \Re^p$ é o vetor de entradas formado por r funções temporais, $y(t) \in \Re^q$ é o vetor m-dimensional de saídas e $A \in \Re^{n\times n}$, $B \in \Re^{n \times p}$, $C \in \Re^{q \times n}$ e $D \in \Re ^{q \times p}$ são as matrizes do sistema constantes.
 
 
-Podemos gerar uma representação de espaço de estados a partir da E.D.O. do sistema. Vamos utilizar novamente o sistema da figura \ref{fig:modeloamortecimento}. Definimos primeiramente os estados do vetor x, $x_1=X_1$, $x_2=\dot{X}_1$, $x_3=Y_1$ e $x_4=\dot{Y}_1$. Onde $Y_1=X_1-X_2$, geramos então as matrizes do espaço de estados usando as equações \ref{eq:edo1} e \ref{eq:edo2}:
+Podemos gerar uma representação de espaço de estados a partir da E.D.O. do sistema. Vamos utilizar novamente o sistema da figura \ref{fig:modeloamortecimento}. Definimos primeiramente os estados do vetor x, $x_1=X_1$, $x_2=\dot{X}_1$, $x_3=Y_1$ e $x_4=\dot{Y}_1$. Onde $Y_1=X_1-X_2$, geramos então as matrizes do espaço de estados usando as equações \eqref{eq:edo1} e \eqref{eq:edo2}:
 \begin{equation}
 \begin{bmatrix}
 \dot{X}_1\\
@@ -111,7 +110,7 @@ U \\W
 
 \subsubsection{Modelo ARX}
 O modelo ARX SISO linear tem o seguinte formato:
-\begin{equation}\label{ARXModel}
+\begin{equation}\label{eq:ARXModel}
 	y(t)+a_iy(t-1)+a_2y(t-2)+\dots+a_{na}y(t-na)=
 	b_1u(t)+b_2u(t-1)+\dots+b_{nb}u(t-nb+1)+e(t)
 \end{equation}
@@ -120,9 +119,9 @@ Onde y é a entrada, u é a saída e $e$ é o ruído. Isso implica que a saída 
 
 \subsection{Critérios de Estabilidade de sistemas discretos}
 
-O conceito de estabilidade é extremamente importante para a análise de sistemas dinâmicos. Primeiramente definimos  estabilidade de acordo com mudanças nas condições iniciais. Consideremos a equação \ref{eq22}.
+O conceito de estabilidade é extremamente importante para a análise de sistemas dinâmicos. Primeiramente definimos  estabilidade de acordo com mudanças nas condições iniciais. Consideremos a equação \eqref{eq:e22}.
 
-\begin{equation} \label{eq22}
+\begin{equation} \label{eq:e22}
 x(k+1)=f(x(k),k)
 \end{equation}
 Sejam $x_0(k)$ e $x(k)$ suas soluções quando as condições inicias são $x_0(k_0)$ e $x(k_0)$. Definimos:
@@ -192,7 +191,7 @@ O primeiro passo é encontrar a função de Lyapunov definida como segue:
 
 
 V(x) é uma função de Lyapunov do sistema
-\begin{equation}\label{eqlyap}
+\begin{equation}\label{eq:lyap}
 x(k+1)=f(x(k)) \qquad f(0)=0
 \end{equation}
 
@@ -206,16 +205,16 @@ se:
 Definimos:
 
 
-$\bullet$Teorema de estabilidade de Lyapunov: A solução $x(k)=0$ é assintoticamente estável se existir uma função de Lyapunov para o sistema da equação \ref{eqlyap}. Se:
+$\bullet$Teorema de estabilidade de Lyapunov: A solução $x(k)=0$ é assintoticamente estável se existir uma função de Lyapunov para o sistema da equação \eqref{eq:lyap}. Se:
 \begin{equation}
 0<\varphi(||x||)<V(x)
 \end{equation}
 onde $\varphi(||x||)\to \infty$ quando $||x|| \to \infty$, então a solução é assintoticamente estável para todas as condições iniciais.
 
 
-A grande dificuldade do teorema de Lyapunov é encontrar uma função de Lyapunov adequada. No entanto, para sistemas lineares como o da equação \ref{eqnsis}, é fácil determinar uma função de Lyapunov quadrática.
+A grande dificuldade do teorema de Lyapunov é encontrar uma função de Lyapunov adequada. No entanto, para sistemas lineares como o da equação \eqref{eq:sis}, é fácil determinar uma função de Lyapunov quadrática.
 
-\begin{equation} \label{eqnsis}
+\begin{equation} \label{eq:sis}
 x_0(k+1)=\Phi x_0(k) \qquad x_0(0)=a_0
 \end{equation}
 
@@ -226,8 +225,8 @@ Tomemos $V(x)=x^TP_x$ como candidato para a função de Lyapunov. O incremento d
 =x^T(\Phi ^T P \Phi -P)x=-x^TQx
 \end{array}
 \end{equation}
-Para que V seja uma função de Lyapunov é necessário e suficiente que exista uma matriz definida positiva P que satisfaça a equação \ref{eqnLyapunov}.
-\begin{equation}\label{eqnLyapunov}
+Para que V seja uma função de Lyapunov é necessário e suficiente que exista uma matriz definida positiva P que satisfaça a equação \eqref{eq:lyapunov}.
+\begin{equation}\label{eq:lyapunov}
 \Phi ^T P \Phi - P= -Q
 \end{equation}
 
@@ -248,7 +247,7 @@ A identificação de sistemas e estimação de parâmetros trata de métodos e p
 O método de mínimos quadrados é um dos mais conhecidos e utilizados em várias áreas da ciência e tecnologia. A partir de uma coleção de dados experimentais é possível encontrar um modelo matemático ARX.
 
 
-Para um sistema SISO em que não conhecemos o seu modelo matemático podemos descrever o seu comportamento durante o teste como um conjunto de funções entrada-saída como na equação \ref{ARXModel}, pois à partir do conhecimento que temos da modelagem física do sistema podemos deduzir aproximadamente de quantos valores passados de y e de u o nosso sistema estudado depende.
+Para um sistema SISO em que não conhecemos o seu modelo matemático podemos descrever o seu comportamento durante o teste como um conjunto de funções entrada-saída como na equação \eqref{eq:ARXModel}, pois à partir do conhecimento que temos da modelagem física do sistema podemos deduzir aproximadamente de quantos valores passados de y e de u o nosso sistema estudado depende.
 
 
 Com os vetores entrada e saída em mão montamos uma matriz de regressores y e u no seguinte formato:
@@ -292,35 +291,55 @@ A matriz $\psi$, no entanto, não é invertível e para realizarmos $\psi^{-1}$ 
 \begin{equation}
 A^\dagger=[A^TA]^{-1}A^T
 \end{equation}
-E a equação \ref{MQ_eq} se torna:
-\begin{equation}\label{MQ_eq2}
+
+E a equação \eqref{eq:MQ} se torna:
+\begin{equation}\label{eq:MQ2}
 \theta=\psi^\dagger y
 \end{equation}
 
 
-A equação \ref{MQ_eq} é a única equação que satisfaz todos os regressores do sistema de equações formado a partir da equação \ref{ARXModel}. Assumindo que conhecemos $\hat{\theta}$ e que existe um resíduo $\xi$ entre o valor observado y e o valor obtido a partir do vetor de regressores $\psi$ da forma:
-\begin{equation}\label{MQxi}
+A equação \eqref{eq:MQ} é a única equação que satisfaz todos os regressores do sistema de equações formado a partir da equação \eqref{eq:ARXModel}. Assumindo que conhecemos $\hat{\theta}$ e que existe um resíduo $\xi$ entre o valor observado y e o valor obtido a partir do vetor de regressores $\psi$ da forma:
+\begin{equation}\label{eq:eMQxi}
 y=\psi^T\hat{\theta}+\xi
 \end{equation} 
 
-Este resíduo é o menor possível devido ao fato de que a equação \ref{MQ_eq2} ser demonstravelmente minimizada.
+Este resíduo é o menor possível devido ao fato de que a equação \eqref{eq:MQ2} ser demonstravelmente minimizada.
+
+
+Apresentamos aqui um pseudo algoritmo para a identificação por mínimos quadrados:
+
+\IncMargin{1em}
+\begin{algorithm}[H]
+
+	\Entrada{Vetor de entradas $U[N]$, vetor de saídas $Y[N]$, quantidade de regressores de $Y$ $n$, quantidade de regressores de $U$ $m$}
+	\Saida{Vetor $\hat{\theta}$}
+	\Inicio{
+		Faça a matriz de regressores $psi$ da equação \eqref{eq:regressores}\\
+		Calcule $\theta$ com a equação \eqref{eq:MQ2}
+	}
+	\Retorna{$\theta$}
+	\label{alg:mq}
+	\caption{\textsc{Identificação por Mínimos Quadrados}}
+\end{algorithm}
+\DecMargin{1em}
+
 
 \subsubsection {Filtro de Kalman}
-O filtro de Kalman é \melhorar{ um eficiente filtro recursivo que estima o estado de um sistema dinâmico linear a partir de uma série de medições ruidosas}. Ele é utilizado em uma grande variedade de aplicações de engenharia \commentib{Por exemplo?}, e é um tópico especialmente importante para a teoria de sistemas de controle. \commentib{Pq é importante?}
+O filtro de Kalman, também conhecido como estimador linear quadrático, é um algoritmo que utiliza uma série de medidas tomadas ao longo do tempo, que contém ruídos e outros tipos de erros, e produz um estimador capaz de estimar com maior confiança um certo valor. Ele é utilizado em uma grande variedade de aplicações de engenharia, como localização GPS e navegação, sua aplicação mais famosa foi no programa espacial Apollo, e é um tópico especialmente importante para a teoria de sistemas de controle, devido a sua capacidade de estimação de sistemas não lineares.
 \paragraph{Visão Geral}
-O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e \melhorar{ um sistema} de sensores para \melhorar{ gerar uma estimativa das grandezas variáveis} de um sistema \cortar{, seus estados}. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso. 
+O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e medidas de sensores para gerar uma estimativa das grandezas medidas do sistema. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso. 
 
 
 Usaremos a nomenclatura de Aguirre, onde $t_1$ é substituído pela iteração atual indicada por k, e o $t_2$ é substituído pela próxima iteração k+1. A notação ($t_1$|$t_1$) é substituída por um sinal '+' para indicar o instante $t_i$ após ter sido incluída a informação em $t_i$. Da mesma forma será utilizado um sinal '-' para indicar a grandeza que se refere ao instante $t_i$ antes de ter sido incluída a informação referente àquele instante. A equação que rege a propagação é a seguinte:
-\begin{equation} \label{eq_prop}
+\begin{equation} \label{eq:prop}
 \hat{x}^{-}_{k+1}=\Phi_k \hat{x}^+_k+\Gamma_ku_k
 \end{equation}
 
 \paragraph{Etapa de propagação}
-Conhecendo a função de densidade de probabilidade de $x_k^+$, indicada por $f_k\sim \mathcal{N}(\bar{x}^+_k, P^+_k)$, deseja-se encontrar a função de densidade de probabilidade de $x^-_{k+1}$. Ou seja, na etapa de propagação deseja-se saber o que acontece à $f_k$ ao ser propagado pela equação \ref{eq_prop}. Assumimos que $f_k$ é gaussiana e portanto $f_-$ também será, deste modo basta determinar $\bar{x}^-_{k+1}$ e $P_-^{k+1}$ contidos em $f_- \sim \mathcal{N}(\bar{x}^-_{k+1},P^-_{k+1})$ para caracterizar $f_-$.
+Conhecendo a função de densidade de probabilidade de $x_k^+$, indicada por $f_k\sim \mathcal{N}(\bar{x}^+_k, P^+_k)$, deseja-se encontrar a função de densidade de probabilidade de $x^-_{k+1}$. Ou seja, na etapa de propagação deseja-se saber o que acontece à $f_k$ ao ser propagado pela equação \eqref{eq:prop}. Assumimos que $f_k$ é gaussiana e portanto $f_-$ também será, deste modo basta determinar $\bar{x}^-_{k+1}$ e $P_-^{k+1}$ contidos em $f_- \sim \mathcal{N}(\bar{x}^-_{k+1},P^-_{k+1})$ para caracterizar $f_-$.
 
 
-Seguindo o raciocínio de \commentib{Essa citação está inadequada} Aguirre encontramos:
+Segundo Aguirre \cite{aguirre2015} encontramos:
 \begin{equation}
 \bar{x}^-_{k+1}=\Phi_k\bar{x}^+_k+\Gamma_ku_k
 \end{equation}
