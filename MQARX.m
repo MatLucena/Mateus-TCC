@@ -31,17 +31,17 @@ function [sys,theta,phi, Yo,Uo, num, den]= MQARX(U,Y,regu,regy)
     %Gt2=d2c(Gd2);
     %step(Gd2)
     i=c;
-    h=figure;
-    movegui(h,[50,220]);
+%     h=figure;
+%     movegui(h,[50,220]);
     C=Y(i:size(phi*theta,1)+i-1)-(phi*theta);
     [c,r,l,B]=myccf2(C,40,1);
     title(sprintf('Auto correlação dos resíduos para %d polos %d zeros',regy-1,regu))
-    h=figure;
-    movegui(h,'center');
-    plot(Y(i:size(phi*theta,1)+i-1))
+%     h=figure;
+%     movegui(h,'center');
+%     plot(Y(i:size(phi*theta,1)+i-1))
     title(sprintf('polos %d zeros %d',regy-1,regu))
     hold on
-    plot(phi*theta)
+%     plot(phi*theta)
 %     h=figure;
 %     movegui(h,[-50,160])
 %     t=0:0.05:0.05*(size(Uo,1)-1);

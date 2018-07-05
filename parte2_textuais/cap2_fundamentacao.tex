@@ -64,6 +64,22 @@ Onde $x \in \Re^n$ é o vetor de estado n-dimensional. $\dot{x}=dx/dt$, $u(t) \i
 
 Podemos gerar uma representação de espaço de estados a partir da E.D.O. do sistema. Vamos utilizar novamente o sistema da figura \ref{fig:modeloamortecimento}. Definimos primeiramente os estados do vetor x, $x_1=X_1$, $x_2=\dot{X}_1$, $x_3=Y_1$ e $x_4=\dot{Y}_1$. Onde $Y_1=X_1-X_2$, geramos então as matrizes do espaço de estados usando as equações \eqref{eq:edo1} e \eqref{eq:edo2}:
 \begin{equation}
+A=\begin{bmatrix}
+0 & 1 & 0 & 0\\
+\dfrac{-b_1b_2}{M_1M_2} & 0 &\left[ \dfrac {b_1} {M_1} \left( \dfrac {b_1} {M_1} + \dfrac{b_1}{M_2} +\dfrac{b_2}{M_2} \right)- \dfrac{K_1}{M_1}\right] & \dfrac{-b_1}{M_1}\\
+\dfrac{b_2}{M_2} & 0 & -\left( \dfrac{b_1}{M_1}+ \dfrac{b_1}{M_2}+ \dfrac{b_2}{M_2} \right) & 1\\
+\dfrac{K_2}{M_2} & 0 & -\left( \dfrac{K_1}{M_1} +\dfrac{K_1}{M_2}+ \dfrac{K_2}{M_2} \right) & 0
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+B=\begin{bmatrix}
+0 & 0 \\
+\dfrac{1}{M_1} & \dfrac{b_1b_2}{M_1M_2}\\
+0 & \dfrac{-b_2}{M_2} \\
+\left( \dfrac{1}{M_1}+ \dfrac{1}{M_2} \right) & \dfrac{-K_2}{M_2}
+\end{bmatrix}
+\end{equation}
+\begin{equation}
 \begin{bmatrix}
 \dot{X}_1\\
 \ddot{X}_1\\
@@ -71,22 +87,12 @@ Podemos gerar uma representação de espaço de estados a partir da E.D.O. do si
 \ddot{Y}_1
 \end{bmatrix}
 =
-\begin{bmatrix}
-0 & 1 & 0 & 0\\
-\dfrac{-b_1b_2}{M_1M_2} & 0 &\left[ \dfrac {b_1} {M_1} \left( \dfrac {b_1} {M_1} + \dfrac{b_1}{M_2} +\dfrac{b_2}{M_2} \right)- \dfrac{K_1}{M_1}\right] & \dfrac{-b_1}{M_1}\\
-\dfrac{b_2}{M_2} & 0 & -\left( \dfrac{b_1}{M_1}+ \dfrac{b_1}{M_2}+ \dfrac{b_2}{M_2} \right) & 1\\
-\dfrac{K_2}{M_2} & 0 & -\left( \dfrac{K_1}{M_1} +\dfrac{K_1}{M_2}+ \dfrac{K_2}{M_2} \right) & 0
-\end{bmatrix}
+A
 \begin{bmatrix}
 X_1\\\dot{X}_1 \\Y_1 \\ \dot{Y}_1
 \end{bmatrix}
 +
-\begin{bmatrix}
-0 & 0 \\
-\dfrac{1}{M_1} & \dfrac{b_1b_2}{M_1M_2}\\
-0 & \dfrac{-b_2}{M_2} \\
-\left( \dfrac{1}{M_1}+ \dfrac{1}{M_2} \right) & \dfrac{-K_2}{M_2}
-\end{bmatrix}
+B
 \begin{bmatrix}
 U\\W
 \end{bmatrix}
@@ -111,8 +117,10 @@ U \\W
 \subsubsection{Modelo ARX}
 O modelo ARX SISO linear tem o seguinte formato:
 \begin{equation}\label{eq:ARXModel}
-	y(t)+a_iy(t-1)+a_2y(t-2)+\dots+a_{na}y(t-na)=
-	b_1u(t)+b_2u(t-1)+\dots+b_{nb}u(t-nb+1)+e(t)
+\begin{aligned}
+y(t)+a_iy(t-1)+a_2y(t-2)+\dots+a_{na}y(t-na)=\\
+b_1u(t)+b_2u(t-1)+\dots+b_{nb}u(t-nb+1)+e(t)
+\end{aligned}	
 \end{equation}
 
 Onde y é a entrada, u é a saída e $e$ é o ruído. Isso implica que a saída $y(t)$ é uma predição a partir de uma média ponderada de entradas e saídas passadas. Os parâmetros $a_{na}$ e $b_{nb}$ podem ser estimados utilizando mínimos quadrados numa coleção de dados entrada-saída.
@@ -251,14 +259,28 @@ Para um sistema SISO em que não conhecemos o seu modelo matemático podemos des
 
 
 Com os vetores entrada e saída em mão montamos uma matriz de regressores y e u no seguinte formato:
+\begin{equation}
+Y=\begin{bmatrix}
+y(n) & y(n-1) & \dots & y(n-i) \\
+y(n+1) & y(n) & \dots & y(n-i+1) \\
+\vdots & \vdots & \ddots & \vdots\\
+y(n+k) & y(n+k-1) & \dots & y(n+k-i) \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+U=\begin{bmatrix}
+ u(n) & u(n-1) & \dots & u(n-j)\\
+ u(n+1) & u(n) & \dots & u(n-j+1)\\
+ \vdots & \vdots & \ddots  & \vdots\\
+ u(n+k) & u(n+k-1) & \dots & u(n+k-j)\\
+\end{bmatrix}
+\end{equation}
 
 \begin{equation}\label{eq:regressores}
 \psi=
 \begin{bmatrix}
-y(n) & y(n-1) & \dots & y(n-i) & u(n) & u(n-1) & \dots & u(n-j)\\
-y(n+1) & y(n) & \dots & y(n-i+1) & u(n+1) & u(n) & \dots & u(n-j+1)\\
-\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots  & \vdots\\
-y(n+k) & y(n+k-1) & \dots & y(n+k-i) & u(n+k) & u(n+k-1) & \dots & u(n+k-j)\\
+Y & U
 \end{bmatrix}
 \end{equation}
 
@@ -445,20 +467,22 @@ Encontramos $B$ e $D$ com a equação:
 
 Renomeamos os termos dessa equação da seguinte forma:
 \begin{equation}
-\begin{pmatrix}
-M_1 & M_2 & \dots & M_i
-\end{pmatrix}
-=
-\begin{pmatrix}
-L_1 & L_2 & \dots & L_i
-\end{pmatrix}
-\begin{pmatrix}
+Q=\begin{pmatrix}
 D& 0 & 0 & \dots & 0\\
 CB & D & 0 & \dots & 0\\
 CAB & CB & D & \ddots & 0\\
 \vdots & \vdots & \vdots & \ddots & \vdots\\
 CA^{i-2}B & CA^{i-3}B & CA^{i-4}B& \dots & D
 \end{pmatrix}
+\end{equation}
+\begin{equation}
+\begin{pmatrix}
+M_1 & M_2 & \dots & M_i
+\end{pmatrix}
+=
+\begin{pmatrix}
+L_1 & L_2 & \dots & L_i
+\end{pmatrix}Q
 \end{equation}
 
 Reescrevemos essa equação:
@@ -508,15 +532,12 @@ Para facilitar o entendimento colocamos em forma de algoritmo os passos que deve
 \section{Trabalhos Relacionados}
 Nesta subseção falaremos dos trabalhos feitos por outros autores que se relacionam a este.
 
-\subsection{Implementing a Remote Laboratory Experience Into a Joint Engineering Degree Program: Aerodynamic Levitation of a Beach Ball}
 
 Em 2009, Jernigan et al. \cite{jernigan2009}, publicaram um artigo falando sobre uma experiência que fizeram na construção e utilização de uma experiência de laboratório remota. Eles escolheram como experimento a levitação de uma bola de praia de plástico usando um soprador de ar. Um grupo de alunos foi encarregado de modelar, simular e controlar o sistema usando o laboratório remoto. Este trabalho foi essencial para o nosso entendimento da modelagem da levitação de uma bola por fluxo de ar e especialmente do tipo de medida necessária para criar um simulador do sistema. Diferente deste trabalho Jernigan et al. não fez identificação do sistema e optou por fazer modelagem matemática.
 
-\subsection{Design of a Low-Cost Air Levitation System for Teaching Control Engineering}
 
 Em 2017, Chacon et al. \cite{chacon2017}, relatam em um artigo a construção de um túnel de vento para o ensino de engenharia de controle. Eles tem o mesmo objetivo deste trabalho em relação à construir uma plataforma de experimentos barata e reprodutível mas diferem porque aplicam a plataforma para aprendizado à distância. No artigo eles descrevem um processo de identificação caixa preta usando um sinal binário pseudo aleatório bastante parecido com o que será utilizado neste trabalho, mas tratam a identificação como um exercício a ser aplicado aos alunos.
 
-\subsection{Identificação de Sistemas Utilizando Métodos de Subespaços}
 
 Em sua dissertação de mestrado Ricco \cite{ricco2012} fala sobre identificação por subespaços com uma linguagem clara e de fácil entendimento. O seu trabalho se relaciona a este devido a identificação por subespaços apesar de não trabalhar com um sistema específico. Ele foi essencial ao entendimento de identificação por subespaços.
 

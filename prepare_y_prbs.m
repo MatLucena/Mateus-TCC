@@ -13,6 +13,7 @@ function y= prepare_y_prbs(x)
             z=a*x(1,g)^b+c;
             if z<=0 z=0; end
             y(1,g)=p1*z + p2;
+%               y(1,g)=z;
         end
     else
         y=zeros(j,1);
@@ -20,6 +21,7 @@ function y= prepare_y_prbs(x)
             z=a*x(g,1)^b+c
             if z<=0 z=0; end
             y(g,1)=p1*z + p2;
+%               y(1,g)=z;
     end
     
     end

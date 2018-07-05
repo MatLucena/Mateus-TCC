@@ -13,24 +13,25 @@ O sistema em questão se trata de um tubo PVC de 40 mm de 120 cm, ele é afixado
 
 Há duas forças atuantes na esfera, a gravidade que a puxa para baixo e a força de empuxo gerada pelo vento. Obtemos a seguinte equação do movimento:
 \begin{equation}
-m \ddot{h}=F=\dfrac{1}{2} \cdot C_a \cdot\rho \cdot A \cdot (v_a- \dot{h})^2-m\cdot g
+m \ddot{h}=F=\dfrac{1}{2} \cdot C_a \cdot\rho \cdot A \cdot (v_{ar}- \dot{h})^2-m\cdot g
 \end{equation}
 
-onde $m$ é a massa da esfera, $h$ é a posição vertical da esfera no tubo, $\rho$ é a densidade do ar, $A$ é a área da esfera em contato com o fluxo de ar, $v_a$ é a velocidade do ar dentro do tubo e $C_a$ é o coeficiente aerodinâmico da esfera. O coeficiente aerodinâmico depende da velocidade relativa entre a esfera e o vento, mas para as velocidades baixas de vento que estamos utilizando esse valor pode ser considerado constante. Consideramos $\alpha= \dfrac{1}{2} \cdot C_a \cdot \rho \cdot A$:
+onde $m$ é a massa da esfera, $h$ é a posição vertical da esfera no tubo, $\rho$ é a densidade do ar, $A$ é a área da esfera em contato com o fluxo de ar, $v_{ar}$ é a velocidade do ar dentro do tubo e $C_a$ é o coeficiente aerodinâmico da esfera. O coeficiente aerodinâmico depende da velocidade relativa entre a esfera e o vento, mas para as velocidades baixas de vento que estamos utilizando esse valor pode ser considerado constante. Consideramos $\alpha= \dfrac{1}{2} \cdot C_a \cdot \rho \cdot A$:
 \begin{equation} \label{eq:modelo}
-\ddot{h}=\dfrac{\alpha}{m}\cdot (v_a-\dot{h})^2-g
+\ddot{h}=\dfrac{\alpha}{m}\cdot (v_{ar}-\dot{h})^2-g
 \end{equation}
 
 \section{Estimação da Velocidade do Vento}
-Para criarmos um simulador do sistema descrito anteriormente precisamos saber o valor de $v_a$. Ele determina a velocidade do vento para diferentes valores de tensão e altura da bola. Não foi possível adquirir um sensor de velocidade do ar devido a problemas de localização geológica, portanto, foi necessário usar de engenhosidade para adquirir a velocidade do ar em diversas alturas.
+Para criarmos um simulador do sistema descrito anteriormente precisamos saber o valor de $v_{ar}$. Ele determina a velocidade do vento para diferentes valores de tensão e altura da bola. Não foi possível adquirir um sensor de velocidade do ar devido a problemas de localização geológica, portanto, foi necessário usar de engenhosidade para adquirir a velocidade do ar em diversas alturas.
 
 
 Foram adquiridas diversas bolas de tênis de mesa e se injetou uma mistura de cola e água nelas para aumentar o seu peso. Foram escolhidos 6 pesos diferentes e medidos em balança com precisão de duas casas decimais. Então para cada peso foi medida a tensão necessária para que se alcance as 6 alturas dentro da região de funcionamento do sensor, 10, 20, 30, 40, 50, 60 cm. Tendo medido a altura e a tensão necessária para alcançar as alturas, bastou utilizar a equação \eqref{eq:modelo} fazendo $\ddot{h}=\dot(h)=0$ para obter a velocidade do vento relacionada com uma altura e uma tensão.
 
+
 \begin{figure}[h]
 	\centering
-	\includegraphics{grafico_vair_altura}
-	\caption[Gráfico $v_a$ x altura]{Gráfico de $v_a$ x altura}
+	\includegraphics[width=1\linewidth]{grafico_vair_altura}
+	\caption[Gráfico $v_{ar}$ x altura]{Gráfico de $v_{ar}$ x altura}
 	\label{fig:graficovairaltura1}
 \end{figure}
 

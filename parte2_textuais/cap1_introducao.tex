@@ -15,7 +15,7 @@ Os testes geralmente são feitos em modelos em escala de aviões, carros, naves 
 
 Hoje os testes ainda são responsáveis por economizar milhões de reais na fase de prototipagem em testes aerodinâmicos, no desenvolvimento de trens de alta velocidade\cite{kwon2001}. Em objetos que se movem em alta velocidade o vento se torna um fator preocupante, uma rajada de vento pode ser o fator determinante em um descarrilhamento de um trem, os testes possibilitam que os cientistas analisem  comportamento de suas criações em situações previsíveis e os ajuda a antecipar possíveis problemas.
 
-No entanto, existe um problema no teste aerodinâmico utilizando túneis de vento. Para os testes de queda livre como o de aeronaves, o controle de altitude do objeto é complexo. É possível obter o número de Reynolds, uma variável sem dimensão que possibilita predizer o padrão de fluxo de fluídos, e é possível medir a velocidade do vento atuando em cima do objeto, porém, a real dificuldade se encontra no fato de que quando o a força do vento atua em cima de um objeto ele se comporta de maneria quase imprevisível \commentib{uma ref} . Uma bola gira em várias direções, por exemplo.
+No entanto, existe um problema no teste aerodinâmico utilizando túneis de vento. Para os testes de queda livre como o de aeronaves, o controle de altitude do objeto é complexo. É possível obter o número de Reynolds, uma variável sem dimensão que possibilita predizer o padrão de fluxo de fluídos, e é possível medir a velocidade do vento atuando em cima do objeto, porém, a real dificuldade se encontra no fato de que quando o a força do vento atua em cima de um objeto ele tende a girar, \cite{briggs1959} de acordo com suas características aerodinâmicas, o que não é possível de se controlar sem um atuador no objeto.
 
 
 Tendo em vista que o controle de altura de um objeto tendo como único atuador o vento, e que um modelo de atuação da força do vento sobre um objeto é complexo e de baixa fidelidade, e que precisamos de um modelo que possibilite um controle de altitude preciso e robusto, temos como opção a modelagem caixa-preta, conhecida como identificação de sistemas.
@@ -25,9 +25,7 @@ Tendo em vista que o controle de altura de um objeto tendo como único atuador o
 
 \subsection{Objetivo Geral}
 
-\commentib{Esse objetivo geral não está muito legal. Acho que podemos adaptá-lo para incluir a noção da aplicação de modelos para controle.}
-
-O objetivo principal deste trabalho é fazer uma comparação qualitativa entre duas técnicas de identificação de sistemas, uma por mínimos quadrados que resulta em um modelo ARX do sistema, e uma por subespaços que resulta em um modelo em espaço de estados, e controle do sistema.
+O objetivo deste trabalho é identificar e controlar a altura de uma bola de tênis de mesa dentro de um túnel de vento vertical.
 
 \subsection{Objetivos Específicos}
 
@@ -46,8 +44,15 @@ Para alcançar o objetivo geral deste projeto devemos primeiro alcançar os segu
 
 \section{Organização do trabalho}
 
-\commentib{A introdução já acabou... então fale do restante deste trabalho. Além disso, faça uma lista e fale um pouco mais sobre cada um.}
 
-Este trabalho se encontra organizado em seis capítulos com várias subseções. O segundo capítulo é a revisão bibliográfica com as seções fundamentação teórica onde conceitos fundamentais ao entendimento do trabalho são explicados, tratamos dos modelos de sistemas dinâmicos, dos critérios de estabilidade de sistemas discretos, e da identificação de sistemas e estimação de parâmetros. Falamos ainda de trabalhos relacionados onde o trabalho de outros autores é relacionado a este. O terceiro capítulo fala sobre a modelagem e simulação do túnel de vento, onde se explica o processo de modelagem utilizado e a construção de um simulador no Simulink. O quarto capítulo trata da identificação do túnel usando mínimos quadrados e subespaços, explicando os procedimentos usados e o método de validação do modelo. O quinto é projeto de controladores, onde fazemos o projeto do controlador para adequar o sistema à requisitos de sua resposta à entradas. O sexto capítulo trata da avaliação experimental do sistema de controle, onde o sistema é testado para avaliar sua robustez à interferências. O sétimo e último capítulo é a conclusão do trabalho onde as considerações finais e trabalhos futuros serão discutidos.
+Este trabalho se encontra organizado em seis capítulos com várias subseções. 
+\begin{itemize}
+	\item Capítulo 2: é a revisão bibliográfica com as seções fundamentação teórica onde conceitos fundamentais ao entendimento do trabalho são explicados, tratamos dos modelos de sistemas dinâmicos, dos critérios de estabilidade de sistemas discretos, e da identificação de sistemas e estimação de parâmetros. Falamos ainda de trabalhos relacionados onde o trabalho de outros autores é relacionado a este.
+	\item Capítulo 3: fala sobre a modelagem e simulação do túnel de vento, onde se explica o processo de modelagem utilizado e a construção de um simulador no Simulink.
+	\item Capítulo 4: trata da identificação do túnel usando mínimos quadrados e subespaços, explicando os procedimentos usados e o método de validação do modelo.
+	\item Capítulo 5: é projeto de controladores, onde fazemos o projeto do controlador para adequar o sistema à requisitos de sua resposta à entradas.
+	\item Capítulo 6: trata da avaliação experimental do sistema de controle, onde o sistema é testado para avaliar sua robustez à interferências.
+	\item Capítulo 7: é a conclusão do trabalho onde as considerações finais e trabalhos futuros serão discutidos.
+\end{itemize}     
 
 % Fim Capítulo

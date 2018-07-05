@@ -7,7 +7,7 @@ Ts=0.05;
 % -4 - 4.0012 i
 % -8
 z=0.9;
-wn=10;
+wn=11;
 r=roots([1 2*wn*z wn^2]);
 z1=exp(r(1)*0.05);
 s3=-14;s4=s3-0.1; s5=s4-0.1; s6=s5-0.1;
@@ -26,7 +26,7 @@ kb=[1 1 1 1 1 ];
 
 Garx=ss(A1-B1*k1,B1,C1,D1,Ts);
 stepinfo(Garx);
-mul=11;
+mul=7;
 s1=real(r(1))*mul+imag(r(1))*j; s2=real(r(2))*mul +imag(r(2))*j; s3=s3*mul;
 s4=s4*mul; s5=s5*mul; s6=s6*mul; 
 % s7=s7*mul; s8=s8*mul;s9=s9*mul;
