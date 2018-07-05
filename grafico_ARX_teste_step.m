@@ -799,8 +799,18 @@ stepARX=[0.105339, 0.000000, -0.105339, 0.161059;
 1.195718, 1.000000, -0.195718, 1.191525;
 
 ];
-close all
+stepARX=(stepARX-p2)/p1;
 t=0:0.05:39.9;
-plot(t,stepARX(1:length(t),1))
+close all
+figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
+y=stepARX(1:size(t,2),1)-stepARX(1:size(t,2),4);
+stairs(t,y,'k','LineWidth',1.5)
 hold on
-plot(t,stepARX(1:length(t),2))
+% stairs(t,stepARX(1:size(t,2),2)','LineWidth',1.5)
+% H=legend('$y$','$r$', 'Location', 'southeast', 'Orientation', 'vertical');
+% set(H, 'Interpreter', 'latex', 'Fontsize', 22);
+ylabel('Resíduo (cm)', 'fontsize', 22)
+xlabel('Tempo (s)', 'fontsize', 22);
+T=title('Resíduo y_{medido}-y_{estimado} do modelo ARX1');
+set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
+axis([0 t(end) min(min(y))-.05 max(max(y))+.1]);

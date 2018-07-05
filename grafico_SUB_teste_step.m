@@ -797,10 +797,28 @@ stepSUB=[0.051515, 0.000000, -0.051515, 0.119102;
 1.076732, 1.000000, -0.076732, 1.078586;
 1.076732, 1.000000, -0.076732, 1.057351;
 1.145567, 1.000000, -0.145567, 1.235078;
-
 ];
+
+
+stepSUB=(stepSUB-p2)/p1;
 t=0:0.05:39.9;
 close all
-plot(t,stepSUB(1:size(t,2),1)'+0.088)
+figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
+y=stepSUB(1:size(t,2),1)-stepSUB(1:size(t,2),4);
+stairs(t,y,'k','LineWidth',1.5)
 hold on
-plot(t,stepSUB(1:size(t,2),2)')
+% stairs(t,stepARX(1:size(t,2),2)','LineWidth',1.5)
+% H=legend('$y$','$r$', 'Location', 'southeast', 'Orientation', 'vertical');
+% set(H, 'Interpreter', 'latex', 'Fontsize', 22);
+ylabel('Resíduo (cm)', 'fontsize', 22)
+xlabel('Tempo (s)', 'fontsize', 22);
+T=title('Resíduo y_{medido}-y_{estimado} do modelo SUB1');
+set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
+axis([0 t(end) min(min(y))-.05 max(max(y))+.1]);
+
+
+
+
+
+
+

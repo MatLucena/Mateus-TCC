@@ -800,11 +800,17 @@ pextSUB=[0.024178, 0.000000, -0.024178, 0.055899;
 
 ];
 
+pextSUB=(pextSUB-p2)/p1;
+t=0:0.05:39.9;
 close all
-figure;
-t=0:0.05:15;
-ajuste=0.0888;
-plot(t,pextSUB(1:length(t),1)'+ajuste)
+figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
+stairs(t,pextSUB(1:size(t,2),1)','k','LineWidth',1.5)
 hold on
-plot(t,pextSUB(1:size(t,2),2)')
-plot(t,pextSUB(1:length(t),3)'-ajuste)
+stairs(t,pextSUB(1:size(t,2),2)','LineWidth',1.5)
+H=legend('$y$','$r$', 'Location', 'southeast', 'Orientation', 'vertical');
+set(H, 'Interpreter', 'latex', 'Fontsize', 22);
+ylabel('Altura (cm)', 'fontsize', 22)
+xlabel('Tempo (s)', 'fontsize', 22);
+T=title('Resposta à perturbação externa do modelo SUB1');
+set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
+axis([0 t(end) min(min(pextSUB))-.05 max(max(pextSUB))+.4]);

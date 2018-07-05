@@ -26,17 +26,17 @@ Garx=ss(A1-B1*k1,B1,C1,D1,Ts);
 % step(Garx)
 stepinfo(Garx);
 mul=6;
-% s1=real(r(1))*mul+imag(r(1))*j; s2=real(r(2))*mul +imag(r(2))*j; s3=s3*mul;
-% z1=exp(s1*Ts); z2=exp(s2*Ts); z3=exp(s3*Ts);
-% F2=blkdiag([real(z1) imag(z1); imag(z2) real(z2)], z3);
-% kb=[1 1 1];
-% 
-% lb=[1 1 1]';
-% r1=rank(ctrb(F2,lb))
-% 
-% t2=lyap(F2,-A1,lb*C1);
-% 
-% l1=inv(t2)*lb;
-% eig(F2)'
-% eig(A1-l1*C1)'
-% Garx2=ss(A1-l1*C1,B1,C1,D1,Ts);
+s1=real(r(1))*mul+imag(r(1))*j; s2=real(r(2))*mul +imag(r(2))*j; s3=s3*mul;
+z1=exp(s1*Ts); z2=exp(s2*Ts); z3=exp(s3*Ts);
+F2=blkdiag([real(z1) imag(z1); imag(z2) real(z2)], z3);
+kb=[1 1 1];
+
+lb=[1 1 1]';
+r1=rank(ctrb(F2,lb))
+
+t2=lyap(F2,-A1,lb*C1);
+
+l1=inv(t2)*lb;
+eig(F2)'
+eig(A1-l1*C1)'
+Garx2=ss(A1-l1*C1,B1,C1,D1,Ts);

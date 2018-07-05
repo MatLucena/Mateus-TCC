@@ -799,11 +799,19 @@ stairSUB=[-0.003450, 0.000000, 0.003450, -0.007976;
 -0.088125, 0.000000, 0.088125, -0.062203;
 
 ];
-close all
-figure;
+% stairSUB=(stairSUB-p2)/p1;
 t=0:0.05:39.9;
-ajuste=0.0888;
-plot(t,stairSUB(1:size(t,2),1)'+ajuste)
+close all
+figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
+y=stairSUB(1:size(t,2),1)-stairSUB(1:size(t,2),4);
+% stairs(t,stairSUB(1:size(t,2),1)-stairSUB(1:size(t,2),4),'k','LineWidth',1)
+stairs(t,y,'k','LineWidth',1)
 hold on
-plot(t,stairSUB(1:size(t,2),2)')
-plot(t,stairSUB(1:size(t,2),3)'-ajuste)
+% stairs(t,stairSUB(1:size(t,2),4)'+1.05,'LineWidth',1)
+H=legend('$y_{medido}$','$y_{estimado}$', 'Location', 'southeast', 'Orientation', 'vertical');
+set(H, 'Interpreter', 'latex', 'Fontsize', 22);
+ylabel('resíduo', 'fontsize', 22)
+xlabel('Tempo (s)', 'fontsize', 22);    
+T=title('Resposta à escadaria do modelo SUB1');
+set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
+axis([0 t(end) min(min(y))-.05 max(max(y))+.4]);

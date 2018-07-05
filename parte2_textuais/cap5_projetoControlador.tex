@@ -98,16 +98,74 @@ Para realizar um controlador por realimentação de estados precisamos ser capaz
 Um estimador de estados é projetado de forma similar ao controlador por realimentação de estados, precisamos escolher polos adequados para que o estimador funcione da forma correta. A forma mais simples de escolher esses polos é fazer com que eles reajam mais rápido que o sistema à entrada recebida, conseguimos isso multiplicando a parte real dos polos no domínio s por um número para que sejam mais rápidos. 
 
 
-Projetamos o estimador de estados com os seguintes polos $z_1=0.1647 + 0.0144i$, $z_2=0.1647 - 0.0144i$ e $z_3=0.0183$ e obtemos o ganho do estimador $L=[3.5436,~-7.2192,~13.9077]^T$. 
+Projetamos o estimador de estados com os seguintes polos $z_1=0.1647 + 0.0144i$, $z_2=0.1647 - 0.0144i$ e $z_3=0.0183$ e obtemos o ganho do estimador $L=[3.5436,~-7.2192,~13.9077]^T$. Nas figuras \ref{fig:estimadorsub1} e \ref{fig:stepestsub1} vemos como uma simulação do sistema se comporta.
 
-\subsection{Modelo 2}
-Para o estimador do modelo 2 alocamos os polos em $z_1=0.0069 - 0.0015i$, $z_2=0.0069 + 0.0015i$, $z_3=0.0005 + 0.0000i$, $z_4=0.0004 + 0.0000i$ e $z_5=0.0004 + 0.0000i$.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{estimadorsub1}
+	\caption[Simulação do estimador do modelo $SUB1$]{Simulação do estimador do modelo $SUB1$}
+	\label{fig:estimadorsub1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{stepestsub1}
+	\caption[Resposta ao degrau do modelo $SUB1$ controlado com observador]{Resposta ao degrau do modelo $SUB1$ controlado com observador}
+	\label{fig:stepestsub1}
+\end{figure}
 
 
 
+\subsection{Modelo $ARX1$}
+Para o estimador do modelo $ARX1$ alocamos os polos em $z_1=0.0309 + 0.0048i$, $z_2=0.0309 - 0.0048i$ e $z_3=0.0003$. Obtemos o ganho do estimador $L=[33.9534,~26.6709,~16.6024]^T$. Nas figuras \ref{fig:estimadorarx1} e \ref{fig:stepestarx1} vemos como uma simulação do sistema se comporta.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{estimadorarx1}
+	\caption[Simulação do estimador do modelo $ARX1$]{Simulação do estimador do modelo $ARX1$}
+	\label{fig:estimadorarx1}
+\end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{stepestarx1}
+	\caption[Resposta ao degrau do modelo $ARX1$ controlado com observador]{Resposta ao degrau do modelo $ARX1$ controlado com observador}
+	\label{fig:stepestarx1}
+\end{figure}
 
+\subsection{Modelo $ARX2$}
+Para o estimador do modelo $ARX2$ alocamos os polos em $z_1=0.0304 + 0.0074i$, $z_2=0.0304 - 0.0074i$, $z_3=0.0074$, $z_4=0.0072$ e $z_5=0.0069$. Obtemos o ganho do estimador $L=[22.1925,~20.4118,~ 16.9038,~16.9671,~11.1584]^T$. Nas figuras \ref{fig:estimadorarx2} e \ref{fig:stepestarx2} vemos como uma simulação do sistema se comporta.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{estimadorarx2}
+	\caption[Simulação do estimador do modelo $ARX2$]{Simulação do estimador do modelo $ARX2$}
+	\label{fig:estimadorarx2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{stepestarx2}
+	\caption[Resposta ao degrau do modelo $ARX2$ controlado com observador]{Resposta ao degrau do modelo $ARX2$ controlado com observador}
+	\label{fig:stepestarx2}
+\end{figure}
+
+\subsection{Modelo $ARXsim$}
+Para o estimador do modelo $ARX2$ alocamos os polos em $z_1=0.3383 + 0.0296i$, $z_2=0.3383 - 0.0296i$ e $z_3=0.0150$. Obtemos o ganho do estimador $L=[27.5247,~ 73.1490,~ 146.4144]^T$. Nas figuras \ref{fig:estimadorarxsim} e \ref{fig:stepestarxsim} vemos como uma simulação do sistema se comporta.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{estimadorarxsim}
+	\caption[Simulação do estimador do modelo $ARXsim$]{Simulação do estimador do modelo $ARXsim$}
+	\label{fig:estimadorarxsim}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{stepestarxsim}
+	\caption[Resposta ao degrau do modelo $ARXsim$ controlado com observador]{Resposta ao degrau do modelo $ARXsim$ controlado com observador}
+	\label{fig:stepestarxsim}
+\end{figure}
 
 
 

@@ -16,7 +16,7 @@ set(H, 'Interpreter', 'latex', 'Fontsize', 22);
 ylabel('Altura (cm)', 'fontsize', 22)
 xlabel('Tempo (s)', 'fontsize', 22);
 T=title('Simulação do estimador do modelo ARX2');
-% T=title('Resposta ao degrau do modelo ARX2 com estimador');
+T=title('Resposta ao degrau do modelo SUB1 com estimador');
 set(T, 'Interpreter', 'latex', 'Fontsize', 22);
 set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
 axis([0 simout.Time(end) min(min(yr))-.05 max(max(yr))+.4]);

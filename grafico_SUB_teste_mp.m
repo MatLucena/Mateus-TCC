@@ -801,9 +801,17 @@ pextARX=[-0.489111, 0.000000, 0.489111, -1.130813, 1.568249;
 ];
 
 
-close all
+pextARX=(pextARX-p2)/p1;
 t=0:0.05:39.9;
-plot(t,pextARX(1:length(t),1))
+close all
+figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
+stairs(t,pextARX(1:size(t,2),1)','k','LineWidth',1.5)
 hold on
-plot(t,pextARX(1:length(t),2))
-plot(t,pextARX(1:length(t),3))
+stairs(t,pextARX(1:size(t,2),2)','LineWidth',1.5)
+H=legend('$y$','$r$', 'Location', 'southeast', 'Orientation', 'vertical');
+set(H, 'Interpreter', 'latex', 'Fontsize', 22);
+ylabel('Altura (cm)', 'fontsize', 22)
+xlabel('Tempo (s)', 'fontsize', 22);
+T=title('Resposta à mudança de parâmetros do modelo SUB1');
+set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
+axis([0 t(end) min(min(pextARX))-.05 max(max(pextARX))+.4]);

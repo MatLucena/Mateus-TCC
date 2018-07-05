@@ -800,8 +800,17 @@ stairARX=[-0.003450, 0.000000, 0.003450, -0.005275;
 
 ];
 
-close all
+stairARX=(stairARX-p2)/p1;
 t=0:0.05:39.9;
-plot(t,stairARX(1:length(t),1))
+close all
+figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
+stairs(t,stairARX(1:size(t,2),1)','k','LineWidth',1.5)
 hold on
-plot(t,stairARX(1:length(t),2))
+stairs(t,stairARX(1:size(t,2),2)','LineWidth',1.5)
+H=legend('$y$','$r$', 'Location', 'southeast', 'Orientation', 'vertical');
+set(H, 'Interpreter', 'latex', 'Fontsize', 22);
+ylabel('Altura (cm)', 'fontsize', 22)
+xlabel('Tempo (s)', 'fontsize', 22);
+T=title('Resposta à escadaria do modelo ARX1');
+set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
+axis([0 t(end) min(min(stairARX))-.05 max(max(stairARX))+.4]);
