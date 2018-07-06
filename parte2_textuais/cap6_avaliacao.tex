@@ -1,13 +1,19 @@
 \chapter{Avaliação Experimental do Sistema de Controle}\label{cap6}
 Após projetar os controladores faremos uma avaliação do seu funcionamento aplicando cada um no sistema real.
 \section{Descrição e objetivos experimentais}
+<<<<<<< HEAD
 Os experimentos descritos neste capítulo tem como objetivo verificar e avaliar o funcionamento do sistema ao ser controlado pelos controladores projetados no capítulo \ref{cap5}, iremos aplicar os controladores $SUB1$, $ARX1$ e $ARX2$ no sistema real. Serão executados 4 experimentos que funcionam da seguinte forma:
 \paragraph{Resposta ao Degrau Unitário} A resposta ao degrau unitário é um experimento onde o sistema recebe uma referência unitária e reage à ela. Com este experimento iremos verificar se o sistema se mantém estável ao ser controlado e se ele atende aos requisitos definidos quando o controlador foi projetado.
 \paragraph{Resposta à escadaria} A resposta à escadaria é um experimento onde o sistema recebe alguns níveis de referência ao longo do tempo e medimos sua resposta para ver como reage à mudança de referência.
+=======
+Os experimentos descritos neste capítulo tem como objetivo verificar e avaliar o funcionamento do sistema ao ser controlado pelos controladores projetados no capítulo \ref{cap5}. Serão executados 4 experimentos no sistema que funcionam da seguinte forma:
+\paragraph{Resposta ao Degrau Unitário} A resposta ao degrau unitário é um experimento onde o sistema recebe uma referência unitária e reage à ela. Com este experimento iremos verificar se o sistema se mantém estável ao ser controlado e se ele atende aos requisitos \commentib{quais requisitos?} definidos quando o controlador foi projetado.
+\paragraph{Resposta à escadaria} A resposta à escadaria é um experimento onde o sistema \melhorar{ recebe alguns níveis de referência ao longo do tempo e medimos sua resposta para ver como reage à mudança de referência.}
+>>>>>>> ab0acf4492489a9fed76e44905ca23de0b1d4824
 
-\paragraph{Teste de Robustez à Mudança de Parâmetros}
+\paragraph{Teste de Robustez à \cortar{Mudança de Parâmetros} \commentib{variação paramétrica}}
 
-O teste de robustez à mudança de parâmetros serve para determinar se o controlador é capaz de reagir quando algum parâmetro é alterado. Neste experimento alteramos o peso da bola e verificamos se o sistema mantém a referência.
+O teste de robustez à mudança de parâmetros serve para determinar se o controlador é capaz de reagir quando algum parâmetro é alterado. Neste experimento alteramos o peso da bola e verificamos se o sistema mantém a referência. \commentib{Não apenas o rastreamento de referência...}
 
 \paragraph{Teste de Robustez à Perturbação Externa}
   O teste de robustez à perturbação externa mostra se o sistema controlado é capaz de rejeitar perturbações externas ao sistema. Para executar este teste iremos medir a resposta do sistema enquanto obstruímos a saída de ar através dos buracos inferiores do duto do túnel de vento, efetivamente aumentando o fluxo de ar que eleva a bola.

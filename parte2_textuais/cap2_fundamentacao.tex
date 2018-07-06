@@ -1,5 +1,6 @@
 \chapter{Revisão Bibliográfica} \label{cap2}
-Nesta seção serão apresentadas duas subseções importantes para o entendimento deste trabalho, a revisão bibliográfica que trata de conceitos fundamentais ao entendimento do trabalho, e trabalhos relacionados que trata de outros trabalhos que são pertinentes à este.
+
+\corrigir{ Nesta seção serão} apresentadas duas subseções importantes para o entendimento deste trabalho, a revisão bibliográfica que trata de conceitos fundamentais ao entendimento do trabalho, e trabalhos relacionados que trata de outros trabalhos que são pertinentes à este.
 	
 \section{Fundamentação Teórica}
 Nesta subseção tratamos de conceitos essenciais para o entendimento deste trabalho. Falaremos sobre alguns modelos matemáticos, critérios de estabilidade de sistemas discretos, e métodos de identificação de sistemas e estimação de parâmetros, em especial identificação por mínimos quadrados e por subespaços.
@@ -239,7 +240,7 @@ Para que V seja uma função de Lyapunov é necessário e suficiente que exista 
 \end{equation}
 
 
-
+\commentib{Acrescente seção falando sobre realimentação de estados e observadr de luenberger contendo inclusive os algoritmos (pseudocódigos) que vc usou para projetar os seus.}
 
 
 
@@ -346,44 +347,45 @@ Apresentamos aqui um pseudo algoritmo para a identificação por mínimos quadra
 \DecMargin{1em}
 
 
-\subsubsection {Filtro de Kalman}
-O filtro de Kalman, também conhecido como estimador linear quadrático, é um algoritmo que utiliza uma série de medidas tomadas ao longo do tempo, que contém ruídos e outros tipos de erros, e produz um estimador capaz de estimar com maior confiança um certo valor. Ele é utilizado em uma grande variedade de aplicações de engenharia, como localização GPS e navegação, sua aplicação mais famosa foi no programa espacial Apollo, e é um tópico especialmente importante para a teoria de sistemas de controle, devido a sua capacidade de estimação de sistemas não lineares.
-\paragraph{Visão Geral}
-O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e medidas de sensores para gerar uma estimativa das grandezas medidas do sistema. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso. 
-
-
-Usaremos a nomenclatura de Aguirre, onde $t_1$ é substituído pela iteração atual indicada por k, e o $t_2$ é substituído pela próxima iteração k+1. A notação ($t_1$|$t_1$) é substituída por um sinal '+' para indicar o instante $t_i$ após ter sido incluída a informação em $t_i$. Da mesma forma será utilizado um sinal '-' para indicar a grandeza que se refere ao instante $t_i$ antes de ter sido incluída a informação referente àquele instante. A equação que rege a propagação é a seguinte:
-\begin{equation} \label{eq:prop}
-\hat{x}^{-}_{k+1}=\Phi_k \hat{x}^+_k+\Gamma_ku_k
-\end{equation}
-
-\paragraph{Etapa de propagação}
-Conhecendo a função de densidade de probabilidade de $x_k^+$, indicada por $f_k\sim \mathcal{N}(\bar{x}^+_k, P^+_k)$, deseja-se encontrar a função de densidade de probabilidade de $x^-_{k+1}$. Ou seja, na etapa de propagação deseja-se saber o que acontece à $f_k$ ao ser propagado pela equação \eqref{eq:prop}. Assumimos que $f_k$ é gaussiana e portanto $f_-$ também será, deste modo basta determinar $\bar{x}^-_{k+1}$ e $P_-^{k+1}$ contidos em $f_- \sim \mathcal{N}(\bar{x}^-_{k+1},P^-_{k+1})$ para caracterizar $f_-$.
-
-
-Segundo Aguirre \cite{aguirre2015} encontramos:
-\begin{equation}
-\bar{x}^-_{k+1}=\Phi_k\bar{x}^+_k+\Gamma_ku_k
-\end{equation}
-\begin{equation}
-P^-_{k+1}=\Phi_kP^+_k\Phi^T_k+\Upsilon_kQ_k\Upsilon^T_k
-\end{equation}
-
-A equação mostra que ao longo da etapa de propagação a incerteza aumenta devido à presença de ruído no modelo dinâmico usado.
-
-\paragraph{Etapa de assimilação}
-Vimos que na etapa de propagação o vetor de estado $x^+_k$ é propagado para a próxima iteração resultando em $x^-_{k+1}$. A segunda etapa, a de assimilação, ocorre com a chegada de nova informação na iteração k+1. O objetivo é a determinação de $f_+ \sim \mathcal{N} (\bar{x}^+_{k+1},P^+_{k+1})$ a partir de $f_-$ e da medição na iteração $y_{k+1}$. De forma semelhante à etapa de propagação, devemos encontrar $\bar{x}^+_{k+1}$ e $P^+_{k+1}$. Após os devidos passos encontramos:
-\begin{equation}
-\bar{\mathbf{x}}^+_{k+1}=\bar{\mathbf{x}}^-_{k+1}+K_{k+1}[\mathbf{y}_{k+1}-H_{k+1} \bar{\mathbf{x}} ^-_{k+1}]
-\end{equation}
-\begin{equation}
-P^+_{k+1}=P^-_{k+1}-K_{k+1} H_{k+1} P^-_{k+1}
-\end{equation}
-\begin{equation}
-K_{k+1}=P^-_{k+1} H^T_{k+1}[H_{k+1} P^-_{k+1} H^T_{k+1}+R_{k+1}]^-1
-\end{equation}
-
-Com estas equações completamos o conjunto de equações necessárias para entender o filtro de Kalman.
+%
+%\subsubsection {Filtro de Kalman}
+%O filtro de Kalman, também conhecido como estimador linear quadrático, é um algoritmo que utiliza uma série de medidas tomadas ao longo do tempo, que contém ruídos e outros tipos de erros, e produz um estimador capaz de estimar com maior confiança um certo valor. Ele é utilizado em uma grande variedade de aplicações de engenharia, como localização GPS e navegação, sua aplicação mais famosa foi no programa espacial Apollo, e é um tópico especialmente importante para a teoria de sistemas de controle, devido a sua capacidade de estimação de sistemas não lineares.
+%\paragraph{Visão Geral}
+%O filtro de Kalman utiliza um modelo dinâmico de um sistema, suas entradas de controle, e medidas de sensores para gerar uma estimativa das grandezas medidas do sistema. Usando um modelo recursivo para obter as estimativas, medidas passadas, ele consegue obter uma estimativa mais fiel ao sistema real do que utilizando somente uma medida. O filtro funciona em duas etapas, uma de propagação, onde se utiliza a estimativa do estado anterior para se obter uma estimativa do estado atual, e uma de assimilação, onde a estimativa do estado atual é combinada com a observação do estado real para se obter um modelo de estimativa mais preciso. 
+%
+%
+%Usaremos a nomenclatura de Aguirre, onde $t_1$ é substituído pela iteração atual indicada por k, e o $t_2$ é substituído pela próxima iteração k+1. A notação ($t_1$|$t_1$) é substituída por um sinal '+' para indicar o instante $t_i$ após ter sido incluída a informação em $t_i$. Da mesma forma será utilizado um sinal '-' para indicar a grandeza que se refere ao instante $t_i$ antes de ter sido incluída a informação referente àquele instante. A equação que rege a propagação é a seguinte:
+%\begin{equation} \label{eq:prop}
+%\hat{x}^{-}_{k+1}=\Phi_k \hat{x}^+_k+\Gamma_ku_k
+%\end{equation}
+%
+%\paragraph{Etapa de propagação}
+%Conhecendo a função de densidade de probabilidade de $x_k^+$, indicada por $f_k\sim \mathcal{N}(\bar{x}^+_k, P^+_k)$, deseja-se encontrar a função de densidade de probabilidade de $x^-_{k+1}$. Ou seja, na etapa de propagação deseja-se saber o que acontece à $f_k$ ao ser propagado pela equação \eqref{eq:prop}. Assumimos que $f_k$ é gaussiana e portanto $f_-$ também será, deste modo basta determinar $\bar{x}^-_{k+1}$ e $P_-^{k+1}$ contidos em $f_- \sim \mathcal{N}(\bar{x}^-_{k+1},P^-_{k+1})$ para caracterizar $f_-$.
+%
+%
+%Segundo Aguirre \cite{aguirre2015} encontramos:
+%\begin{equation}
+%\bar{x}^-_{k+1}=\Phi_k\bar{x}^+_k+\Gamma_ku_k
+%\end{equation}
+%\begin{equation}
+%P^-_{k+1}=\Phi_kP^+_k\Phi^T_k+\Upsilon_kQ_k\Upsilon^T_k
+%\end{equation}
+%
+%A equação mostra que ao longo da etapa de propagação a incerteza aumenta devido à presença de ruído no modelo dinâmico usado.
+%
+%\paragraph{Etapa de assimilação}
+%Vimos que na etapa de propagação o vetor de estado $x^+_k$ é propagado para a próxima iteração resultando em $x^-_{k+1}$. A segunda etapa, a de assimilação, ocorre com a chegada de nova informação na iteração k+1. O objetivo é a determinação de $f_+ \sim \mathcal{N} (\bar{x}^+_{k+1},P^+_{k+1})$ a partir de $f_-$ e da medição na iteração $y_{k+1}$. De forma semelhante à etapa de propagação, devemos encontrar $\bar{x}^+_{k+1}$ e $P^+_{k+1}$. Após os devidos passos encontramos:
+%\begin{equation}
+%\bar{\mathbf{x}}^+_{k+1}=\bar{\mathbf{x}}^-_{k+1}+K_{k+1}[\mathbf{y}_{k+1}-H_{k+1} \bar{\mathbf{x}} ^-_{k+1}]
+%\end{equation}
+%\begin{equation}
+%P^+_{k+1}=P^-_{k+1}-K_{k+1} H_{k+1} P^-_{k+1}
+%\end{equation}
+%\begin{equation}
+%K_{k+1}=P^-_{k+1} H^T_{k+1}[H_{k+1} P^-_{k+1} H^T_{k+1}+R_{k+1}]^-1
+%\end{equation}
+%
+%Com estas equações completamos o conjunto de equações necessárias para entender o filtro de Kalman.
 
 \subsubsection {Identificação por Subespaços}
 A identificação por subespaços é um algoritmo, que, a partir de uma sequência de dados experimentais, é capaz de gerar um modelo em espaço de estados. O procedimento aqui descrito é explicado com mais detalhes por Rico \cite{ricco2012}.
@@ -529,17 +531,19 @@ Para facilitar o entendimento colocamos em forma de algoritmo os passos que deve
 \end{algorithm}
 \DecMargin{1em}
 
+\commentib{Falta falar sobre validação de modelos e escolha de estruturas!}
+
 \section{Trabalhos Relacionados}
-Nesta subseção falaremos dos trabalhos feitos por outros autores que se relacionam a este.
+\cortar{ Nesta subseção falaremos dos trabalhos feitos por outros autores que se relacionam a este.} \commentib{Inicie comentando que modelagem, identificação e controle de sistemas desse tipo estão presentes na literatura. Não faltaram alguns trabalhos?}
 
 
-Em 2009, Jernigan et al. \cite{jernigan2009}, publicaram um artigo falando sobre uma experiência que fizeram na construção e utilização de uma experiência de laboratório remota. Eles escolheram como experimento a levitação de uma bola de praia de plástico usando um soprador de ar. Um grupo de alunos foi encarregado de modelar, simular e controlar o sistema usando o laboratório remoto. Este trabalho foi essencial para o nosso entendimento da modelagem da levitação de uma bola por fluxo de ar e especialmente do tipo de medida necessária para criar um simulador do sistema. Diferente deste trabalho Jernigan et al. não fez identificação do sistema e optou por fazer modelagem matemática.
+Em 2009, Jernigan et al. \cite{jernigan2009}, publicaram um artigo falando sobre uma experiência que fizeram na construção e utilização de uma experiência de laboratório remota. Eles escolheram como experimento a levitação de uma bola de praia de plástico usando um soprador de ar. Um grupo de alunos foi encarregado de modelar, simular e controlar o sistema usando o laboratório remoto. \melhorar{ Este trabalho foi essencial para o nosso entendimento da modelagem da levitação de uma bola por fluxo de ar e especialmente do tipo de medida necessária para criar um simulador do sistema. Diferente deste trabalho Jernigan et al. não fez identificação do sistema e optou por fazer modelagem matemática.}
 
 
 Em 2017, Chacon et al. \cite{chacon2017}, relatam em um artigo a construção de um túnel de vento para o ensino de engenharia de controle. Eles tem o mesmo objetivo deste trabalho em relação à construir uma plataforma de experimentos barata e reprodutível mas diferem porque aplicam a plataforma para aprendizado à distância. No artigo eles descrevem um processo de identificação caixa preta usando um sinal binário pseudo aleatório bastante parecido com o que será utilizado neste trabalho, mas tratam a identificação como um exercício a ser aplicado aos alunos.
 
 
-Em sua dissertação de mestrado Ricco \cite{ricco2012} fala sobre identificação por subespaços com uma linguagem clara e de fácil entendimento. O seu trabalho se relaciona a este devido a identificação por subespaços apesar de não trabalhar com um sistema específico. Ele foi essencial ao entendimento de identificação por subespaços.
+Em sua dissertação de mestrado Ricco \cite{ricco2012} fala sobre identificação por subespaços com uma linguagem clara e de fácil entendimento. O seu trabalho se relaciona a este devido a identificação por subespaços apesar de não trabalhar com um sistema específico. Ele foi essencial ao entendimento de identificação por subespaços. \commentib{Acho que esse trabalho não é relacionado}
 
 
 % Fim Capítulo
