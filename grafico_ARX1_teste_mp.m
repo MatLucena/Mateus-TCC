@@ -802,17 +802,34 @@ pextARX=[-0.841282, 0.000000, 0.841282, -1.157358, 0.832195;
 
 
 
-pextARX=(pextARX-p2)/p1;
 t=0:0.05:39.9;
 close all
+
+
+
 figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
-stairs(t,pextARX(1:size(t,2),1)','k','LineWidth',1.5)
+stairs(t,pextARX(1:size(t,2),5)','LineWidth',1.5)
 hold on
-stairs(t,pextARX(1:size(t,2),2)','LineWidth',1.5)
-H=legend('$y$','$r$', 'Location', 'southeast', 'Orientation', 'vertical');
+stairs(t,pextARX(1:size(t,2),3)','k','LineWidth',1.5)
+H=legend('$u$','$e$', 'Location', 'southeast', 'Orientation', 'vertical');
+set(H, 'Interpreter', 'latex', 'Fontsize', 22);
+% ylabel('Altura (cm)', 'fontsize', 22)
+xlabel('Tempo (s)', 'fontsize', 22);
+T=title('Resposta à mudança de parâmetros do modelo ARX1');
+set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
+axis([0 t(end) min(min(pextARX(1:size(t,2),5)))-.05 max(max(pextARX(1:size(t,2),5)))+.4]);
+
+
+pextARX=(pextARX-p2)/p1;
+figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
+stairs(t,pextARX(1:size(t,2),2)','r','LineWidth',1.5)
+hold on
+stairs(t,pextARX(1:size(t,2),4)','LineWidth',1.5)
+stairs(t,pextARX(1:size(t,2),1)','k','LineWidth',1.5)
+H=legend('$r$','$y_{estimado}$','$y_{medido}$', 'Location', 'southeast', 'Orientation', 'vertical');
 set(H, 'Interpreter', 'latex', 'Fontsize', 22);
 ylabel('Altura (cm)', 'fontsize', 22)
 xlabel('Tempo (s)', 'fontsize', 22);
-T=title('Resposta à mudança de parâmetros do modelo ARX2');
+T=title('Resposta à mudança de parâmetros do modelo ARX1');
 set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
-axis([0 t(end) min(min(pextARX))-.05 max(max(pextARX))+.4]);
+axis([0 t(end) min(min(pextARX(1:size(t,2),4)))-.05 max(max(pextARX(1:size(t,2),2)))+.4]);

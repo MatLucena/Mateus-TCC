@@ -18,109 +18,300 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{steprealsub1}
-	\caption[Resposta ao degrau do sistema controlado $SUB1$]{Resposta ao degrau do sistema usando o controlador $SUB1$}
-	\label{fig:steprealsub1}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{steprsub1y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
+		\label{fig:steprsub1y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{steprsub1e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
+		\label{fig:steprsub1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta ao degrau do sistema usando o controlador $SUB1$}\label{fig:steprsub1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{steprealarx1}
-	\caption[Resposta ao degrau do sistema controlado $ARX1$]{Resposta ao degrau do sistema usando o controlador $ARX1$}
-	\label{fig:steprealarx1}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{steprarx1y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$}
+		\label{fig:steprarx1y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{steprarx1e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX1$]{erro $e$ e sinal de controle $u$ do controlador $ARX1$}
+		\label{fig:steprarx1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}\label{fig:steprarx1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{steprealarx2}
-	\caption[Resposta ao degrau do sistema controlado $AR21$]{Resposta ao degrau do sistema usando o controlador $ARX2$}
-	\label{fig:steprealarx2}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{steprarx2y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$}
+		\label{fig:steprarx2y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{steprarx2e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX2$]{erro $e$ e sinal de controle $u$ do controlador $ARX2$}
+		\label{fig:steprarx2e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX2$}\label{fig:steprarx2}
 \end{figure}
 
 \subsection{Resultados da Resposta à escadaria}\label{rstair}
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{stairrealsub1}
-	\caption[Resposta à escadaria do sistema controlado $SUB1$]{Resposta à escadaria do sistema usando o controlador $SUB1$}
-	\label{fig:stairrealsub1}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{stairrsub1y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
+		\label{fig:stairrsub1y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{stairrsub1e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
+		\label{fig:stairrsub1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $SUB1$}\label{fig:stairrsub1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{stairrealarx1}
-	\caption[Resposta à escadaria do sistema controlado $ARX1$]{Resposta à escadaria do sistema usando o controlador $ARX1$}
-	\label{fig:stairrealarx1}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{stairrarx1y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$}
+		\label{fig:stairrarx1y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{stairrarx1e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX1$]{erro $e$ e sinal de controle $u$ do controlador $ARX1$}
+		\label{fig:stairrarx1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}\label{fig:stairrarx1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{stairrealarx2}
-	\caption[Resposta à escadaria do sistema controlado $ARX2$]{Resposta à escadaria do sistema usando o controlador $ARX2$}
-	\label{fig:stairrealarx2}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{stairrarx2y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$}
+		\label{fig:stairrarx2y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{stairrarx2e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX2$]{erro $e$ e sinal de controle $u$ do controlador $ARX2$}
+		\label{fig:stairrarx2e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX2$}\label{fig:stairrarx2}
 \end{figure}
+
+\subsubsection{Erro do Estimador} \label{erroest}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{errosub1}
+	\caption[Erro do estimador do modelo $SUB1$ na resposta à escadaria]{Erro do estimador do modelo $SUB1$ na resposta à escadaria}
+	\label{fig:errosub1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{erroarx1}
+	\caption[Erro do estimador do modelo $ARX1$ na resposta à escadaria]{Erro do estimador do modelo $ARX1$ na resposta à escadaria}
+	\label{fig:erroarx1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{erroarx2}
+	\caption[Erro do estimador do modelo $ARX2$ na resposta à escadaria]{Erro do estimador do modelo $ARX2$ na resposta à escadaria}
+	\label{fig:erroarx2}
+\end{figure}
+
 
 \subsection{Resultados do Teste de Robustez à mudança de Parâmetros}\label{rmp}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{mprealsub1}
-	\caption[Resposta à mudança de parâmetros do modelo $SUB1$]{Resposta à mudança de parâmetros do sistema com o controlador do modelo $SUB1$}
-	\label{fig:mprealsub1}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{mprsub1y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
+		\label{fig:mprsub1y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{mprsub1e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
+		\label{fig:mprsub1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $SUB1$}\label{fig:mprsub1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{mprealarx1}
-	\caption[Resposta à mudança de parâmetros do modelo $ARX1$]{Resposta à mudança de parâmetros do sistema com o controlador do modelo $ARX1$}
-	\label{fig:mprealarx1}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{mprarx1y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$}
+		\label{fig:mprarx1y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{mprarx1e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX1$]{erro $e$ e sinal de controle $u$ do controlador $ARX1$}
+		\label{fig:mprarx1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}\label{fig:mprarx1}
 \end{figure}
+
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{mprealarx2}
-	\caption[Resposta à mudança de parâmetros do modelo $ARX2$]{Resposta à mudança de parâmetros do sistema com o controlador do modelo $ARX2$}
-	\label{fig:mprealarx2}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{mprarx2y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$}
+		\label{fig:mprarx2y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{mprarx2e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX2$]{erro $e$ e sinal de controle $u$ do controlador $ARX2$}
+		\label{fig:mprarx2e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX2$}\label{fig:mprarx2}
 \end{figure}
 
 
 \subsection{Resultados do Teste de Robustez à perturbação externa}\label{rpe}
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{pextrealsub1}
-	\caption[Resposta à perturbação externa do modelo $SUB1$]{Resposta à perturbação externa do sistema com o controlador do modelo $SUB1$}
-	\label{fig:pextrealsub1}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{pextrsub1y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
+		\label{fig:pextrsub1y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{pextrsub1e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
+		\label{fig:pextrsub1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $SUB1$}\label{fig:pextrsub1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{pextrealarx1}
-	\caption[Resposta à perturbação externa do modelo $ARX1$]{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}
-	\label{fig:pextrealarx1}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{pextrarx1y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$}
+		\label{fig:pextrarx1y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{pextrarx1e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
+		\label{fig:pextrarx1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}\label{fig:pextrarx1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{pextrealarx2}
-	\caption[Resposta à perturbação externa do modelo $ARX2$]{Resposta à perturbação externa do sistema com o controlador do modelo $ARX2$}
-	\label{fig:pextrealarx2}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{pextrarx2y}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$}
+		\label{fig:pextrarx2y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=1\linewidth]{pextrarx2e}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
+		\label{fig:pextrarx2e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX2$}\label{fig:pextrarx2}
 \end{figure}
 
 
 
 \section{Discussão}
 
-Vemos nas figuras da seção \ref{rstep} que os modelos $SUB1$, $ARX1$ e $ARX2$ atendem ao requisito de tempo de assentamento mas não atendem ao requisito de máximo sobrevalor, apesar de que eles não cheguem a estabilizar completamente em um ponto. Isso acontece devido uma série de fatores possíveis, ruído no sensor, reflexo dos raios infra vermelhos na parede do túnel de vento, atuação falha no motor. 
+Ao analisar as respostas obtidas dos experimentos devemos levar em conta o quão ruidoso é o sensor. Apesar de aplicar um filtro na saída ele ainda produz valores que apresentam um alto valor de ruído que em conjunto com o giro da bola devido a força do vento fazem com que a leitura do sensor tenha erros que influenciam nos resultados.
 
 
-Na seção \ref{rstair} vemos que com o controlador projetado é capaz de fazer o sistema seguir os diferentes níveis de tensão e estabilizar. Para os modelos $ARX1$ e $ARX2$ o sistema se mostra estabilizado enquanto a referência está em 35 cm.
+Nas figuras \ref{fig:steprsub1y}, \ref{fig:steprarx1y} e \ref{fig:steprarx2y} vemos em preto a saída controlada do sistema, as linhas tracejadas em preto determinam as linhas de $\pm5\%$ da referência. Com isso medimos o tempo de assentamento para eles, 8 segundos, 6 segundos, e 6 segundos, respectivamente. Nos três casos muito além do projetado na seção \ref{s:ctrl}. Isso acontece porque passamos de um modelo idealizado do sistema para o sistema real. Apesar de termos obtido um modelo adequado para representar o sistema na simulação, o controlador gerado para ele não atende as especificações quando aplicado no sistema real. É interessante notar aqui que o estimador do modelo $SUB1$ apresenta um erro maior que o estimador dos modelos $ARX1$ e $ARX2$, isso acontece porque o método dos mínimos quadrados é um método que minimiza o resíduo, e vemos isso ser passado adiante para o estimador.
 
 
-Na seção \ref{rmp} fica claro que nenhum dos controladores projetados tem capacidade para reagir à mudança de parâmetros. 
+Nas figuras \ref{fig:steprsub1e}, \ref{fig:steprarx1e} e \ref{fig:steprarx2e}, vemos que o sinal de controle está trabalhando para manter o erro o menor possível, apesar de não manter erro zero.
 
 
-Na seção \ref{rpe} vemos que nenhum dos controladores rejeita perturbações externas. 
+Com a seção \ref{rstair} vemos que os controladores projetados são capazes de seguir a referência dada e trabalham para reduzir o erro. Mas nas seções \ref{rmp} e \ref{rpe} fica claro que nenhum dos controladores projetados tem capacidade para reagir à mudança de parâmetros e rejeitar perturbações externas. 
+
+
+Na seção \ref{s4:val} mostramos que os 3 modelos, $SUB1$, $ARX1$ e $ARX2$, identificados à partir do sistema real são adequados para representar o sistema. O modelo $ARXsim$ identificado a partir do simulador, que continha dados experimentais do sistema sobre a velocidade do vento para diferentes PWM aplicados no motor, não apresentava as características do sistema, o que fica aparente comparando as figuras \ref{fig:sinalprbsid} e \ref{fig:sinalprbsidsimul} que mostram as diferenças entre a resposta ao sinal PRBS entre os dois. O modelo $ARXsim$ também apresenta uma resposta ao degrau, figura \ref{fig:respostadegrauarxsim}, discrepante da observada no sistema real e da observada nos outros modelos obtidos.
+
+
+Essa diferença nos mostra a necessidade da identificação de um sistema usando métodos caixa-preta. Apesar de termos conseguido modelar o sistema de forma matematicamente sólida, o desempenho do modelo obtido é divergente do sistema real. Enquanto que os modelos obtidos utilizando métodos de identificação caixa-preta conseguiram gerar modelos do sistema satisfatórios. 
+
+
+Na seção \ref{s:ctrl} projetamos um controlador por realimentação de estados para cada um dos modelos obtidos capaz de atender as especificações de tempo de assentamento e máximo sobrevalor definidas. Mas, devido a necessidade de criar um observador de estados na seção \ref{s5:est}, vimos que a forma como o sistema modelado atende aos requisitos mudou, mesmo se mantendo dentro dos requisitos definidos. No entanto, ao aplicar esse controlador no sistema, vemos que a resposta não está atendendo aos requisitos estabelecidos. Projetamos ainda um controlador para o modelo obtido do simulador, identificado por caixa-cinza, e ao aplicarmos no sistema real a resposta foi instável, reforçando a necessidade de obter modelos por identificação caixa-preta.
+
+
+Vemos que os estimadores dos dois modelos ARX ao serem aplicados no sistema tem um bom desempenho, figuras \ref{fig:erroarx1} e \ref{fig:erroarx2}, permanecendo abaixo de 1 cm de diferença com algumas exceções, que atribuímos ao ruído do sensor. O estimador do modelo $SUB1$ não apresenta bom desempenho mostrando erros superiores a 1cm com frequência.
 
 
 
