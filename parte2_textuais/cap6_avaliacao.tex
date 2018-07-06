@@ -1,7 +1,7 @@
 \chapter{Avaliação Experimental do Sistema de Controle}\label{cap6}
 Após projetar os controladores faremos uma avaliação do seu funcionamento aplicando cada um no sistema real.
 \section{Descrição e objetivos experimentais}
-Os experimentos descritos neste capítulo tem como objetivo verificar e avaliar o funcionamento do sistema ao ser controlado pelos controladores projetados no capítulo \ref{cap5}. Serão executados 4 experimentos no sistema que funcionam da seguinte forma:
+Os experimentos descritos neste capítulo tem como objetivo verificar e avaliar o funcionamento do sistema ao ser controlado pelos controladores projetados no capítulo \ref{cap5}, iremos aplicar os controladores $SUB1$, $ARX1$ e $ARX2$ no sistema real. Serão executados 4 experimentos que funcionam da seguinte forma:
 \paragraph{Resposta ao Degrau Unitário} A resposta ao degrau unitário é um experimento onde o sistema recebe uma referência unitária e reage à ela. Com este experimento iremos verificar se o sistema se mantém estável ao ser controlado e se ele atende aos requisitos definidos quando o controlador foi projetado.
 \paragraph{Resposta à escadaria} A resposta à escadaria é um experimento onde o sistema recebe alguns níveis de referência ao longo do tempo e medimos sua resposta para ver como reage à mudança de referência.
 
@@ -16,18 +16,22 @@ O teste de robustez à mudança de parâmetros serve para determinar se o contro
 Nesta seção serão apresentados os resultados dos experimentos descritos anteriormente.
 \subsection{Resultados da Resposta ao degrau unitário}\label{rstep}
 
-\begin{figure}[H]
+\subsubsection{Modelo $SUB1$}
+Testamos a resposta ao degrau do modelo $SUB1$ com o sistema real e com o modelo simulado e obtemos os seguintes gráficos:
+
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.47\textwidth}
 		\includegraphics[width=1\linewidth]{steprsub1y}
-		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
+		\subcaption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
 		\label{fig:steprsub1y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	~
+	\begin{subfigure}[t]{0.47\textwidth}
 		\includegraphics[width=1\linewidth]{steprsub1e}
-		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
+		\subcaption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
 		\label{fig:steprsub1e}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
@@ -36,16 +40,40 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta ao degrau do sistema usando o controlador $SUB1$}\label{fig:steprsub1}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{pasta1_figuras/stepssub1y}
+		\subcaption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
+		\label{fig:stepssub1y}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[t]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{pasta1_figuras/stepssub1e}
+		\subcaption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
+		\label{fig:stepssub1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta ao degrau do sistema usando o controlador $SUB1$}\label{fig:stepssub1}
+\end{figure}
+
+Nos deparamos com uma grande diferença nas figuras \ref{fig:steprsub1y} e \ref{fig:stepssub1y}, a resposta simulada atende aos requisitos definidos na seção \ref{s:ctrlsub1} mas o sistema real não atende. Com um tempo de assentamento de 8 segundos muito maior que o tempo projetado. O sistema real também não atende ao requisito de máximo sobrevalor. 
+
+\subsubsection{Modelo $ARX1$}
+Testamos a resposta ao degrau do modelo $ARX1$ com o sistema real e com o modelo simulado e obtemos os seguintes gráficos:
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{steprarx1y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$}
 		\label{fig:steprarx1y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{steprarx1e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX1$]{erro $e$ e sinal de controle $u$ do controlador $ARX1$}
 		\label{fig:steprarx1e}
@@ -56,16 +84,23 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}\label{fig:steprarx1}
 \end{figure}
 
-\begin{figure}[H]
+
+
+Vemos na figuras \ref{fig:steprarx1y}
+
+
+\subsubsection{Modelo $ARX2$}
+Testamos a resposta ao degrau do modelo $ARX2$ com o sistema real e com o modelo simulado e obtemos os seguintes gráficos:
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{steprarx2y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$}
 		\label{fig:steprarx2y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{steprarx2e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX2$]{erro $e$ e sinal de controle $u$ do controlador $ARX2$}
 		\label{fig:steprarx2e}
@@ -75,18 +110,22 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX2$}\label{fig:steprarx2}
 \end{figure}
+Vemos na figuras \ref{fig:steprarx2y}
 
 \subsection{Resultados da Resposta à escadaria}\label{rstair}
-\begin{figure}[H]
+
+\subsubsection{Modelo $SUB1$}
+Testamos a resposta à escadaria do modelo $SUB1$ com o sistema real e com o modelo simulado e obtemos os seguintes gráficos:
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{stairrsub1y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
 		\label{fig:stairrsub1y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{stairrsub1e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
 		\label{fig:stairrsub1e}
@@ -97,16 +136,21 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $SUB1$}\label{fig:stairrsub1}
 \end{figure}
 
-\begin{figure}[H]
+Vemos na figuras \ref{fig:stairsub1y}
+
+\subsubsection{Modelo $ARX1$}
+Testamos a resposta à escadaria do modelo $ARX1$ com o sistema real e com o modelo simulado e obtemos os seguintes gráficos:
+
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{stairrarx1y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$}
 		\label{fig:stairrarx1y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{stairrarx1e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX1$]{erro $e$ e sinal de controle $u$ do controlador $ARX1$}
 		\label{fig:stairrarx1e}
@@ -117,16 +161,21 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}\label{fig:stairrarx1}
 \end{figure}
 
-\begin{figure}[H]
+Vemos na figuras \ref{fig:stairarx1y}
+
+\subsubsection{Modelo $ARX2$}
+Testamos a resposta à escadaria do modelo $ARX2$ com o sistema real e com o modelo simulado e obtemos os seguintes gráficos:
+
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{stairrarx2y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$}
 		\label{fig:stairrarx2y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{stairrarx2e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX2$]{erro $e$ e sinal de controle $u$ do controlador $ARX2$}
 		\label{fig:stairrarx2e}
@@ -137,23 +186,25 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX2$}\label{fig:stairrarx2}
 \end{figure}
 
+Vemos na figuras \ref{fig:stairarx2y}
+
 \subsubsection{Erro do Estimador} \label{erroest}
 
-\begin{figure}
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{errosub1}
 	\caption[Erro do estimador do modelo $SUB1$ na resposta à escadaria]{Erro do estimador do modelo $SUB1$ na resposta à escadaria}
 	\label{fig:errosub1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{erroarx1}
 	\caption[Erro do estimador do modelo $ARX1$ na resposta à escadaria]{Erro do estimador do modelo $ARX1$ na resposta à escadaria}
 	\label{fig:erroarx1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{erroarx2}
 	\caption[Erro do estimador do modelo $ARX2$ na resposta à escadaria]{Erro do estimador do modelo $ARX2$ na resposta à escadaria}
@@ -163,16 +214,18 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 
 \subsection{Resultados do Teste de Robustez à mudança de Parâmetros}\label{rmp}
 
-\begin{figure}[H]
+\subsubsection{Modelo $SUB1$}
+Testamos a robustez do modelo $SUB1$ à mudança de parâmetros com o sistema real e obtemos os seguintes gráficos:
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{mprsub1y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
 		\label{fig:mprsub1y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{mprsub1e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
 		\label{fig:mprsub1e}
@@ -183,16 +236,20 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $SUB1$}\label{fig:mprsub1}
 \end{figure}
 
-\begin{figure}[H]
+Vemos na figuras \ref{fig:mprsub1y}
+
+\subsubsection{Modelo $ARX1$}
+Testamos a robustez do modelo $ARX1$ à mudança de parâmetros com o sistema real e obtemos os seguintes gráficos:
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{mprarx1y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$}
 		\label{fig:mprarx1y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{mprarx1e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX1$]{erro $e$ e sinal de controle $u$ do controlador $ARX1$}
 		\label{fig:mprarx1e}
@@ -202,18 +259,20 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}\label{fig:mprarx1}
 \end{figure}
+Vemos na figuras \ref{fig:mprarx1y}
 
-
-\begin{figure}[H]
+\subsubsection{Modelo $ARX2$}
+Testamos a robustez do modelo $ARX2$ à mudança de parâmetros com o sistema real e obtemos os seguintes gráficos:
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{mprarx2y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$}
 		\label{fig:mprarx2y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{mprarx2e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $ARX2$]{erro $e$ e sinal de controle $u$ do controlador $ARX2$}
 		\label{fig:mprarx2e}
@@ -224,18 +283,23 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX2$}\label{fig:mprarx2}
 \end{figure}
 
+Vemos na figuras \ref{fig:mprarx2y}
 
 \subsection{Resultados do Teste de Robustez à perturbação externa}\label{rpe}
-\begin{figure}[H]
+
+\subsubsection{Modelo $SUB1$}
+Testamos a robustez do modelo $SUB1$ à perturbação externa com o sistema real e o modelo simulado e obtemos os seguintes gráficos:
+
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{pextrsub1y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$]{$y_{estimado}$ e $y_{medido}$ do modelo $SUB1$}
 		\label{fig:pextrsub1y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{pextrsub1e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
 		\label{fig:pextrsub1e}
@@ -246,16 +310,20 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $SUB1$}\label{fig:pextrsub1}
 \end{figure}
 
-\begin{figure}[H]
+Vemos na figuras \ref{fig:pextrsub1y}
+
+\subsubsection{Modelo $ARX1$}
+Testamos a robustez do modelo $ARX1$ à perturbação externa com o sistema real e o modelo simulado e obtemos os seguintes gráficos:
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{pextrarx1y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$}
 		\label{fig:pextrarx1y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{pextrarx1e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
 		\label{fig:pextrarx1e}
@@ -266,16 +334,20 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}\label{fig:pextrarx1}
 \end{figure}
 
-\begin{figure}[H]
+Vemos na figuras \ref{fig:pextrarx1y}
+
+\subsubsection{Modelo $ARX2$}
+Testamos a robustez do modelo $ARX2$ à perturbação externa com o sistema real e o modelo simulado e obtemos os seguintes gráficos:
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{pextrarx2y}
 		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX2$}
 		\label{fig:pextrarx2y}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{1\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{pextrarx2e}
 		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
 		\label{fig:pextrarx2e}
@@ -286,6 +358,7 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX2$}\label{fig:pextrarx2}
 \end{figure}
 
+Vemos na figuras \ref{fig:pextrarx2y}
 
 
 \section{Discussão}
