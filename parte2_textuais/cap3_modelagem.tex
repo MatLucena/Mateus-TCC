@@ -23,15 +23,26 @@ onde $m$ é a massa da esfera, $h$ é a posição vertical da esfera no tubo, $\
 
 \section{Estimação da Velocidade do Vento}
 
-\commentib{Fale bem mais sobre esse processo... deixe claro qual é a função que você estimou, mostre os outros gráficos, mostre a superfície estimada...}
-
 Para criarmos um simulador do sistema descrito anteriormente precisamos saber o valor de $v_{ar}$. Ele determina a velocidade do vento para diferentes valores de tensão e altura da bola. Não foi possível adquirir um sensor de velocidade do ar devido a problemas de localização geológica, portanto, foi necessário usar de engenhosidade para adquirir a velocidade do ar em diversas alturas.
 
 
-Foram adquiridas diversas bolas de tênis de mesa e se injetou uma mistura de cola e água nelas para aumentar o seu peso. Foram escolhidos 6 pesos diferentes e medidos em balança com precisão de duas casas decimais. Então para cada peso foi medida a tensão necessária para que se alcance as 6 alturas dentro da região de funcionamento do sensor, 10, 20, 30, 40, 50, 60 cm. Tendo medido a altura e a tensão necessária para alcançar as alturas, bastou utilizar a equação \eqref{eq:modelo} fazendo $\ddot{h}=\dot(h)=0$ para obter a velocidade do vento relacionada com uma altura e uma tensão.
+Foram adquiridas diversas bolas de tênis de mesa e se injetou uma mistura de cola e água nelas para aumentar o seu peso. Foram escolhidos 6 pesos diferentes e medidos em balança com precisão de duas casas decimais. Então para cada peso foi medida a tensão necessária para que se alcance as 6 alturas dentro da região de funcionamento do sensor, 10, 20, 30, 40, 50, 60 cm. Tendo medido a altura e a tensão necessária para alcançar as alturas, bastou utilizar a equação \eqref{eq:modelo} fazendo $\ddot{h}=\dot(h)=0$, obtemos a equação \ref{eq:varx} para obter a velocidade do vento relacionada com uma altura e uma tensão.
+
+\begin{equation}\label{eq:varx}
+v_{ar}=\sqrt{\dfrac{gm}{\alpha}}
+\end{equation}
+
+Na figura \ref{fig:curvavar} vemos a superfície gerada com os dados medidos. E a partir da função dessa superfície geramos a figura \ref{fig:graficovairaltura1}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\linewidth]{pasta1_figuras/curvavar}
+	\caption[Superfície de $v_{ar}$ em função de altura e pwm]{Superfície de $v_{ar}$ em função de altura e pwm}
+	\label{fig:curvavar}
+\end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{grafico_vair_altura}
 	\caption[Gráfico $v_{ar}$ x altura]{Gráfico de $v_{ar}$ x altura}
@@ -42,16 +53,24 @@ Podemos ver que a figura \ref{fig:graficovairaltura1} lembra um gráfico similar
 
 \section{Simulação do Túnel de Vento no Simulink}
 
-Criamos um modelo de simulação à partir da equação \ref{eq:modelo} e utilizamos os dados adquiridos em \ref{fig:graficovairaltura1} para fazer um ajuste de curva que alimenta o modelo com os valores da velocidade do vento para determinada altura e tensão no motor.
+Criamos um modelo de simulação, figura \ref{fig:simulador}, à partir da equação \ref{eq:modelo} e utilizamos os dados adquiridos em \ref{fig:graficovairaltura1} para fazer um ajuste de curva que alimenta o modelo com os valores da velocidade do vento para determinada altura e tensão no motor.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 	\centering
-	\includegraphics{simulador}
+	\includegraphics[width=1\linewidth]{simulador}
 	\caption[Simulador do túnel de vento]{Simulador do túnel de vento}
 	\label{fig:simulador}
 \end{figure}
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\linewidth]{pasta1_figuras/step_simul}
+	\caption[Resposta ao degrau do simulador]{Resposta ao degrau do simulador}
+	\label{fig:stepsimul}
+\end{figure}
 
-\commentib{VOcê deve inserir gráficos com a resposta do simulador e se possível comparando qualitativamente e quantitativamente com o sistema real.}
+Na figura \ref{fig:stepsimul} vemos como a resposta do simulador não representa o sistema real. O tempo de estabilização é 10 vezes maior que o tempo do sistema, mas o sobrevalor está condizente com o medido.
+
+
 
 % Fim Capítulo

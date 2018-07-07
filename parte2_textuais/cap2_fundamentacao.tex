@@ -3,7 +3,7 @@
 \corrigir{ Nesta seção serão} apresentadas duas subseções importantes para o entendimento deste trabalho, a revisão bibliográfica que trata de conceitos fundamentais ao entendimento do trabalho, e trabalhos relacionados que trata de outros trabalhos que são pertinentes à este.
 	
 \section{Fundamentação Teórica}
-Nesta subseção tratamos de conceitos essenciais para o entendimento deste trabalho. Falaremos sobre alguns modelos matemáticos, critérios de estabilidade de sistemas discretos, e métodos de identificação de sistemas e estimação de parâmetros, em especial identificação por mínimos quadrados e por subespaços.
+Nesta subseção tratamos de conceitos essenciais para o entendimento deste trabalho. Falaremos sobre alguns modelos matemáticos, critérios de estabilidade de sistemas discretos, projeto de controle por realimentação de estados, e métodos de identificação de sistemas e estimação de parâmetros, em especial identificação por mínimos quadrados e por subespaços.
 
 
 \subsection{Modelos de Sistemas Dinâmicos}\label{capA}
@@ -239,10 +239,61 @@ Para que V seja uma função de Lyapunov é necessário e suficiente que exista 
 \Phi ^T P \Phi - P= -Q
 \end{equation}
 
+\subsection{Projeto de Controlador com Realimentação de Estados}
 
-\commentib{Acrescente seção falando sobre realimentação de estados e observadr de luenberger contendo inclusive os algoritmos (pseudocódigos) que vc usou para projetar os seus.}
+Uma forma de controlar um sistema é utilizando realimentação de estados. A realimentação de estados é feita em sistemas modelado em espaço de estado e a cada instante cada estado individual é realimentado usando um ganho $K$. Esse tipo de controle requer que todos os estados sejam observáveis, entretanto, isso quer dizer que o sistema precisa de um sensor para cada estado conhecido o que acaba sendo muito custoso em termos de projeto e dinheiro. A solução para isso é projetar além do controlador um observador de estados, também chamado estimador, capaz de estimar o estado atual a partir da saída e da entrada do sistema.
 
+\subsubsection{Controlador}
 
+O controlador de realimentação de estados faz uma alocação de polos no sistema do tipo $A-BK$. Uma das formas de escolher K é com o seguinte procedimento explicado por Chen \cite{chen1998}:
+
+\IncMargin{1em}
+\begin{algorithm}[H]
+	
+	\Entrada{Matrizes A e B do sistema, polos escolhidos para serem alocados}
+	\Saida{Ganho de realimentação de estados K}
+	\Inicio{
+	\nl	Crie uma matriz F com os autovalores (polos) escolhidos.\\
+	\nl Selecione um vetor arbitrário $\hat{k}$ de forma que o par (F, $\hat{k}$) seja observável.\\
+	\nl Solucione o $T$ único na equação de Lyapunov $AT-TF=B\hat{k}$.\\
+	\nl Calcule o ganho de realimentação $K=\hat{k}T^{-1}$.
+		
+	}
+	\Retorna{$K$}
+	\label{alg:re}
+	\caption{\textsc{Alocação de polos por realimentação de estados}}
+\end{algorithm}
+\DecMargin{1em}
+
+\subsubsection{Estimador de Estados}
+
+O estimador de estados é um processo que permite que medir os estados de um sistema a partir de sua entrada e saída. Um estimador deve ser projetado para que ele consiga obter os estados de um sistema o mais rápido possível dado a entrada e saída no momento anterior. Para isso fazemos a escolha dos polos do estimador de uma forma que eles reajam mais rápido que o sistema real, fazemos isso multiplicando a parte real dos polos escolhidos para o controlador por um número, efetivamente afastando eles do zero real. Uma forma de calcular o ganho $L$ do estimador de estados é muito similar ao algoritmo \ref{alg:re}:
+
+\IncMargin{1em}
+\begin{algorithm}[H]
+	
+	\Entrada{Matrizes $A$ e $C$ do sistema, polos escolhidos para serem alocados}
+	\Saida{Ganho de realimentação de estados $L$}
+	\Inicio{
+		\nl	Crie uma matriz F com os autovalores (polos) escolhidos.\\
+		\nl Selecione um vetor arbitrário $\hat{l}$ de forma que o par (F, $\hat{l}$) seja controlável.\\
+		\nl Solucione o $T$ único na equação de Lyapunov $AT-TF=\hat{l}$C.\\
+		\nl Calcule o ganho de realimentação $L=\hat{l}T^{-1}$.
+		
+	}
+	\Retorna{$L$}
+	\label{alg:ee}
+	\caption{\textsc{Estimador de estados}}
+\end{algorithm}
+\DecMargin{1em}
+
+Por fim, a equação \ref{eq:estimador} nos retorna os estados.
+
+\begin{equation}\label{eq:estimador}
+\begin{matrix}
+\dot{z}=Az+Bu+(y-y_e)L
+\end{matrix}
+\end{equation}
 
 \subsection{Identificação de Sistemas e Estimação de Parâmetros}
 A maior parte das técnicas de controle aplicadas na indústria dependem do conhecimento de um modelo matemático do sistema a ser controlado. Apresentamos alguns dos modelos na seção \ref{capA} e nesta seção apresentaremos alguns dos métodos para obtermos os modelos matemáticos utilizados neste trabalho.
@@ -251,6 +302,15 @@ A maior parte das técnicas de controle aplicadas na indústria dependem do conh
 \subsubsection{Visão Geral}
 A identificação de sistemas e estimação de parâmetros trata de métodos e práticas que permitem construir modelos dinâmicos de um sistema real a partir de experimentos . Muitas vezes um sistema construído que precisa ser controlado não pode ser modelado devido à limitações matemáticas ou imprecisão na interação dos componentes. Nestes casos utilizamos um método de identificação de sistemas para obter um modelo matemático. A identificação de sistemas se baseia em testar a resposta do sistema à certas entradas e a partir das respostas aproximar o modelo matemático de forma satisfatória.
 
+\subsubsection{Escolha de sinais e estrutura}
+
+A escolha dos sinais de entrada para a identificação de um sistema é importante pois a identificação deve ser capaz de medir o todo o alcance dinâmico do sistema. Se o sinal não for adequado identificamos um modelo que não é capaz de mostrar o funcionamento do sistema real. Uma condição para a escolha desses sinais é a condição PE (permanent excitement) \cite{katayama2005}, que dita que enquanto o sistema está submetido ao sinal ele está constantemente em dinâmica, sem chegar a estabilizar em um ponto. Um sinal que atende essa condição é o PRBS.
+
+
+É importante escolher os sinais de interação com o sistema a ser identificado, levando em conta os atuadores presentes e os sensores disponíveis. Os sensores e o tipo de sistema estudado influenciam na escolha do tempo de amostragem de identificação, em sistemas lentos, como o controle de temperatura de uma sala, o tempo de amostragem pode ser longo, mas em sistemas rápidos como o controle da velocidade de um veículo o tempo de amostragem deve ser pequeno para possibilitar melhor controle. A escolha errada do tempo de amostragem pode fazer com que a identificação não funcione, pois limita a quantidade de dados obtidos do sistema e pode impedir a coleta de dados cruciais na mensuração da dinâmica do sistema.
+
+
+A escolha da ordem do sistema também é de grande importância por causa do tipo de dinâmica que a ordem acarreta.
 
 \subsubsection{Identificação por Mínimos Quadrados}
 O método de mínimos quadrados é um dos mais conhecidos e utilizados em várias áreas da ciência e tecnologia. A partir de uma coleção de dados experimentais é possível encontrar um modelo matemático ARX.
@@ -531,10 +591,17 @@ Para facilitar o entendimento colocamos em forma de algoritmo os passos que deve
 \end{algorithm}
 \DecMargin{1em}
 
-\commentib{Falta falar sobre validação de modelos e escolha de estruturas!}
+\subsubsection{Validação de modelos identificados}
+
+Não basta identificar o modelo usando os métodos descritos anteriormente para que ele seja adequado ao sistema real, é preciso validar o modelo obtido usando técnicas capazes de medir o desempenho do modelo.
+
+
+A técnica que será utilizada é descrita por Aguirre \cite{aguirre2015}, chamada análise de resíduos, onde é feita uma auto correlação dos resíduos, diferença entre a saída real do sistema e a saída do modelo obtido para um mesmo sinal, para verificar a brancura desse sinal. Quanto menos auto correlacionado melhor, pois significa que o resíduo se assemelha a ruído branco.
 
 \section{Trabalhos Relacionados}
-\cortar{ Nesta subseção falaremos dos trabalhos feitos por outros autores que se relacionam a este.} \commentib{Inicie comentando que modelagem, identificação e controle de sistemas desse tipo estão presentes na literatura. Não faltaram alguns trabalhos?}
+
+
+A identificação de sistemas por caixa-preta, especificamente por subespaços é um tema recorrente do estudo da engenharia, dado que é uma forma de identificar um sistema complexo com menos trabalho mental na modelagem matemática dos fenômenos físicos.
 
 
 Em 2009, Jernigan et al. \cite{jernigan2009}, publicaram um artigo falando sobre uma experiência que fizeram na construção e utilização de uma experiência de laboratório remota. Eles escolheram como experimento a levitação de uma bola de praia de plástico usando um soprador de ar. Um grupo de alunos foi encarregado de modelar, simular e controlar o sistema usando o laboratório remoto. \melhorar{ Este trabalho foi essencial para o nosso entendimento da modelagem da levitação de uma bola por fluxo de ar e especialmente do tipo de medida necessária para criar um simulador do sistema. Diferente deste trabalho Jernigan et al. não fez identificação do sistema e optou por fazer modelagem matemática.}
@@ -542,8 +609,6 @@ Em 2009, Jernigan et al. \cite{jernigan2009}, publicaram um artigo falando sobre
 
 Em 2017, Chacon et al. \cite{chacon2017}, relatam em um artigo a construção de um túnel de vento para o ensino de engenharia de controle. Eles tem o mesmo objetivo deste trabalho em relação à construir uma plataforma de experimentos barata e reprodutível mas diferem porque aplicam a plataforma para aprendizado à distância. No artigo eles descrevem um processo de identificação caixa preta usando um sinal binário pseudo aleatório bastante parecido com o que será utilizado neste trabalho, mas tratam a identificação como um exercício a ser aplicado aos alunos.
 
-
-Em sua dissertação de mestrado Ricco \cite{ricco2012} fala sobre identificação por subespaços com uma linguagem clara e de fácil entendimento. O seu trabalho se relaciona a este devido a identificação por subespaços apesar de não trabalhar com um sistema específico. Ele foi essencial ao entendimento de identificação por subespaços. \commentib{Acho que esse trabalho não é relacionado}
 
 
 % Fim Capítulo

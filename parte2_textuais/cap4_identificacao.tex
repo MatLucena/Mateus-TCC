@@ -31,7 +31,7 @@ A[k]=a_1 U[k-1]+a_2 U[k-2]+ \dots + a_n U[k-n]
 B[k]=1+b_1 Y[k-1]+b_2 Y[k-2]+ \dots + b_m Y[k-m]
 \end{equation}
 
-Onde n é o número de zeros e m é o número de polos. Ao final foram identificadas duas ordens de sistema que serão comparadas posteriormente, uma com 3 polos e 3 zeros, modelo $ARX1$, e uma com 5 polos e 5 zeros, modelo $ARX2$ \commentib{pq isso? Diga pq dois ARX...} . Geramos um terceiro modelo ARX aplicando a identificação no simulador gerando um modelo, $ARXsim$, com 3 polos e 3 zeros para comparação.
+Onde n é o número de zeros e m é o número de polos. Ao final foram identificadas duas ordens de sistema que serão comparadas posteriormente, uma com 3 polos e 3 zeros, modelo $ARX1$, e uma com 5 polos e 5 zeros, modelo $ARX2$. Escolhemos dois modelos ARX para fazer uma comparação entre o desempenho de um modelo de ordem menor e um modelo de ordem maior, obtidos do mesmo sistema. Geramos um terceiro modelo ARX aplicando a identificação no simulador gerando um modelo, $ARXsim$, com 3 polos e 3 zeros para comparação.
 
 \subsection{Subespaços}\label{s:4subespacos}
 A identificação por Subespaços gera um sistema em espaço de estados como visto na equação \eqref{eq:ss}. Neste tipo de identificação a escolha da estrutura é feita decidindo a ordem do sistema e a ordem da matriz em blocos de Hankel. E similarmente ao procedimento feito na seção \ref{s:4mq} foram variadas as ordens do sistema e da matriz em blocos de Hankel.
