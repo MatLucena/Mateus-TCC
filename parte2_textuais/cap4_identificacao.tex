@@ -41,14 +41,14 @@ Foi escolhida ordem 3 para o sistema e ordem 15 para a matriz em blocos de Hanke
 
 \section{Experimento}\label{s:4experimento}
 O experimento para identificação precisa de um sinal que atenda a condição PE. Para tanto foi gerado um sinal PRBS (sinal binário pseudo aleatório) que é suficientemente adequado para extrair a dinâmica do sistema. O sinal é aplicado ao sistema através do Arduino e os sinais são medidos com um tempo de amostragem de 50 ms.
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{sinalprbsid}
 	\caption[Gráfico da saída PRBS do sistema]{Gráfico da saída do sistema ao aplicar o sinal PRBS com tempo de amostragem de 50 ms}
 	\label{fig:sinalprbsid}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{sinalprbsidsimul}
 	\caption[Gráfico da saída PRBS do simulador]{Gráfico da saída do simulador ao aplicar o sinal PRBS com tempo de amostragem de 50 ms}
@@ -154,62 +154,70 @@ Ao identificar um sistema precisamos validar o modelo obtido para garantir que e
 
 Olhamos também a resposta ao degrau do sistema, figuras \ref{fig:respostadegrauarx1}, \ref{fig:respostadegrauarx2}, \ref{fig:respostadegrauarxsim} e  \ref{fig:respostadegrausub}, e vemos que para os dois sistemas identificados ela tem uma oscilação similar ao sistema real. Concluímos, através da análise da auto correlação dos resíduos e da análise da resposta ao degrau dos sistemas identificados, que os modelos são adequados para mostrar o funcionamento do sistema.
 
-\begin{figure}[H]
+Vemos nas figuras \ref{fig:autocorrelacaoARX1}, \ref{fig:autocorrelacaoARX2} e \ref{fig:autocorrelacaoarxsim} que os resíduos dos modelos identificados tem uma autocorrelação que indica que, eles assemelham um ruído branco, e que os modelos identificados são fiéis aos dados inseridos. O que não quer dizer que eles são adequados para representar o sistema.
+
+
+Nas figuras \ref{fig:respostadegrauarx1} e \ref{fig:respostadegrauarx2} vemos que a resposta ao degrau dos modelos $ARX1$ e $ARX2$ são adequadas para representar o modelo, ambas tem um tempo de assentamento similar ao observado no sistema e uma dinâmica muito parecida. Já na figura \ref{fig:respostadegrauarxsim} vemos que tanto o tempo de assentamento quanto a dinâmica representada estão diferentes do sistema real.
+
+
+Para o caso do modelo $SUB1$ a autocorrelação dos resíduos mostrada na figura \ref{fig:autocorrelacaosub1} indica uma certa polarização do modelo, entretanto, isso ocorre porque estamos fazendo uma análise da resposta simulada do modelo e não dos seus regressores, aos quais não temos acesso.
+
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{autocorrelacaoARX1}
 	\caption[Autocorrelação dos resíduos do modelo $ARX1$]{Autocorrelação dos resíduos do modelo $ARX1$}
 	\label{fig:autocorrelacaoARX1}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{autocorrelacaoARX2}
 	\caption[Autocorrelação dos resíduos do modelo $ARX2$]{Autocorrelação dos resíduos do modelo $ARX2$}
 	\label{fig:autocorrelacaoARX2}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{autocorrelacaoARXsim}
 	\caption[Autocorrelação dos resíduos do modelo $ARXsim$]{Autocorrelação dos resíduos do modelo $ARXsim$}
 	\label{fig:autocorrelacaoarxsim}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{autocorrelacaosub1}
 	\caption[Autocorrelação dos resíduos do modelo $SUB1$]{Autocorrelação dos resíduos do modelo $SUB1$}
 	\label{fig:autocorrelacaosub1}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{respostadegrauarx1}
 	\caption[Resposta ao degrau do modelo $ARX1$]{Resposta ao degrau unitário do modelo $ARX1$}
 	\label{fig:respostadegrauarx1}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{respostadegrauarx2}
 	\caption[Resposta ao degrau do modelo $ARX2$]{Resposta ao degrau unitário do modelo $ARX2$}
 	\label{fig:respostadegrauarx2}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{respostadegrauarxsim}
 	\caption[Resposta ao degrau do modelo $ARXsim$]{Resposta ao degrau unitário do modelo $ARXsim$}
 	\label{fig:respostadegrauarxsim}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{respostadegrausub1}
 	\caption[Resposta ao degrau do modelo $SUB1$]{Resposta ao degrau unitário do modelo $SUB1$}
 	\label{fig:respostadegrausub}
 \end{figure}
 
-\commentib{Você precisa discutir esse bando de figuras.... Além disso, seria interesante comparar os desempenhos dos modelos identificados com os sistemas identificados}
+
 
 % Fim Capítulo

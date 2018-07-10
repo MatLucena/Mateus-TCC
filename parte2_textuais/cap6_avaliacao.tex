@@ -19,7 +19,7 @@ Nesta seção serão apresentados os resultados dos experimentos descritos anter
 Nas figuras desta seção as linhas pontilhadas indicam os limites de $\pm 5\%$ da referência.
 
 \subsubsection{Modelo $SUB1$}
-Nos deparamos com uma grande diferença na figura \ref{fig:steprsub1y}, a resposta simulada, figura \ref{fig:respostadegrausub1c}, atende aos requisitos definidos na seção \ref{s:ctrlsub1} mas o sistema real não atende. Com um tempo de assentamento de 8 segundos, muito maior que o tempo projetado. O sistema real também não atende ao requisito de máximo sobrevalor. É esperado que o sistema real tenha problemas de atender os requisitos de tempo de assentamento e máximo sobrevalor porque utilizamos um modelo idealizado para projetar o controlador.
+Nos deparamos com uma grande diferença na figura \ref{fig:steprsub1y}, a resposta simulada, figura \ref{fig:respostadegrausub1c}, atende aos requisitos definidos na seção \ref{s:ctrlsub1} mas o sistema real não atende, vemos a comparação na tabela \ref{tb:reqsub1}. Com um tempo de assentamento de 8 segundos, muito maior que o tempo projetado. O sistema real também não atende ao requisito de máximo sobrevalor. É esperado que o sistema real tenha problemas de atender os requisitos de tempo de assentamento e máximo sobrevalor porque utilizamos um modelo idealizado para projetar o controlador.
 
 \begin{figure}[htb]
 	\centering
@@ -42,8 +42,24 @@ Nos deparamos com uma grande diferença na figura \ref{fig:steprsub1y}, a respos
 	\caption{Resposta ao degrau do sistema usando o controlador $SUB1$}\label{fig:steprsub1}
 \end{figure}
 
+\begin{table}[htb]
+	\centering
+\begin{tabular}{|c|c|c|}
+	\hline 
+	Requisitos & Projetado & Real \\ 
+	\hline 
+	$T_s$ (s) & 0.8 & 8 \\ 
+	\hline 
+	$ovs\%$ & 0.125\% & 6.1164\% \\ 
+	\hline 
+\end{tabular} 
+\caption{Tabela dos requisitos do sistema $SUB1$}
+\label{tb:reqsub1}
+\end{table}
+
 \subsubsection{Modelo $ARX1$}
-A resposta ao degrau com o controlador do modelo $ARX1$ apresenta os mesmos problemas do modelo $SUB1$ quando aplicado no sistema real, não atende aos requisitos de tempo de assentamento e máximo sobrevalor, como vemos na figura \ref{fig:steprarx1y}.
+
+A resposta ao degrau com o controlador do modelo $ARX1$ apresenta os mesmos problemas do modelo $SUB1$ quando aplicado no sistema real, não atende aos requisitos de tempo de assentamento e máximo sobrevalor, como vemos na figura \ref{fig:steprarx1y} e na tabela \ref{tb:reqarx1}.
 \begin{figure}[htb]
 	\centering
 	\begin{subfigure}[t]{0.48\textwidth}
@@ -64,8 +80,23 @@ A resposta ao degrau com o controlador do modelo $ARX1$ apresenta os mesmos prob
 	\caption{Resposta ao degrau do sistema com o controlador do modelo $ARX1$}\label{fig:steprarx1}
 \end{figure}
 
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline 
+		Requisitos & Projetado & Real \\ 
+		\hline 
+		$T_s$ (s) & 0.9 & 6 \\ 
+		\hline 
+		$ovs\%$ & 0.0326\% & 4.4785\% \\ 
+		\hline 
+	\end{tabular} 
+	\caption{Tabela dos requisitos do sistema $ARX1$}
+	\label{tb:reqarx1}
+\end{table}
+
 \subsubsection{Modelo $ARX2$}
-O mesmo problema de não atender aos requisitos aparece no controlador do modelo $ARX2$, figura \ref{fig:steprarx2y}.
+O mesmo problema de não atender aos requisitos aparece no controlador do modelo $ARX2$, figura \ref{fig:steprarx2y} e na tabela \ref{tb:reqarx2}.
 \begin{figure}[htb]
 	\centering
 	\begin{subfigure}[t]{0.48\textwidth}
@@ -86,9 +117,24 @@ O mesmo problema de não atender aos requisitos aparece no controlador do modelo
 	\caption{Resposta ao degrau do sistema com o controlador do modelo $ARX2$}\label{fig:steprarx2}
 \end{figure}
 
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline 
+		Requisitos & Projetado & Real \\ 
+		\hline 
+		$T_s$ (s) & 1.3 & 6 \\ 
+		\hline 
+		$ovs\%$ & 0.1487\% & 6.9156\% \\ 
+		\hline 
+	\end{tabular} 
+	\caption{Tabela dos requisitos do sistema $SUB1$}
+	\label{tb:reqarx2}
+\end{table}
+
 \subsubsection{Modelo $ARXsim$}
 
-Tentamos aplicar o controlador do modelo $ARXsim$ no sistema real mas o ganho do controlador é muito alto, o que saturou o ganho do sistema, portanto simulamos esse modelo. Vemos a sua resposta ao degrau na figura \ref{fig:stepsarxsimy} e observamos que o sistema é completamente diferente do sistema real, o estimador de estados não está estimando a posição corretamente apesar de ter sido projetado de forma correta e mesmo com o estimador errado a saída do sistema chega perto do degrau unitário.
+Tentamos aplicar o controlador do modelo $ARXsim$ no sistema real mas o ganho do controlador é muito alto, o que saturou o sinal de controle do motor, portanto simulamos esse modelo. Vemos a sua resposta ao degrau na figura \ref{fig:stepsarxsimy} e observamos que o sistema é completamente diferente do sistema real, o estimador de estados não está estimando a posição corretamente apesar de ter sido projetado de forma correta, entretanto, mesmo com o estimador errado a saída do sistema chega perto do degrau unitário.
 
 \begin{figure}[htb]
 	\centering
@@ -109,6 +155,46 @@ Tentamos aplicar o controlador do modelo $ARXsim$ no sistema real mas o ganho do
 	
 	\caption{Resposta ao degrau do sistema com o controlador do modelo $ARXsim$}\label{fig:stepsarxsim}
 \end{figure}
+
+\subsection{ISE da resposta ao degrau dos modelos simulada}
+
+O ISE é um índice de desempenho de sistema que quantifica o desempenho de um sistema para respostas rápidas pela equação \eqref{eq:ise}. Vemos na figura \ref{fig:ise} um gráfico com os 4 modelos identificados, $SUB1$, $ARX1$, $ARX2$ e $ARXsim$, com o ISE calculado para sua resposta ao degrau de -1 à 1. Com esse gráfico vemos que o controlador que mais minimizou o erro foi o do modelo $ARX1$ e o que menos minimizou o erro o do modelo $ARXsim$, o que era de se esperar dado que o modelo $ARXsim$ não é um modelo adequado. 
+
+\begin{equation}\label{eq:ise}
+ISE=\int e^2 dt
+\end{equation}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\linewidth]{pasta1_figuras/ise}
+	\caption[Gráfico ISE dos 4 modelos estimados]{Gráfico ISE dos 4 modelos estimados}
+	\label{fig:ise}
+\end{figure}
+
+\subsection{Comparação dos modelos}
+
+Na tabela \ref{tb:requisitosise}, mostramos os requisitos de resposta ao degrau definidos. Vemos que no sistema real nenhum dos modelos foi capaz de atender aos requisitos de sobrevalor e de tempo de assentamento, e o índice ISE está muito superior ao índice calculado para o modelo simulado.
+
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline 
+		&  & Teste &  &  & Modelo Simulado &  \\ 
+		\hline 
+		& $t_s$ (s) & OVS & ISE & $t_s$ (s) & OVS & ISE \\ 
+		\hline 
+		$SUB1$ & 8 & 6.125\% & 14.2801 & 0.8 & 0.125\% & 9.8033 \\ 
+		\hline 
+		$ARX1$ & 6 & 4.4785\% & 13.0572 & 0.9 & 0.0326\% & 5.1225 \\ 
+		\hline 
+		$ARX2$ & 6 & 6.9156\% & 15.2428 & 1.3 & 0.1487\% & 8.5043 \\ 
+		\hline 
+		$ARXsim$ & 6 & 0\% & 8.5043 & 1.3 & 0.14\% & 8.1588 \\ 
+		\hline 
+	\end{tabular}  
+	\caption{Tabela de comparação dos requisitos de controle dos modelos e índice ISE}
+	\label{tb:requisitosise}
+\end{table}
 
 \subsection{Resultados da Resposta à Escadaria}\label{rstair}
 
@@ -206,7 +292,22 @@ Testamos o controlador do modelo $ARXsim$ para um sinal de referência do tipo e
 \end{figure}
 
 \subsubsection{Erro do Estimador} \label{erroest}
- É interessante verificar aqui o funcionamento dos estimadores projetados quando aplicados no sistema real. Na figura \ref{fig:errosub1} vemos que o estimador do modelo $SUB1$ tem problemas para estimar a posição da bola, mas os estimadores dos modelos $ARX1$ e $ArX2$, figuras \ref{fig:erroarx1} e \ref{fig:erroarx2}, mostram que os estimadores tem um erro baixo, o que é de se esperar visto que a identificação por mínimos quadrados é um estimador ótimo, e reduz o resíduo.
+ É interessante verificar aqui o funcionamento dos estimadores projetados quando aplicados no sistema real. Na figura \ref{fig:errosub1} vemos que o estimador do modelo $SUB1$ tem problemas para estimar a posição da bola, mas os estimadores dos modelos $ARX1$ e $ARX2$, figuras \ref{fig:erroarx1} e \ref{fig:erroarx2}, mostram que os estimadores tem um erro baixo, o que é de se esperar visto que a identificação por mínimos quadrados é um estimador ótimo, e reduz o resíduo. A tabela \ref{tb:iseestim} mostra o índice ISE do erro de estimação e nos confirma que os estimadores dos modelos ARX são bons enquanto o estimador do modelo $SUB1$ não é.
+ 
+ \begin{table}[htb]
+ 	\centering
+ 	\begin{tabular}{|c|c|c|c|}
+ 		\hline 
+ 		& $SUB1$ & $ARX1$ & $ARX2$ \\ 
+ 		\hline 
+ 		ISE & 5.3315 & 0.5193 & 0.6134 \\ 
+ 		\hline 
+ 	\end{tabular} 
+ \caption{Tabela com índices ISE do erro de estimação}
+ \label{tb:iseestim}
+ \end{table}
+ 
+ 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{errosub1}
@@ -227,6 +328,8 @@ Testamos o controlador do modelo $ARXsim$ para um sinal de referência do tipo e
 	\caption[Erro do estimador do modelo $ARX2$ na resposta à escadaria]{Erro do estimador do modelo $ARX2$ na resposta à escadaria}
 	\label{fig:erroarx2}
 \end{figure}
+
+Vemos que os estimadores dos dois modelos ARX ao serem aplicados no sistema tem um bom desempenho, figuras \ref{fig:erroarx1} e \ref{fig:erroarx2}, permanecendo abaixo de 1 cm de diferença com algumas exceções, que atribuímos ao ruído do sensor. O estimador do modelo $SUB1$ não apresenta bom desempenho mostrando erros superiores a 1 cm com frequência.
 
 
 \subsection{Resultados do Teste de Robustez à mudança de Parâmetros}\label{rmp}
@@ -368,6 +471,30 @@ O modelo $ARX1$ também não consegue seguir a referência com o aumento do peso
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$}\label{fig:pextrarx1}
 \end{figure}
 
+A resposta à perturbação externa apresenta um resultado curioso, é do nosso entendimento que um controlador seja capaz de corrigir para medidas de erro e reduzir o erro a zero, entretanto, isso não acontece quando o controlador é aplicado no sistema. Investigamos isso fazendo um teste simulado com o modelo simulado e obtemos a figura \ref{fig:steparx1}. Com essa simulação confirmamos que a implementação de nosso controlador não é defeituosa, apesar de o controlador de fato não ser capaz de rejeitar perturbação externa.
+
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{pasta1_figuras/steparx1simy}
+		\caption[$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$]{$y_{estimado}$ e $y_{medido}$ do modelo $ARX1$}
+		\label{fig:steparx1simy}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[t]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{pasta1_figuras/steparx1sime}
+		\caption[erro $e$ e sinal de controle $u$ do controlador $SUB1$]{erro $e$ e sinal de controle $u$ do controlador $SUB1$}
+		\label{fig:steparx1e}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	
+	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARX1$ simulado}\label{fig:steparx1}
+\end{figure}
+
+
+
 \subsubsection{Modelo $ARX2$}
 O modelo $ARX2$ também não consegue seguir a referência com o aumento da bola, figura \ref{fig:pextrarx2y}.
 \begin{figure}[htb]
@@ -414,12 +541,15 @@ Testamos a resposta do modelo $ARXsim$ para perturbações externas. Vemos na fi
 	\caption{Resposta à perturbação externa do sistema com o controlador do modelo $ARXsim$}\label{fig:pextsarxsim}
 \end{figure}
 
+
+
+
 \section{Discussão}
 
-Ao analisar as respostas obtidas dos experimentos devemos levar em conta o quão ruidoso é o sensor. Apesar de aplicar um filtro na saída ele ainda produz valores que apresentam um alto valor de ruído que em conjunto com o giro da bola devido a força do vento fazem com que a leitura do sensor tenha erros que influenciam nos resultados.
+Ao analisar as respostas obtidas dos experimentos devemos levar em conta o quão ruidoso é o sensor. Apesar de aplicar um filtro na saída ele ainda produz valores que apresentam um alto erro de medida que em conjunto com o giro da bola devido a força do vento fazem com que a leitura do sensor tenha erros que influenciam nos resultados.
 
 
-Na seção \ref{s4:val} mostramos que os 3 modelos, $SUB1$, $ARX1$ e $ARX2$, identificados à partir do sistema real são adequados para representar o sistema. O modelo $ARXsim$ identificado a partir do simulador, que continha dados experimentais do sistema sobre a velocidade do vento para diferentes PWM aplicados no motor, não apresentava as características do sistema, o que fica aparente comparando as figuras \ref{fig:sinalprbsid} e \ref{fig:sinalprbsidsimul} que mostram as diferenças entre a resposta ao sinal PRBS entre os dois. O modelo $ARXsim$ também apresenta uma resposta ao degrau, figura \ref{fig:respostadegrauarxsim}, discrepante da observada no sistema real e da observada nos outros modelos obtidos.
+Na seção \ref{s4:val} mostramos que os 3 modelos, $SUB1$, $ARX1$ e $ARX2$, identificados à partir do sistema real são adequados para representar o sistema. O modelo $ARXsim$ identificado a partir do simulador, que continha dados experimentais do sistema sobre a velocidade do vento para diferentes PWM aplicados no motor, não apresentava as características do sistema, o que fica aparente comparando as figuras \ref{fig:sinalprbsid} e \ref{fig:sinalprbsidsimul} que mostram as diferenças entre a resposta ao sinal PRBS entre os dois. A resposta do $ARXsim$, figura \ref{fig:respostadegrauarxsim}, é discrepante da observada no sistema real e da observada nos outros modelos obtidos.
 
 
 Essa diferença nos mostra a necessidade da identificação de um sistema usando métodos caixa-preta. Apesar de termos conseguido modelar o sistema de forma matematicamente sólida, o desempenho do modelo obtido é divergente do sistema real. Enquanto que os modelos obtidos utilizando métodos de identificação caixa-preta conseguiram gerar modelos do sistema satisfatórios. 
@@ -428,7 +558,7 @@ Essa diferença nos mostra a necessidade da identificação de um sistema usando
 Na seção \ref{s:ctrl} projetamos um controlador por realimentação de estados para cada um dos modelos obtidos capaz de atender as especificações de tempo de assentamento e máximo sobrevalor definidas. Mas, devido a necessidade de criar um observador de estados na seção \ref{s5:est}, vimos que a forma como o sistema modelado atende aos requisitos mudou, mesmo se mantendo dentro dos requisitos definidos. No entanto, ao aplicar esse controlador no sistema, vemos que a resposta não está atendendo aos requisitos estabelecidos. Projetamos ainda um controlador para o modelo obtido do simulador, identificado por caixa-cinza, e ao aplicarmos no sistema real a resposta foi instável, reforçando a necessidade de obter modelos por identificação caixa-preta.
 
 
-Vemos que os estimadores dos dois modelos ARX ao serem aplicados no sistema tem um bom desempenho, figuras \ref{fig:erroarx1} e \ref{fig:erroarx2}, permanecendo abaixo de 1 cm de diferença com algumas exceções, que atribuímos ao ruído do sensor. O estimador do modelo $SUB1$ não apresenta bom desempenho mostrando erros superiores a 1 cm com frequência.
+É interessante notar como a análise de resíduos foi uma medida capaz de prever o quão adequado um sistema é de acordo com os dados utilizados para gerá-lo. A autocorrelação vista nas figuras \ref{fig:autocorrelacaoARX1} e \ref{fig:autocorrelacaosub1} mostra uma grande diferença entre os sistemas, apesar de a resposta ao degrau dos modelos ser similar. O controle projetado para os modelos referidos, $ARX1$ e $SUB1$, mostram que para que o controle seja bem sucedido o modelo extraído tem que ser o mais fiél possível ao sistema.
 
 
 

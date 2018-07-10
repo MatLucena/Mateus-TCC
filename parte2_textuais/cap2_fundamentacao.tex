@@ -268,6 +268,8 @@ O controlador de realimentação de estados faz uma alocação de polos no siste
 \subsubsection{Estimador de Estados}
 
 O estimador de estados é um processo que permite que medir os estados de um sistema a partir de sua entrada e saída. Um estimador deve ser projetado para que ele consiga obter os estados de um sistema o mais rápido possível dado a entrada e saída no momento anterior. Para isso fazemos a escolha dos polos do estimador de uma forma que eles reajam mais rápido que o sistema real, fazemos isso multiplicando a parte real dos polos escolhidos para o controlador por um número, efetivamente afastando eles do zero real. Uma forma de calcular o ganho $L$ do estimador de estados é muito similar ao algoritmo \ref{alg:re}:
+\newline
+
 
 \IncMargin{1em}
 \begin{algorithm}[H]
@@ -286,6 +288,7 @@ O estimador de estados é um processo que permite que medir os estados de um sis
 	\caption{\textsc{Estimador de estados}}
 \end{algorithm}
 \DecMargin{1em}
+
 
 Por fim, a equação \ref{eq:estimador} nos retorna os estados.
 

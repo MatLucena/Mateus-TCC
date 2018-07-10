@@ -7,7 +7,7 @@ O sistema em questão, figura \ref{fig:tuneldevento}, se trata de um tubo PVC de
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth, height=0.3\textheight]{pasta1_figuras/tuneldevento}
+	\includegraphics[width=0.3\linewidth]{pasta1_figuras/tuneldevento}
 	\caption[Túnel de vento construído]{Túnel de vento construído}
 	\label{fig:tuneldevento}
 \end{figure}
@@ -18,7 +18,7 @@ O sistema em questão, figura \ref{fig:tuneldevento}, se trata de um tubo PVC de
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.3\linewidth, height=0.3\textheight]{pasta1_figuras/forcasatuantes}
+	\includegraphics[width=0.3\linewidth]{pasta1_figuras/forcasatuantes}
 	\caption[Forças atuantes na bola]{Forças atuantes na bola}
 	\label{fig:forcasatuantes}
 \end{figure}
@@ -31,6 +31,8 @@ m \ddot{h}=F=\dfrac{1}{2} \cdot C_a \cdot\rho \cdot A \cdot (v_{ar}- \dot{h})^2-
 \end{equation}
 
 onde $m$ é a massa da esfera, $h$ é a posição vertical da esfera no tubo, $\rho$ é a densidade do ar, $A$ é a área da esfera em contato com o fluxo de ar, $v_{ar}$ é a velocidade do ar dentro do tubo e $C_a$ é o coeficiente aerodinâmico da esfera. O coeficiente aerodinâmico depende da velocidade relativa entre a esfera e o vento, mas para as velocidades baixas de vento que estamos utilizando esse valor pode ser considerado constante. Consideramos $\alpha= \dfrac{1}{2} \cdot C_a \cdot \rho \cdot A$:
+
+
 \begin{equation} \label{eq:modelo}
 \ddot{h}=\dfrac{\alpha}{m}\cdot (v_{ar}-\dot{h})^2-g
 \end{equation}
@@ -46,7 +48,7 @@ Foram adquiridas diversas bolas de tênis de mesa e se injetou uma mistura de co
 v_{ar}=\sqrt{\dfrac{gm}{\alpha}}
 \end{equation}
 
-Na figura \ref{fig:curvavar} vemos a superfície gerada com os dados medidos. E a partir da função dessa superfície geramos a figura \ref{fig:graficovairaltura1}.
+Na figura \ref{fig:curvavar} vemos a superfície gerada com os dados medidos. E a partir da função dessa superfície geramos a figura \ref{fig:graficovairaltura1} e a tabela \ref{tb:varxalturapwm}.
 
 \begin{figure}[htb]
 	\centering
@@ -64,6 +66,29 @@ Na figura \ref{fig:curvavar} vemos a superfície gerada com os dados medidos. E 
 \end{figure}
 
 Podemos ver que a figura \ref{fig:graficovairaltura1} lembra um gráfico similar encontrado em \cite{jernigan2009} onde o autor utiliza um sensor de velocidade de vento e mostra uma curva similar, para uma mesma tensão aplicada na turbina quanto mais elevada se encontra a bola menor vai ser a velocidade do ar que se choca com ela.
+
+\begin{table}[htb]
+	\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+	\hline 
+	Altura$\setminus$PWM & 1850 ms & 1870 ms & 1890 ms & 1910 ms & 1930 ms & 1950 ms \\ 
+	\hline 
+	10 cm & 18.24 & 21.78 & 24.94 & 27.75 & 30.22 & 32.37 \\ 
+	\hline 
+	20 cm & 15.02 & 17.79 & 20.24 & 22.38 & 24.23 & 25.80 \\ 
+	\hline 
+	30 cm & 13.33 & 15.52 & 17.44 & 19.09 & 20.49 & 21.67 \\ 
+	\hline 
+	40 cm & 12.51 & 14.30 & 15.86 & 17.21 & 18.35 & 19.30 \\ 
+	\hline 
+	50 cm & 11.88 & 13.45 & 14.84 & 16.05 & 17.11 & 18.03 \\ 
+	\hline 
+	60 cm & 10.76 & 12.29 & 13.68 & 14.95 & 16.10 & 17.16 \\ 
+	\hline 
+\end{tabular} 
+\caption{Tabela da velocidade do ar em função de altura e do PWM aplicado ao motor}
+\label{tb:varxalturapwm}
+\end{table}
 
 \section{Simulação do Túnel de Vento no Simulink}
 

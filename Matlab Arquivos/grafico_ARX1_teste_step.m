@@ -818,7 +818,7 @@ T=title('Resposta ao degrau do modelo ARX1');
 set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
 axis([0 t(end) min(min(stepSUB(1:size(t,2),3)))-.05 max(max(y))+.1]);
 
-stepSUB=(stepSUB-p2)/p1;
+% stepSUB=(stepSUB-p2)/p1;
 figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
 y=stepSUB(1:size(t,2),4)';
 stairs(t',stepSUB(1:size(t,2),4)','LineWidth',1.5)
