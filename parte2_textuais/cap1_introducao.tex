@@ -4,18 +4,18 @@
 
 \section{Levitação a ar}
 
-O túnel de vento é uma instalação utilizada para estudar o desempenho aerodinâmico de objetos. Ele é feito de um duto de tamanho adequado para o objeto testado pelo qual o ar flui ao ser empurrado por uma turbina. Os testes feitos variam de velocidade de acordo com o que se deseja estudar.
+O túnel de vento é uma instalação utilizada para estudar o desempenho aerodinâmico de objetos. Ele consiste em um duto de tamanho adequado para o objeto testado pelo qual o ar flui ao ser empurrado por uma turbina. Os testes feitos variam de velocidade, de acordo com o que se deseja estudar.
 
 
-Para que os testes sobre objetos tenham resultados precisos e replicáveis a velocidade dos ventos sobre eles deve ser controlável e atinja o objeto sem turbulência, apesar de haver testes onde isso é proposital. O túnel é construído com um dispositivo de fluxo laminar que possibilita reduzir o fluxo turbulento gerado pela turbina \cite{mcdade1969}.
+Para que os testes sobre objetos tenham resultados precisos e replicáveis, a velocidade dos ventos sobre eles deve ser controlável e o fluxo de ar que atinge o objeto não deve ter turbulência, apesar de haver testes onde isso é proposital. O túnel é construído com um dispositivo de fluxo laminar que possibilita reduzir o fluxo turbulento gerado pela turbina \cite{mcdade1969}.
 
 
-Os testes geralmente são feitos em modelos em escala de aviões, carros, naves espaciais, e para  estudo da aerodinâmica de objetos na física. Os túneis podem ser verticais ou horizontais, apesar de os túneis horizontais existirem em maior quantidade. Um teste comum é feito em modelos de aviões onde se medem as propriedades das asas como envergadura ao ser submetida a velocidades específicas do vento, força de elevação para diferentes velocidades e em geral sua aerodinâmica. Em Dayton, Ohio \cite{vertical1946}, foi construído um túnel de vento vertical que possibilita que sejam feitos testes específicos para aeronaves. Um objeto é posto em queda livre virtual devido a velocidade do vento impulsionado por uma turbina e se observa o seu movimento na situação. Este teste foi essencial para a prototipagem de aviões militares e comerciais desde os anos 50.
+Os testes geralmente são feitos em modelos em escala de aviões, carros, naves espaciais e para  estudo da aerodinâmica de objetos na física. Os túneis podem ser verticais ou horizontais, apesar de os túneis horizontais existirem em maior quantidade. Um teste comum é feito em modelos de aviões onde se medem as propriedades das asas como envergadura ao ser submetida a velocidades específicas do vento, força de elevação para diferentes velocidades e, em geral, sua aerodinâmica. Em Dayton, Ohio \cite{vertical1946}, foi construído um túnel de vento vertical que possibilita que sejam feitos testes específicos para aeronaves. Um objeto é posto em queda livre virtual devido a velocidade do vento impulsionado por uma turbina e se observa o seu movimento na situação. Este teste foi essencial para a prototipagem de aviões militares e comerciais desde os anos 50.
 
 
-Hoje os testes ainda são responsáveis por economizar milhões de reais na fase de prototipagem em testes aerodinâmicos, no desenvolvimento de trens de alta velocidade\cite{kwon2001}. Em objetos que se movem em alta velocidade o vento se torna um fator preocupante, uma rajada de vento pode ser o fator determinante em um descarrilhamento de um trem, os testes possibilitam que os cientistas analisem  comportamento de suas criações em situações previsíveis e os ajuda a antecipar possíveis problemas.
+Hoje, os testes ainda são responsáveis por economizar milhões de reais na fase de prototipagem em testes aerodinâmicos usados no desenvolvimento de trens de alta velocidade \cite{kwon2001}. Em objetos que se movem em alta velocidade, o vento se torna um fator preocupante. Uma rajada de vento pode ser o fator determinante em um descarrilhamento de um trem. Os testes possibilitam que os cientistas analisem o  comportamento de suas criações em situações previsíveis e os ajuda a antecipar possíveis problemas.
 
-No entanto, existe um problema no teste aerodinâmico utilizando túneis de vento. Para os testes de queda livre como o de aeronaves, o controle de altitude do objeto é complexo. É possível obter o número de Reynolds, uma variável sem dimensão que possibilita predizer o padrão de fluxo de fluídos, e é possível medir a velocidade do vento atuando em cima do objeto, porém, a real dificuldade se encontra no fato de que quando o a força do vento atua em cima de um objeto ele tende a girar, \cite{briggs1959} de acordo com suas características aerodinâmicas, o que não é possível de se controlar sem um atuador no objeto.
+No entanto, existe um problema no teste aerodinâmico utilizando túneis de vento. Para os testes de queda livre como o de aeronaves, o controle de altitude do objeto é complexo. É possível obter o número de Reynolds, uma variável sem dimensão que possibilita predizer o padrão de fluxo de fluídos, e é possível medir a velocidade do vento atuando em cima do objeto. Porém, a real dificuldade se encontra no fato de que quando a força do vento atua em cima de um objeto, ele tende a girar \cite{briggs1959} de acordo com suas características aerodinâmicas, o que não é possível de se controlar sem um atuador no objeto.
 
 
 Tendo em vista que o controle de altura de um objeto tendo como único atuador o vento, e que um modelo de atuação da força do vento sobre um objeto é complexo e de baixa fidelidade, e que precisamos de um modelo que possibilite um controle de altitude preciso e robusto, temos como opção a modelagem caixa-preta, conhecida como identificação de sistemas.
@@ -29,16 +29,16 @@ O objetivo deste trabalho é construir uma plataforma de estudos de túnel de ar
 
 \subsection{Objetivos Específicos}
 
-Para alcançar o objetivo geral deste projeto devemos primeiro alcançar os seguintes objetivos específicos.
+Para alcançar o objetivo geral deste projeto, devemos primeiro alcançar os seguintes objetivos específicos.
 
 \begin{itemize}
-	\item Construir uma plataforma de experimento no formato de túnel de vento.
-	\item Medir a velocidade do vento em alturas variadas dentro do túnel de vento.
-	\item Criar um simulador para o túnel de vento.
-	\item Executar testes para identificação usando como sinal de controle um sinal binário pseudo aleatório (PRBS).
-	\item Identificar o sistema por mínimos quadrados.
-	\item Identificar o sistema por subespaços.
-	\item Validar os modelos obtidos.
+	\item Construir uma plataforma de experimento no formato de túnel de vento;
+	\item Medir a velocidade do vento em alturas variadas dentro do túnel de vento;
+	\item Criar um simulador para o túnel de vento;
+	\item Executar testes para identificação usando como sinal de controle um sinal binário pseudo aleatório (PRBS);
+	\item Identificar o sistema por mínimos quadrados;
+	\item Identificar o sistema por subespaços;
+	\item Validar os modelos obtidos;
 	\item Obter um controlador para os dois modelos usando alocação de polos.
 \end{itemize}
 
@@ -47,11 +47,11 @@ Para alcançar o objetivo geral deste projeto devemos primeiro alcançar os segu
 
 Este trabalho se encontra organizado em seis capítulos com várias subseções. 
 \begin{itemize}
-	\item Capítulo 2: é a revisão bibliográfica com as seções fundamentação teórica onde conceitos fundamentais ao entendimento do trabalho são explicados, tratamos dos modelos de sistemas dinâmicos, dos critérios de estabilidade de sistemas discretos, e da identificação de sistemas e estimação de parâmetros. Falamos ainda de trabalhos relacionados onde o trabalho de outros autores é relacionado a este.
-	\item Capítulo 3: fala sobre a modelagem e simulação do túnel de vento, onde se explica o processo de modelagem utilizado e a construção de um simulador no Simulink.
+	\item Capítulo 2: é a revisão bibliográfica.A fundamentação teórica dividida em conceitos fundamentais ao entendimento do trabalho, explicações sobre modelos de sistemas dinâmicos, dos critérios de estabilidade de sistemas discretos, e da identificação de sistemas e estimação de parâmetros.
+	\item Capítulo 3: descreve a modelagem e simulação do túnel de vento, onde se explica o processo de modelagem utilizado e a construção de um simulador no Simulink.
 	\item Capítulo 4: trata da identificação do túnel usando mínimos quadrados e subespaços, explicando os procedimentos usados e o método de validação do modelo.
-	\item Capítulo 5: é projeto de controladores, onde fazemos o projeto do controlador para adequar o sistema à requisitos de sua resposta à entradas.
-	\item Capítulo 6: trata da avaliação experimental do sistema de controle, onde o sistema é testado para avaliar sua robustez à interferências.
+	\item Capítulo 5: explica como foi projetado o controlador para adequar o sistema aos requisitos de sua resposta ao degrau unitário.
+	\item Capítulo 6: trata da avaliação experimental do sistema de controle, onde o sistema é testado para avaliar sua robustez.
 	\item Capítulo 7: é a conclusão do trabalho onde as considerações finais e trabalhos futuros serão discutidos.
 \end{itemize}     
 
