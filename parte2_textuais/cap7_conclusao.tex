@@ -16,8 +16,14 @@ Constatamos que o método de identificação e controle para este tipo de sistem
 
 
 \section{Trabalhos Futuros}
-Levando em conta os conhecimentos adquiridos durante este trabalho percebemos ser necessário o projeto de um novo túnel de vento, com um duto maior que o atual, com uma bola maior com a mesma relação de diâmetro entre a bola atual e o tubo, para diminuir o erro de medição do sensor. O tubo maior também influencia na medida do sensor diminuindo a chance de haver reflexão nas paredes e nos buracos de escape de ar. 
 
+Levando em conta os conhecimentos adquiridos durante este trabalho percebemos ser necessário o projeto de um novo túnel de vento. O diâmetro da bola de tênis de mesa é muito pequeno para o sensor, qualquer oscilação lateral da bola é suficiente para que o sensor meça errado. Uma forma de resolver isso é utilizando um tubo menor. Entretanto, isso traz um novo problema, o cone de medida do sensor, apesar de estreito, precisa ser alinhado com o tubo, e quanto menor o tubo mais sensível é o alinhamento. A forma mais sensata de resolver o problema da oscilação da bola é utilizar um duto de diâmetro maior e uma bola maior. Isso faz com que o infravermelho tenha uma superfície de reflexão maior e que a sensibilidade de alinhamento diminua.
+
+
+É interessante implementar um controlador para a velocidade do motor, que garanta que o vento esteja fluindo exatamente na velocidade desejada. Não pudemos determinar o quanto a falta de um controle de velocidade influenciou nos experimentos, ou mesmo o quão correta foi a velocidade do motor. Mas. ao enviarmos um PWM ao motor, podemos ver visualmente, após o sistema estabilizar naturalmente, que a bola oscila levemente em torno de um ponto. Esta oscilação aumenta de acordo com o aumento da velocidade, e, portanto, atribuímos à falta de controle da velocidade do motor.
+
+
+As medidas discrepantes do sensor podem ser tratadas com um filtro digital, o que poderia resolver os problemas de leitura do sensor. Identificamos que os modelos são deficientes fora do ponto de operação, isso pode ser tratado por técnicas adaptativas como MPC, ou a partir de redes de modelos locais, como modelos Takagi Sueno.
 
 
 

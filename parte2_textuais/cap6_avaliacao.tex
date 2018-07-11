@@ -177,23 +177,17 @@ Na tabela \ref{tb:requisitosise}, mostramos os requisitos de resposta ao degrau 
 
 \begin{table}[htb]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|}
-		\hline 
-		&  & Teste &  &  & Modelo Simulado &  \\ 
-		\hline 
-		& $t_s$ (s) & OVS & ISE & $t_s$ (s) & OVS & ISE \\ 
-		\hline 
-		$SUB1$ & 8 & 6.125\% & 14.2801 & 0.8 & 0.125\% & 9.8033 \\ 
-		\hline 
-		$ARX1$ & 6 & 4.4785\% & 13.0572 & 0.9 & 0.0326\% & 5.1225 \\ 
-		\hline 
-		$ARX2$ & 6 & 6.9156\% & 15.2428 & 1.3 & 0.1487\% & 8.5043 \\ 
-		\hline 
-		$ARXsim$ & 6 & 0\% & 8.5043 & 1.3 & 0.14\% & 8.1588 \\ 
-		\hline 
-	\end{tabular}  
-	\caption{Tabela de comparação dos requisitos de controle dos modelos e índice ISE}
-	\label{tb:requisitosise}
+	\begin{tabular}{l|r|r|r|r|r|r|}
+		\cline{2-7}
+		& \multicolumn{3}{c|}{\textbf{Teste}}                                                                                                        & \multicolumn{3}{c|}{\textbf{Modelo Simulado}}                                                                                              \\ \hline
+		\multicolumn{1}{|l|}{\textit{\textbf{Modelos}}} & \multicolumn{1}{l|}{\textit{\textbf{$t_s$ (s)}}} & \multicolumn{1}{l|}{\textit{\textbf{OVS}}} & \multicolumn{1}{l|}{\textit{\textbf{ISE}}} & \multicolumn{1}{l|}{\textit{\textbf{$t_s$ (s)}}} & \multicolumn{1}{l|}{\textit{\textbf{OVS}}} & \multicolumn{1}{l|}{\textit{\textbf{ISE}}} \\ \hline
+		\multicolumn{1}{|l|}{$SUB1$}                    & 8                                                & 6.125\%                                    & 14.2801                                    & 0.8                                              & 0.125\%                                    & 9.8033                                     \\ \hline
+		\multicolumn{1}{|l|}{$ARX1$}                    & 6                                                & 4.4785\%                                   & 13.0572                                    & 0.9                                              & 0.0326\%                                   & 5.1225                                     \\ \hline
+		\multicolumn{1}{|l|}{$ARX2$}                    & 6                                                & 6.9156\%                                   & 15.2428                                    & 1.3                                              & 0.1487\%                                   & 8.5043                                     \\ \hline
+		\multicolumn{1}{|l|}{$ARXsim$}                  & 6                                                & 0\%                                        & 8.5043                                     & 1.3                                              & 0.14\%                                     & 8.1588                                     \\ \hline
+	\end{tabular}
+\caption{Tabela de comparação dos requisitos de controle dos modelos e índice ISE}
+\label{tb:requisitosise}
 \end{table}
 
 \subsection{Resultados da Resposta à Escadaria}\label{rstair}

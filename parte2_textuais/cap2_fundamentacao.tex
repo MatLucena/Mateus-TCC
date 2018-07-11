@@ -294,9 +294,11 @@ Por fim, a equação \ref{eq:estimador} nos retorna os estados.
 
 \begin{equation}\label{eq:estimador}
 \begin{matrix}
-\dot{z}=Az+Bu+(y-y_e)L
+\dot{\hat{x}}=A\hat{x}+Bu+(y-y_e)L
 \end{matrix}
 \end{equation}
+
+onde $\hat{x}$ é o vetor de estados estimados, $y$ é a saída medida do sistema, $ye$ é a saída estimada do sistema e $L$ é o ganho do estimador.
 
 \subsection{Identificação de Sistemas e Estimação de Parâmetros}
 A maior parte das técnicas de controle aplicadas na indústria dependem do conhecimento de um modelo matemático do sistema a ser controlado. Apresentamos alguns dos modelos na seção \ref{capA} e, nesta seção, apresentaremos alguns dos métodos para obtermos os modelos matemáticos utilizados neste trabalho.
@@ -370,7 +372,7 @@ y_1 \\ y_2 \\ y_3\\ \vdots \\ y_n
 \end{equation}
 Onde $\hat{y}$ é um vetor que depende da matriz de regressores $\psi$ e do vetor $\hat{\theta}$. Conhecemos $\hat{y}$ e $\psi$, queremos determinar $\hat{\theta}$. Desde que X seja não singular, é possível determinar o vetor de parâmetros invertendo a matriz:
 \begin{equation}\label{eq:MQ}
-\theta=\psi^{-1}y
+\hat{\theta}=\psi^{-1}y
 \end{equation}
 
 A matriz $\psi$, no entanto, não é invertível e, para realizarmos $\psi^{-1}$, utilizamos a pseudo inversa, que será utilizada em diversas partes deste trabalho, representada por $\{ \cdot\}^\dagger$, onde $\{\cdot\}$ é a matriz que receberá a operação pseudo inversa.
@@ -380,7 +382,7 @@ A^\dagger=[A^TA]^{-1}A^T
 
 E a equação \eqref{eq:MQ} se torna:
 \begin{equation}\label{eq:MQ2}
-\theta=\psi^\dagger y
+\hat{\theta}=\psi^\dagger y
 \end{equation}
 
 
@@ -401,9 +403,9 @@ Apresentamos aqui um pseudo algoritmo para a identificação por mínimos quadra
 	\Saida{Vetor $\hat{\theta}$}
 	\Inicio{
 		Faça a matriz de regressores $psi$ da equação \eqref{eq:regressores}\\
-		Calcule $\theta$ com a equação \eqref{eq:MQ2}
+		Calcule $\hat{\theta}$ com a equação \eqref{eq:MQ2}
 	}
-	\Retorna{$\theta$}
+	\Retorna{$\hat{\theta}$}
 	\label{alg:mq}
 	\caption{\textsc{Identificação por Mínimos Quadrados}}
 \end{algorithm}
