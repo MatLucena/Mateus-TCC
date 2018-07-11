@@ -60,7 +60,7 @@ A representação em espaço de estados é uma forma mais conveniente para repre
 y=Cx+Du
 \end{array}
 \end{equation}
-Onde $x \in \Re^n$ é o vetor de estado n-dimensional. $\dot{x}=dx/dt$, $u(t) \in \Re^p$ é o vetor de entradas formado por r funções temporais, $y(t) \in \Re^q$ é o vetor m-dimensional de saídas e $A \in \Re^{n\times n}$, $B \in \Re^{n \times p}$, $C \in \Re^{q \times n}$ e $D \in \Re ^{q \times p}$ são as matrizes do sistema constantes.
+Onde $x \in \mathbb{R}^n$ é o vetor de estado n-dimensional. $\dot{x}=dx/dt$, $u(t) \in \mathbb{R}^p$ é o vetor de entradas formado por r funções temporais, $y(t) \in \mathbb{R}^q$ é o vetor m-dimensional de saídas e $A \in \mathbb{R}^{n\times n}$, $B \in \mathbb{R}^{n \times p}$, $C \in \mathbb{R}^{q \times n}$ e $D \in \mathbb{R} ^{q \times p}$ são as matrizes do sistema constantes.
 
 
 Podemos gerar uma representação de espaço de estados a partir da E.D.O. do sistema. Vamos utilizar novamente o sistema da figura \ref{fig:modeloamortecimento}. Definimos primeiramente os estados do vetor x, $x_1=X_1$, $x_2=\dot{X}_1$, $x_3=Y_1$ e $x_4=\dot{Y}_1$. Onde $Y_1=X_1-X_2$, geramos então as matrizes do espaço de estados usando as equações \eqref{eq:edo1} e \eqref{eq:edo2}:

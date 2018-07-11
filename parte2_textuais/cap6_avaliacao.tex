@@ -156,7 +156,7 @@ Tentamos aplicar o controlador do modelo $ARXsim$ no sistema real mas o ganho do
 	\caption{Resposta ao degrau do sistema com o controlador do modelo $ARXsim$}\label{fig:stepsarxsim}
 \end{figure}
 
-\subsection{ISE da resposta ao degrau dos modelos simulada}
+\subsubsection{ISE da resposta ao degrau dos modelos simulada}
 
 O ISE é um índice de desempenho de sistema que quantifica o desempenho de um sistema para respostas rápidas pela equação \eqref{eq:ise}. Vemos na figura \ref{fig:ise} um gráfico com os 4 modelos identificados, $SUB1$, $ARX1$, $ARX2$ e $ARXsim$, com o ISE calculado para sua resposta ao degrau de -1 à 1. Com esse gráfico vemos que o controlador que mais minimizou o erro foi o do modelo $ARX1$ e o que menos minimizou o erro o do modelo $ARXsim$, o que era de se esperar dado que o modelo $ARXsim$ não é um modelo adequado. 
 
@@ -171,7 +171,7 @@ ISE=\int e^2 dt
 	\label{fig:ise}
 \end{figure}
 
-\subsection{Comparação dos modelos}
+\subsubsection{Comparação dos modelos}
 
 Na tabela \ref{tb:requisitosise}, mostramos os requisitos de resposta ao degrau definidos. Vemos que no sistema real nenhum dos modelos foi capaz de atender aos requisitos de sobrevalor e de tempo de assentamento, e o índice ISE está muito superior ao índice calculado para o modelo simulado.
 
