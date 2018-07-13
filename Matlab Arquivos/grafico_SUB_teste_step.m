@@ -822,22 +822,27 @@ axis([0 t(end) min(min(y))-.05 max(max(y))+.1]);
 % stepSUB=(stepSUB-p2)/p1;
 figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
 y=stepSUB(1:size(t,2),4)';
-stairs(t',stepSUB(1:size(t,2),4)','LineWidth',1.5)
+% stairs(t',stepSUB(1:size(t,2),4)','LineWidth',1.5)
 hold on
 stairs(t',stepSUB(1:size(t,2),2)','LineWidth',1.5)
-stairs(t',stepSUB(1:size(t,2),1)','k','LineWidth',1.5)
+a=1;
+b=1/5*ones(1,5);
+y=stepSUB(1:size(t,2),1)';
+y2=filter(b,a,y);
+stairs(t',y2,'k','LineWidth',1.5)
+% stairs(t',stepSUB(1:size(t,2),1)','k','LineWidth',1.5)
 stairs(t',stepSUB(1:size(t,2),2)'*1.05,':k','LineWidth',1.5)
 stairs(t',stepSUB(1:size(t,2),2)'*0.95,':k','LineWidth',1.5)
-H=legend('$y_{estimado}$','$r$', '$y_{medido}$', 'Location', 'southeast', 'Orientation', 'vertical');
+H=legend('$y_{estimado}$','$r$', 'Location', 'southeast', 'Orientation', 'vertical');
 set(H, 'Interpreter', 'latex', 'Fontsize', 22);
 ylabel('Altura (cm)', 'fontsize', 22)
 xlabel('Tempo (s)', 'fontsize', 22);
-T=title('Resposta ao degrau do modelo SUB1');
+T=title('Resposta ao degrau filtrada do modelo SUB1');
 set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
-axis([0 t(end) min(min(y))-.1 max(max(y))+.1]);
+axis([0 t(end) min(min(y*0.95))-.1 max(max(y))+.1]);
 
 
-
+hold off
 
 
 

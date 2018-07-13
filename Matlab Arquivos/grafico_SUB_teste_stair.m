@@ -835,10 +835,15 @@ stairSUB=(stairSUB-p2)/p1;
 figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
 y=stairSUB(1:size(t,2),1)-stairSUB(1:size(t,1),4);
 % stairs(t,stairSUB(1:size(t,2),1)-stairSUB(1:size(t,2),4),'k','LineWidth',1)
-stairs(t,stairSUB(1:size(t,2),4),'LineWidth',1)
+% stairs(t,stairSUB(1:size(t,2),4),'LineWidth',1)
 hold on
 stairs(t,stairSUB(1:size(t,2),2)','r','LineWidth',1)
-stairs(t,stairSUB(1:size(t,2),1)','k','LineWidth',1)
+a=1;
+b=1/5*ones(1,5);
+y=stairSUB(1:size(t,2),1)';
+y2=filter(b,a,y);
+stairs(t',y2,'k','LineWidth',1.5)
+% stairs(t,stairSUB(1:size(t,2),1)','k','LineWidth',1)
 H=legend('$y_{estimado}$','$r$','$y_{medido}$', 'Location', 'northwest', 'Orientation', 'vertical');
 set(H, 'Interpreter', 'latex', 'Fontsize', 22);
 ylabel('Altura (cm)', 'fontsize', 22)
@@ -849,12 +854,13 @@ axis([0 t(end) min(min(stairSUB(1:size(t,2),4)))-.05 max(max(stairSUB(1:size(t,2
 
 figure('position', [50, 50, 1200, 500],'Color',[1 1 1])
 y=stairSUB(1:size(t,2),1)-stairSUB(1:size(t,2),4);
+y=y./stairSUB(1:size(t,2),1)*100;
 stairs(t',y','LineWidth',1.5)
 hold on
 % stairs(t',stepSUB(1:size(t,2),3)','k','LineWidth',1.5)
 H=legend('$e$','$u$', '$y_{medido}$', 'Location', 'northwest', 'Orientation', 'vertical');
 set(H, 'Interpreter', 'latex', 'Fontsize', 22);
-ylabel('Erro (cm)', 'fontsize', 22)
+ylabel('Erro (%)', 'fontsize', 22)
 xlabel('Tempo (s)', 'fontsize', 22);
 T=title('Erro do Estimador de estados SUB1');
 set(gca, 'fontsize', 20, 'Position',[0.155    0.16    0.8    0.75]);
